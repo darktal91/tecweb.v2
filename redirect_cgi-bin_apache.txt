@@ -1,0 +1,5 @@
+- apri con permessi di super user il file apache2.conf (dovrebbe trovarsi in /etc/apache2)
+
+- aggiungi alla fine del file la riga 
+  ScriptAlias /cgi-bin/ /home/USERNAME/Documenti/tecweb.v2/cgi-bin
+(pathe della cartella cgi-bin del repo)
