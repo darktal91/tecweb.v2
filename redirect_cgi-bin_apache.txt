@@ -1,5 +1,29 @@
-- apri con permessi di super user il file apache2.conf (dovrebbe trovarsi in /etc/apache2)
+- apri con permessi superuser il file /etc/apache2/sites-enabled/000-default.conf
 
-- aggiungi alla fine del file la riga 
-  ScriptAlias /cgi-bin/ /home/USERNAME/Documenti/tecweb.v2/cgi-bin
-(pathe della cartella cgi-bin del repo)
+dentro la sezione:
+<VirtualHost *:80> 
+sotto alla riga:
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html
+
+aggiungi il codice: (ovviamente cambiando il nome e il path della cartella)
+
+ScriptAlias /cgi-bin/ /home/anarchy/Documenti/tecweb.v2/cgi-bin/
+
+<Directory "/home/anarchy/Documenti/tecweb.v2/cgi-bin/">
+	AllowOverride None
+	Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+	Order allow,deny
+	Allow from all
+</Directory>
+<Directory "/home/anarchy/Documenti/tecweb.v2/cgi-bin/">
+    <IfModule mod_authz_core.c>
+	    # Apache 2.4
+	    Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+	    # Apache 2.2
+	    Order deny,allow
+	    Allow from all
+    </IfModule>
+</Directory>
