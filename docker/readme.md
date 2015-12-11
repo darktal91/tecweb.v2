@@ -26,7 +26,7 @@ I comandi disponibili sono:
 6. gli altri due comandi non dovrebbero servirvi, li uso io per gestire le immagini e le modifiche alle immagini in locale, li ho lasciati solo per completezza e nel caso in cui facessi qualche pasticcio con l'immagine.
 
 ## Accedere al progetto dal browser
-Come specificato nella lista dei comandi del makefile, all'avvio del container viene specificato il forwarding della porta 9999 dell'host sulla porta 80 del container, quindi per visualizzare il progetto basta usare l'url [localhost:9999](localhost:9999). Ovviamente funziona solo quando il container è in esecuzione ;)
+Come specificato nella lista dei comandi del makefile, all'avvio del container viene specificato il forwarding della porta 9999 dell'host sulla porta 80 del container, quindi per visualizzare il progetto basta usare l'url [localhost:9999/tecweb](localhost:9999/tecweb). Ovviamente funziona solo quando il container è in esecuzione ;)
 
 ## Esempio di utilizzo
 ``` make pull ``` (solo la prima volta, scarica l'immagine dal repo)
