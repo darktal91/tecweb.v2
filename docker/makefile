@@ -1,6 +1,7 @@
-PUBLICHTML=../public_html
-CGI=../cgi-bin
-DATA=../data
+SRC_DIR=$(shell readlink -f ../)
+PUBLICHTML=$(SRC_DIR)/public_html
+CGI=$(SRC_DIR)/cgi-bin
+DATA=$(SRC_DIR)/data
 
 pull:
 	@docker pull darktal91/tecweb-ubuntu:1.0.0
