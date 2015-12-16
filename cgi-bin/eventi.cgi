@@ -60,7 +60,7 @@ foreach(@events){
 # preparo la pagina usando i vari template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-my $home="../index.hmtl";
+my $home="/public_html/index.html";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Eventi");
 $template->param(UTENTE=>0);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);

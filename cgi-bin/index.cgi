@@ -60,7 +60,7 @@ else {
   #   $template->param(REFER => $referrer);
   }
   else {
-    my $template = HTML::Template->new(filename => 'template/index.tmpl');
+    my $template = HTML::Template->new(filename => 'template/bodies/index.tmpl');
     $template->param(ERRORE => $strerr);
     $template->param(RIFE => $riferimento);
     
