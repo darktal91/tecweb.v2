@@ -1,0 +1,10 @@
+<dl id="eventi">
+  <TMPL_LOOP NAME=EVENTI>
+    <dt id="#<TMPL_VAR NAME=ID ESCAPE=HTML>">
+      <TMPL_VAR TITOLO>
+    </dt>
+    <dd>
+      <TMPL_VAR DESCRIZIONE>
+    </dd>
+  </TMPL_LOOP>
+</dl>

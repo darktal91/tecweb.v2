@@ -1,0 +1,29 @@
+<h1> Comment Book </h1>
+    <p> Lascia qui i tuoi commenti </p>
+    <div id="notifica">
+      <TMPL_LOOP NAME=ERRORI>
+        <p id="<TMPL_VAR NAME=TIPO ESCAPE=HTML>"><TMPL_VAR NAME=TESTO></p>
+      </TMPL_LOOP>
+    </div>
+    <TMPL_IF NAME=AUTENTICATO>
+      <form action="commenti.cgi" method="POST">
+        <textarea name="testo" rows="7" cols="40">Scrivi un commento qui!</textarea><br />
+        <input type="hidden" name="username" value="<TMPL_VAR NAME=USER ESCAPE=HTML>"/>
+        <input type="hidden" name="operation" value="INSERT" />
+        <input type="submit" value="Invia!" />
+      </form>
+    </TMPL_IF>
+    <TMPL_LOOP NAME=COMMENTI>
+      <div id="commento">
+        <p><b><TMPL_VAR NAME=USERNAME></b>, il <TMPL_VAR NAME=DATETIME> ha scritto:</p>
+        <TMPL_IF ADMIN>
+          <form action="commenti.cgi" method="POST">
+            <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
+            <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
+            <input type="hidden" name="operation" value="DELETE" />
+            <input type="submit" value="elimina">
+          </form>
+        </TMPL_IF>
+        <p> <TMPL_VAR NAME=TESTO> </p>
+      </div>
+</TMPL_LOOP>
