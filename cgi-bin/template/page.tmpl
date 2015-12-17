@@ -12,22 +12,26 @@
     <div id="bar">
        <div id="login">
           <!-- <TMPL_VAR ERRORE> -->
-	<TMPL_UNLESS UTENTE>
-	  <form method="post" action="login.cgi">
-	      <fieldset>
-		<legend>Login: inserisci i tuoi dati.</legend>
-		<p><label for="username">Username:</label>
-		<input class="field" type="text" name="username" id="username" value="" size="16" /></p>
-		<p><label for="password">Password:</label>
-		<input class="field" type="password" name="password" id="password" value="" size="16" /></p>
-		<p><input class="button" type="submit" value="Login" />
-		<a class="button" accesskey="r" href="registrazione.cgi">Registrati</a></p>
-	      </fieldset>
-	      <input type="hidden" name="referrer" value="<TMPL_VAR RIFE ESCAPE=HTML>" />
-	      <input type="hidden" name="submitted" value="1" /> 
-	  </form>
-	<TMPL_ELSE>
-	  Accesso effettuato: <TMPL_VAR UTENTE>
+	<TMPL_UNLESS LOGINPAGE>
+	  <TMPL_UNLESS UTENTE>
+	    <form method="post" action="login.cgi">
+		<fieldset>
+		  <legend>Login: inserisci i tuoi dati.</legend>
+		  <p><label for="username">Username:</label>
+		  <input class="field" type="text" name="username" id="username" value="" size="16" /></p>
+		  <p><label for="password">Password:</label>
+		  <input class="field" type="password" name="password" id="password" value="" size="16" /></p>
+		  <p><input class="button" type="submit" value="Login" />
+		  <a class="button" accesskey="r" href="registrazione.cgi">Registrati</a></p>
+		</fieldset>
+		<input type="hidden" name="referrer" value="<TMPL_VAR RIFE ESCAPE=HTML>" />
+		<input type="hidden" name="submitted" value="1" /> 
+	    </form>
+	  <TMPL_ELSE>
+	    Accesso effettuato: <TMPL_VAR NOMEUTENTE>
+	    <p><a class="button" accesskey="u" href="areautente.cgi">Area utente</a>
+	    <a class="button" accesskey="l" href="logout.cgi">Logout</a></p>
+	  </TMPL_UNLESS>
 	</TMPL_UNLESS>
      </div>
      <div id="nav">
@@ -41,7 +45,6 @@
            <li><a accesskey="d" href="dovesiamo.cgi">Dove siamo</a></li>
            <li><a accesskey="n" href="contatti.cgi">Contatti</a></li>
            <TMPL_IF UTENTE>
-             <li><a accesskey="u" href="areautente.cgi">Il mio account</a></li>
              <li><a accesskey="g" href="gestioneBiglietti.cgi">Gestione biglietti</a></li>
            </TMPL_IF>
            <TMPL_IF ADMIN>
