@@ -78,7 +78,7 @@ else {
 
     $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
     $temp->param(PATH=>"Home >> Login");
-    $temp->param(UTENTE=>0);
+    $temp->param(LOGINPAGE=>1);
     $temp->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
     $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 

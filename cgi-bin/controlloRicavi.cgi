@@ -19,6 +19,23 @@ my $file_evento = "../data/acquisti/acquisti.xml";
 my $ns_uri  = 'http://www.empirecon.it';
 my $ns_abbr = 'b';
 
+## Controllo sessione
+my $session = CGI::Session->load();
+my $sessionname = $session->param('utente');
+
+my $user=0;
+my $admin=0;
+my $referrer = "";
+if ($sessionname ne "") {
+  $user=1;
+  if($sessionname == "admin"){
+    $admin=1;
+  }
+}
+
+#tutto ciò che viene dopo va risistemato, la pagina deve essere visibile solo all'admin
+
+
 #espressioni xpath
 my $big = "//${ns_abbr}:tipologia";
 
@@ -66,10 +83,10 @@ $nums=@events;
 # preparo la pagina usando i vari template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-my $home="../index.hmtl";
-my $area="areautente.cgi";
+my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Controllo Ricavi");
-$template->param(UTENTE=>0);
+$template->param(UTENTE=>$user);
+$template->param(ADMIN=>$admin);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template

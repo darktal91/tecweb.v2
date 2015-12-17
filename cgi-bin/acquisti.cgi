@@ -20,6 +20,24 @@ $file_acquisti = '../data/acquisti/acquisti.xml';
 $ns_uri  = 'http://www.imperofiere.com';
 $ns_abbr = 'a';
 
+## Controllo sessione
+my $session = CGI::Session->load();
+my $sessionname = $session->param('utente');
+
+my $user=0;
+my $admin=0;
+my $referrer = "";
+if ($sessionname ne "") {
+  $user=1;
+  if($sessionname == "admin"){
+    $admin=1;
+  }
+}
+else {
+  $referrer = "acquisti.cgi";
+}
+
+
 
 # #espressioni xpath
 # my $ticketTypesXPath = "/${ns_abbr}:acquisti/${ns_abbr}:tipologia/\@id";
@@ -63,7 +81,9 @@ my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
 my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Acquista biglietti");
-$template->param(UTENTE=>0);
+$template->param(UTENTE=>$user);
+$template->param(ADMIN=>$admin);
+$template->param(RIFE=>$referrer);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 # $template->param(LOOP_TIPIBIGLIETTI=>\@loop_data);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);

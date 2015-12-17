@@ -16,18 +16,6 @@ my $file_padiglioni = "../data/padiglioni/padiglioni.xml";
 my $ns_uri  = 'http://www.empirecon.it';
 # creo il template
 
-my $temp = HTML::Template->new(filename=>$templatePage);
-
-$temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-$temp->param(PATH=>"Home >> Dati personali");
-$temp->param(UTENTE=>0);
-$temp->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
-$temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
-
-#compilazione template
-my $template = new  HTML::Template(scalarref => \$temp->output());
-$template->param(PAGE => "Dati personali");
-$template->param(KEYWORD => "dati personali, dati utente, EmpireCon, fiera, Impero, Star Wars, convention");
 # controllo che l'utente abbia effettuato l'accesso
 $session = CGI::Session->load();
 
@@ -37,7 +25,24 @@ if ($username eq "") {      #l'utente non è loggato, lo mando alla form di logi
   print $page->header(-location => 'login.cgi');
 }
 else {       #l'utente è loggato
+  my $temp = HTML::Template->new(filename=>$templatePage);
+  $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
+  $temp->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Dati personali");
+  $temp->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
+  $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
+  #setto valori template per gestire il box di login e il menu
+  my $admin = 0;
+  if($username == "admin") {
+    $admin = 1;
+  }
+  $temp->param(UTENTE=>1);
+  $temp->param(ADMIN=>$admin);
 
+  #compilazione template
+  my $template = new  HTML::Template(scalarref => \$temp->output());
+  $template->param(PAGE => "Dati personali");
+  $template->param(KEYWORD => "dati personali, dati utente, EmpireCon, fiera, Impero, Star Wars, convention");
+  
   $filedati = "../data/utenti/utenti.xml";
 
   #creo il parser

@@ -37,6 +37,7 @@ my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Contatti");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);
+$template->param(RIFE=>$referrer);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template

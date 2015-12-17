@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use CGI;
+use CGI::Session();
 use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use HTML::Template;
@@ -13,6 +14,24 @@ my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/commenti.tmpl";
+
+## Controllo sessione
+my $session = CGI::Session->load();
+my $sessionname = $session->param('utente');
+
+my $user=0;
+my $admin=0;
+my $referrer = "";
+if ($sessionname ne "") {
+  $user=1;
+  if($sessionname == "admin"){
+    $admin=1;
+  }
+}
+else {
+  $referrer = "commenti.cgi";
+}
+
 
 (my $sec, my $min, my $hour, my $mday, my $mon, my $year, my @rest) = localtime();
 $year +=1900;
@@ -155,7 +174,9 @@ foreach (@risultati) {
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
 $template->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Commenti");
-$template->param(UTENTE=>0);
+$template->param(UTENTE=>$user);
+$template->param(ADMIN=>$admin);
+$template->param(RIFE=>$referrer);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template

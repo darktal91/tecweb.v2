@@ -10,9 +10,9 @@
         <a id="salta" href="#corpo">Salta al contenuto.</a>
     </div>
     <div id="bar">
-       <div id="login">
+      <TMPL_UNLESS LOGINPAGE>
+	<div id="login">
           <!-- <TMPL_VAR ERRORE> -->
-	<TMPL_UNLESS LOGINPAGE>
 	  <TMPL_UNLESS UTENTE>
 	    <form method="post" action="login.cgi">
 		<fieldset>
@@ -32,8 +32,8 @@
 	    <p><a class="button" accesskey="u" href="areautente.cgi">Area utente</a>
 	    <a class="button" accesskey="l" href="logout.cgi">Logout</a></p>
 	  </TMPL_UNLESS>
-	</TMPL_UNLESS>
-     </div>
+	</div>
+      </TMPL_UNLESS>
      <div id="nav">
         <ul>
            <li><a accesskey="h" href="index.cgi">Home</a></li>

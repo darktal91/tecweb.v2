@@ -17,6 +17,24 @@ my $file_eventi = "../data/eventi/eventi.xml";
 my $ns_uri  = 'http://www.empirecon.it';
 my $ns_abbr = 'p';
 my @result;
+
+## Controllo sessione
+my $session = CGI::Session->load();
+my $sessionname = $session->param('utente');
+
+my $user=0;
+my $admin=0;
+my $referrer = "";
+if ($sessionname ne "") {
+  $user=1;
+  if($sessionname == "admin"){
+    $admin=1;
+  }
+}
+else {
+  $referrer = "photogallery.cgi";
+}
+
 #espressioni xpath
 my $nodi = "/${ns_abbr}:eventi/${ns_abbr}:evento[./${ns_abbr}:foto]";
 
@@ -58,9 +76,11 @@ foreach(@eventi){
 # passo i parametri al template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-my $home="../index.hmtl";
+my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Photo Gallery");
-$template->param(UTENTE=>0);
+$template->param(UTENTE=>$user);
+$template->param(ADMIN=>$admin);
+$template->param(RIFE=>$referrer);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template

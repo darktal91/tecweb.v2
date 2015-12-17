@@ -21,10 +21,13 @@ my $user=0;
 my $admin=0;
 
 if ($sessionname ne "") {
-	$user=1;
-	if($sessionname == "admin"){
-		$admin=1;
-	}
+  $user=1;
+  if($sessionname == "admin"){
+    $admin=1;
+  }
+}
+else {
+  $referrer = "dovesiamo.cgi"
 }
 
 # passo i parametri al template
@@ -34,6 +37,7 @@ my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Dove Siamo");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);
+$template->param(RIFE=>$referrer);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
