@@ -35,7 +35,7 @@ else {       #l'utente è loggato
   if($username == "admin") {
     $admin = 1;
   }
-  $temp->param(UTENTE=>1);
+  $temp->param(UTENTE=>$username);
   $temp->param(ADMIN=>$admin);
 
   #compilazione template

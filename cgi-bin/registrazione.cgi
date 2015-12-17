@@ -15,6 +15,8 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/registrazione.tmpl";
 
+# visualizzare messaggio di errore se si prova a registrarsi ma si è loggati
+
 my $temp = HTML::Template->new(filename=>$templatePage);
 #compongo il template finale con i sottotemplate
 $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);

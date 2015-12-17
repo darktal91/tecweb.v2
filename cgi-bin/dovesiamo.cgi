@@ -21,7 +21,7 @@ my $user=0;
 my $admin=0;
 
 if ($sessionname ne "") {
-  $user=1;
+  $user=$sessionname;
   if($sessionname == "admin"){
     $admin=1;
   }

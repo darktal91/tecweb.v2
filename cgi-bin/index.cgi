@@ -21,7 +21,8 @@ my $user=0;
 my $admin=0;
 my $referrer = "";
 if ($sessionname ne "") {
-  $user=1;
+  $user=$sessionname;
+  
   if($sessionname == "admin"){
     $admin=1;
   }

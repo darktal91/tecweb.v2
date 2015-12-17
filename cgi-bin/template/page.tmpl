@@ -28,7 +28,7 @@
 		<input type="hidden" name="submitted" value="1" /> 
 	    </form>
 	  <TMPL_ELSE>
-	    Accesso effettuato: <TMPL_VAR NOMEUTENTE>
+	    Accesso effettuato: <TMPL_VAR UTENTE>
 	    <p><a class="button" accesskey="u" href="areautente.cgi">Area utente</a>
 	    <a class="button" accesskey="l" href="logout.cgi">Logout</a></p>
 	  </TMPL_UNLESS>
@@ -45,7 +45,8 @@
            <li><a accesskey="d" href="dovesiamo.cgi">Dove siamo</a></li>
            <li><a accesskey="n" href="contatti.cgi">Contatti</a></li>
            <TMPL_IF UTENTE>
-             <li><a accesskey="g" href="gestioneBiglietti.cgi">Gestione biglietti</a></li>
+             <!--<li><a accesskey="g" href="gestioneBiglietti.cgi">Gestione biglietti</a></li>-->
+             <li><a accesskey="g" href="#">Gestione biglietti</a></li>
            </TMPL_IF>
            <TMPL_IF ADMIN>
              <li><a accesskey="r" href="controlloRicavi.cgi">Controllo ricavi</a></li>
