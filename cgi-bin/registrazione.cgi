@@ -36,7 +36,6 @@ my $doc = $parser -> parse_file($filedati) || die ("operazione di parsificazione
 
 #leggo la radice
 my $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
-$doc->documentElement->setNamespace($ns_uri);
 
 sub chk_username {
   my $x = lc($_[0]);

@@ -31,4 +31,19 @@
 		</indirizzo>
 		<email>darktal91@gmail.com</email>
 	</utente>
+	<utente>
+		<nickname>prova</nickname>
+		<password>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</password>
+		<nome>utente</nome>
+		<cognome>di prova</cognome>
+		<datanascita>1990-01-01</datanascita>
+		<indirizzo>
+			<via>riuoghsrg</via>
+			<numero>42</numero>
+			<citta>sdfrgdgdfg</citta>
+			<provincia>PD</provincia>
+			<CAP>35012</CAP>
+		</indirizzo>
+		<email>prova@gmail.com</email>
+	</utente>
 </utenti>
