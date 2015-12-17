@@ -30,7 +30,7 @@ if ($sessionname ne "") {
 # passo i parametri al template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-my $home="../index.hmtl";
+my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Dove Siamo");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);

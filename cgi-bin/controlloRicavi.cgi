@@ -15,7 +15,7 @@ my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/controlloRicavi.tmpl";
-my $file_evento = "../data/biglietti/acquisti.xml";
+my $file_evento = "../data/acquisti/acquisti.xml";
 my $ns_uri  = 'http://www.empirecon.it';
 my $ns_abbr = 'b';
 

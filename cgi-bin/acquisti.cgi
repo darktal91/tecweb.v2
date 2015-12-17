@@ -21,42 +21,42 @@ $ns_uri  = 'http://www.imperofiere.com';
 $ns_abbr = 'a';
 
 
-#espressioni xpath
-my $ticketTypesXPath = "/${ns_abbr}:acquisti/${ns_abbr}:tipologia/\@id";
-
-#messaggi errore
-$parsing_err     = "Operazione di parsing fallita";
-$access_root_err = "Impossibile accedere alla radice";
-
-#creo il parser
-my $parser = XML::LibXML->new();
-
-#parser del documento
-my $doc = $parser->parse_file($file_acquisti) || die($parsing_err);
-
-#recupero l'elemento radice
-my $root_acq = $doc->getDocumentElement || die($access_root_err);
-
-#inserisco il namespace
-$doc->documentElement->setNamespace($ns_uri,$ns_abbr);
-
-my @tipiBiglietti = $root_acq->findnodes($ticketTypesXPath);
-
-# foreach my $tipoBiglietti (@tipibiglietto) { print $tipoBiglietti->getValue() ."<br />"; } #http://html-template.sourceforge.net/html_template.html#tmpl_loop
-
-
-
-my @loop_data = ();  # initialize an array to hold your loop
-
-
-foreach my $tipoBiglietto ( @tipiBiglietti) {
-	 my %row_data;  # get a fresh hash for the row data
-	  # fill in this row
-	 $row_data{TIPIBIGLIETTI} =  $tipoBiglietto->getValue();
-	 
-	 # the crucial step - push a reference to this row into the loop!
-	 push(@loop_data, \%row_data);
-}
+# #espressioni xpath
+# my $ticketTypesXPath = "/${ns_abbr}:acquisti/${ns_abbr}:tipologia/\@id";
+# 
+# #messaggi errore
+# $parsing_err     = "Operazione di parsing fallita";
+# $access_root_err = "Impossibile accedere alla radice";
+# 
+# #creo il parser
+# my $parser = XML::LibXML->new();
+# 
+# #parser del documento
+# my $doc = $parser->parse_file($file_acquisti) || die($parsing_err);
+# 
+# #recupero l'elemento radice
+# my $root_acq = $doc->getDocumentElement || die($access_root_err);
+# 
+# #inserisco il namespace
+# $doc->documentElement->setNamespace($ns_uri,$ns_abbr);
+# 
+# my @tipiBiglietti = $root_acq->findnodes($ticketTypesXPath);
+# 
+# # foreach my $tipoBiglietti (@tipibiglietto) { print $tipoBiglietti->getValue() ."<br />"; } #http://html-template.sourceforge.net/html_template.html#tmpl_loop
+# 
+# 
+# 
+# my @loop_data = ();  # initialize an array to hold your loop
+# 
+# 
+# foreach my $tipoBiglietto ( @tipiBiglietti) {
+# 	 my %row_data;  # get a fresh hash for the row data
+# 	  # fill in this row
+# 	 $row_data{TIPIBIGLIETTI} =  $tipoBiglietto->getValue();
+# 	 
+# 	 # the crucial step - push a reference to this row into the loop!
+# 	 push(@loop_data, \%row_data);
+# }
 
 # preparo la pagina usando i vari template
 my $template = HTML::Template->new(filename=>$templatePage);
@@ -65,7 +65,7 @@ my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Acquista biglietti");
 $template->param(UTENTE=>0);
 $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
-$template->param(LOOP_TIPIBIGLIETTI=>\@loop_data);
+# $template->param(LOOP_TIPIBIGLIETTI=>\@loop_data);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
