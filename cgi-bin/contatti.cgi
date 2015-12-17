@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 use CGI::Session();
@@ -19,18 +20,20 @@ my $sessionname = $session->param('utente');
 ## Variabile discriminante
 my $user=0;
 my $admin=0;
-
 if ($sessionname ne "") {
   $user=1;
   if($sessionname == "admin"){
     $admin=1;
   }
 }
+else {
+  $referrer = "contatti.cgi";
+}
 
 # passo i parametri al template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-my $home="../index.hmtl";
+my $home="index.cgi";
 $template->param(PATH=>"<a href=\"$home\">Home</a> >> Contatti");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);
@@ -39,7 +42,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Contatti");
-$tempF->param(KEYWORD => "Contatti,EmpireCon, fiera, Rovigo, Impero,Empire");
+$tempF->param(KEYWORD => "Contatti, EmpireCon, fiera, Rovigo, Impero, Empire");
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;

@@ -11,32 +11,15 @@ use HTML::Template;
 
 # $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
 
-#creo il template
-my $templateName = 'acquisti.tmpl';
-my $template     = HTML::Template->new(filename=>'acquisti.tmpl');
-# 
-
-# 
-# my $session = CGI::Session->load();
-# my $sessionname = $session->param('utente');
-# 
-# if ($sessionname ne "") {  #l'utente è già loggato
-
-$page = new CGI;
-
-  #print $page->header(-location => "$ENV{HTTP_REFERER}"); # redirect alla pagina che ha richiesto il login
-#Per poter partecipare all'evento bisogna essere registrati : 
-# Attenzione : è necessario essere loggati 
-
-
-# }
-# else {
-# 
-# } // il nome dovrà essere prelevato da 
-
-$file_acquisti = 'acquisti.xml';
+my $page = new CGI;
+my $templatePage = "template/page.tmpl";
+my $templateHeader = "template/header.tmpl";
+my $templateFooter = "template/footer.tmpl";
+my $templateContent= "template/bodies/acquisti.tmpl";
+$file_acquisti = '../data/acquisti/acquisti.xml';
 $ns_uri  = 'http://www.imperofiere.com';
-$ns_abbr = 'd';
+$ns_abbr = 'a';
+
 
 #espressioni xpath
 my $ticketTypesXPath = "/${ns_abbr}:acquisti/${ns_abbr}:tipologia/\@id";
@@ -74,16 +57,24 @@ foreach my $tipoBiglietto ( @tipiBiglietti) {
 	 # the crucial step - push a reference to this row into the loop!
 	 push(@loop_data, \%row_data);
 }
-	 
-# finally, assign the loop data to the loop param, again with a
-# reference:
-$template->param(LOOP_TIPIBIGLIETTI => \@loop_data);
+
+# preparo la pagina usando i vari template
+my $template = HTML::Template->new(filename=>$templatePage);
+$template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
+my $home="index.cgi";
+$template->param(PATH=>"<a href=\"$home\">Home</a> >> Acquista biglietti");
+$template->param(UTENTE=>0);
+$template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
+$template->param(LOOP_TIPIBIGLIETTI=>\@loop_data);
+$template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
+#compilazione template
+my $tempF = new  HTML::Template(scalarref => \$template->output());
+$tempF->param(PAGE => "Acquista biglietti");
+$tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Rovigo, Impero,Empire");
 
 HTML::Template->config(utf8 => 1);
-print "Content-Type: text/html\n\n", $template->output;
+print "Content-Type: text/html\n\n", $tempF->output;
 
 
-# print << "EOF"
-# 
-# EOF
-# ;
+
+
