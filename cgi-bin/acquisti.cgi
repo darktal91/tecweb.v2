@@ -17,8 +17,8 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/acquisti.tmpl";
 $file_acquisti = '../data/acquisti/acquisti.xml';
-$ns_uri  = 'http://www.imperofiere.com';
-$ns_abbr = 'a';
+# $ns_uri  = 'http://www.imperofiere.com';
+# $ns_abbr = 'a';
 
 ## Controllo sessione
 my $session = CGI::Session->load();

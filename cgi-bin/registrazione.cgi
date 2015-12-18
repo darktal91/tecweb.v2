@@ -7,7 +7,7 @@ use Digest::SHA qw(sha256_hex);
 use HTML::Template;
 
 my $page = new CGI;
-my $ns_uri  = 'http://www.empirecon.it';
+# my $ns_uri  = 'http://www.empirecon.it';
 my $filedati = "../data/utenti/utenti.xml";
 
 my $templatePage = "template/page.tmpl";

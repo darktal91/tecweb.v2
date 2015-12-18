@@ -75,7 +75,7 @@ my $access_root_err = "Impossibile accedere alla radice";
 
 my $doc = $parser->parse_file($file) || die ($parsing_err);
 my $root = $doc->getDocumentElement || die ($access_root_err);
-$doc->documentElement->setNamespace("http://www.empirecon.it", "ns");
+# $doc->documentElement->setNamespace("http://www.empirecon.it", "ns");
 
 # - GESTORE ELIMINAZIONE POST
 

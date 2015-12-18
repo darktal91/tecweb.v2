@@ -16,8 +16,8 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/eventi.tmpl";
 my $file_evento = "../data/eventi/eventi.xml";
-my $ns_uri  = 'http://www.empirecon.it';
-my $ns_abbr = 'e';
+# my $ns_uri  = 'http://www.empirecon.it';
+# my $ns_abbr = 'e';
 
 ## Controllo sessione
 my $session = CGI::Session->load();
@@ -54,7 +54,7 @@ my $doc = $parser->parse_file($file_evento) || die($parsing_err);
 my $root_pad = $doc->getDocumentElement || die($access_root_err);
 
 #inserisco il namespace
-$doc->documentElement->setNamespace($ns_uri,$ns_abbr);
+# $doc->documentElement->setNamespace($ns_uri,$ns_abbr);
 
 my @events = $root_pad->findnodes($eventi);
 my @result;

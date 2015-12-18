@@ -13,8 +13,7 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/areautente.tmpl";
 my $file_padiglioni = "../data/padiglioni/padiglioni.xml";
-my $ns_uri  = 'http://www.empirecon.it';
-# creo il template
+# my $ns_uri  = 'http://www.empirecon.it';
 
 # controllo che l'utente abbia effettuato l'accesso
 $session = CGI::Session->load();
@@ -25,6 +24,7 @@ if ($username eq "") {      #l'utente non è loggato, lo mando alla form di logi
   print $page->header(-location => 'login.cgi');
 }
 else {       #l'utente è loggato
+# creo il template
   my $temp = HTML::Template->new(filename=>$templatePage);
   $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
   $temp->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Dati personali");
@@ -54,7 +54,7 @@ else {       #l'utente è loggato
   #leggo la radice
   $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
 
-  $doc->documentElement->setNamespace($ns_uri);
+#   $doc->documentElement->setNamespace($ns_uri);
 
   #il parametro modifica indica:
   # 0 => primo accesso

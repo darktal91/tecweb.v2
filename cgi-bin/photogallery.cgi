@@ -14,7 +14,7 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/foto.tmpl";
 my $file_eventi = "../data/eventi/eventi.xml";
-my $ns_uri  = 'http://www.empirecon.it';
+# my $ns_uri  = 'http://www.empirecon.it';
 my $ns_abbr = 'p';
 my @result;
 
@@ -52,7 +52,7 @@ my $doc = $parser->parse_file($file_eventi) || die($parsing_err);
 my $root_pad = $doc->getDocumentElement || die($access_root_err);
 
 #inserisco il namespace
-$doc->documentElement->setNamespace($ns_uri,$ns_abbr);
+# $doc->documentElement->setNamespace($ns_uri,$ns_abbr);
 
 my @eventi = $root_pad->findnodes($nodi);
 
