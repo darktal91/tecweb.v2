@@ -3,7 +3,7 @@
 <utenti xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="utenti.xsd">
 	<utente>
 		<nickname>admin</nickname>
-		<password>d82494f05d6917ba02f7aaa29689ccb444bb73f20380876cb05d1f37537b7892</password>
+		<password>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</password>
 		<nome>admin</nome>
 		<cognome>admin</cognome>
 		<datanascita>1970-01-01</datanascita>
