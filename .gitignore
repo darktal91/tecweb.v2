@@ -1,0 +1,5 @@
+#ignore everything in build/
+build/*
+
+#except build/files
+!build/files/*
