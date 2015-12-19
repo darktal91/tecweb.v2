@@ -1,5 +1,4 @@
-#ignore everything in build/
+#ignore everything in build except build/files
+!build/
 build/*
-
-#except build/files
-!build/files/*
+!build/files

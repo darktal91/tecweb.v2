@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- xmlns="http://www.imperofiere.com" xs:schemaLocation="http://www.imperofiere.com utenti.xsd" -->
+<utenti xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="utenti.xsd">
+	<utente>
+		<nickname>admin</nickname>
+		<password>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</password>
+		<nome>admin</nome>
+		<cognome>admin</cognome>
+		<datanascita>1970-01-01</datanascita>
+		<indirizzo>
+			<via>admin</via>
+			<numero>42</numero>
+			<citta>admin</citta>
+			<provincia>PD</provincia>
+			<CAP>42042</CAP>
+		</indirizzo>
+		<email>admin@admin.it</email>
+	</utente>
+</utenti>

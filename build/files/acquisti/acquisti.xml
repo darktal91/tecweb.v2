@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="acquisti.xsl"?>
+<acquisti xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.imperofiere.com acquisti.xsd">
+  
+  <tipologia id="intero" prezzo="5">
+  </tipologia>
+  
+  <tipologia id="ridotto" prezzo="25">
+  </tipologia>
+  
+  <tipologia id="gratis" prezzo="0">
+  </tipologia>
+</acquisti>
