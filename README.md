@@ -1,13 +1,8 @@
 # tecweb.v2
 
-Regole commit:
+Progetto didattico per il corso Tecnologie Web.
+Le specifiche del progetto si trovano qui: http://docenti.math.unipd.it/gaggi/tecweb/progetto.html
 
-fare commit di un solo file alla volta, usando il comando
-```
-git commit nome_file -m "messaggio abbastanza dettagliato che spieghi il cambiamento"
-```
----
-Moduli da installare:
-```
-sudo apt-get install libapache2-mod-perl2
-```
+
+### Workflow
+Le linee guida al modello di lavoro adottato in questo progetto si trovano [qui](https://github.com/darktal91/tecweb.v2/blob/master/workflow.md)
