@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<!-- xmlns="http://www.imperofiere.com" xs:schemaLocation="http://www.imperofiere.com utenti.xsd" -->
-<utenti xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="utenti.xsd">
+<u:utenti xmlns:u="http://imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="utenti.xsd">
 	<utente>
 		<nickname>admin</nickname>
 		<password>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</password>
@@ -46,4 +45,4 @@
 		</indirizzo>
 		<email>prova@gmail.com</email>
 	</utente>
-</utenti>
+</u:utenti>
