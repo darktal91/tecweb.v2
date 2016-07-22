@@ -367,15 +367,4 @@ else {       #l'utente è loggato
   HTML::Template->config(utf8 => 1);
   print "Content-Type: text/html\n\n", $template->output;
 }
-# <head>
-#   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-#   <link type="text/css" rel="stylesheet" href="css/style.css" media="handheld, screen" />
-#   <link type="text/css" rel="stylesheet" href="css/handheld.css" media="handheld, screen and (max-width:550px), only screen and (max-device-width:550px)" />
-#   <link type="text/css" rel="stylesheet" href="css/print.css" media="print" />
-#   <title>Dati personali | EmpireCon</title>
-#   <meta name="title" content="Dati personali | EmpireCon" />
-#   <meta name="author" content="Andrea Cardin, Andrea Nalesso, Gabriele Marcomin, Ismaele Gobbo" />
-#   <meta name="description" content="Visualizzazione dei dati personali dell'utente del sito di EmpireCon, convention su Star Wars" />
-#   <meta name="keywords" content="" />
-#   <meta name="language" content="italian it" />
-# </head>
+
