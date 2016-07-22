@@ -1,19 +1,11 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="padiglioni.xsl"?>  
-<padiglioni xmlns="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" 
-xs:schemaLocation="http://www.imperofiere.com eventi.xsd">
- <padiglione id="1">
-  <nome>Jani</nome>
-  <descrizione>Reminder</descrizione>
-  <foto>
-	<immagine src=""></immagine>
- </foto>
-</padiglione>
-<padiglione id="2">
-  <nome>proviamo</nome>
-  <descrizione>derer</descrizione>
-  <foto>
-	<immagine src=""></immagine>
-  </foto>
-</padiglione>
-</padiglioni>
+<e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
+	<evento>
+		<nome>Prova</nome>
+		<descrizione>Evento creato a mano per testare cose</descrizione>
+		<padiglione>A</padiglione>
+		<data>2016-07-23</data>
+		<inizio>09:00:00</inizio>
+		<fine>12:00:00</fine>
+	</evento>
+</e:eventi>
