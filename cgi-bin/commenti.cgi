@@ -144,8 +144,3 @@ sub normalize_datetime {
   $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/) || die("boh");
   return $3 . "/" . $2 . "/" . $1 . " alle " . $4;
 }
-
-# print "Content-Type: text/html\n\n";
-# for my $j (0 .. $#sortedcomments) {
-#   print "$j : " . $sortedcomments[$j]{DATETIME} . " <br />\n";
-# }
