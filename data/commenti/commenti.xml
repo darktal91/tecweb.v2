@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
 <c:commentbook xmlns:c="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="commenti.xsd">
-  <commento>
-    <username>Darth Carmine</username>
-    <datetime>2014-03-12T20:01:00</datetime>
-    <testo>WEE CHISTU SITU ME PIASCE ASSAJE</testo>
-  </commento>
-  <commento>
-    <username>Luca Camminaciello</username>
-    <datetime>2014-03-12T13:26:00</datetime>
-    <testo>Mi fa male il polso</testo>
-  </commento>
+	
+	<commento>
+		<username>admin</username>
+		<datetime>2016-07-26T13:01:08</datetime>
+		<testo>prova2</testo>
+	</commento>
+	
 </c:commentbook>
