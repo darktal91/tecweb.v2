@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
 	<evento>
+		<id>UHJvdmE=</id>
 		<nome>Prova</nome>
 		<descrizione>Evento creato a mano per testare cose</descrizione>
 		<padiglione>A</padiglione>
