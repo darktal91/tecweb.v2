@@ -1,39 +1,72 @@
-<h1> Eventi </h1>
-<TMPL_IF NAME=ADMIN>
-  <form action="eventi.cgi" method="POST" />
-    <fieldset>
+<TMPL_IF NAME=MOD>
+  <TMPL_IF NAME=OK>
+    blah
+  <TMPL_ELSE>
+    <TMPL_IF NAME=MODIFICA>
+      <h1>Modifica un evento</h1>
+    <TMPL_ELSE>
+      <h1>Inserisci nuovo evento</h1>
+    </TMPL_IF>
+    <form action="eventi.cgi" method="POST" />
       <ul class="form">
-	<legend>Inserisci un nuovo evento</legend>
-	<li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" /></li>
-	<li><label for="descrizione">Descrizione:</label><textarea name="descrizione" rows="7" cols="40"></textarea></li>
-	<li><label for="padiglione">Padiglione:</label><select name="padiglione">
-	<TMPL_LOOP NAME=PADIGLIONI>
-	  <option value="<TMPL_VAR PADIGLIONE />"><TMPL_VAR PADIGLIONE />
+        <TMPL_IF NAME=MODIFICA>
+          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />" readonly/></li>
+        <TMPL_ELSE>
+          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />"/></li>
+        </TMPL_IF>
+        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" rows="7" cols="40"><TMPL_VAR DESC /></textarea></li>
+        <li><label for="padiglione">Padiglione:</label><select name="padiglione">
+        <TMPL_LOOP NAME=PADIGLIONI>
+          <TMPL_IF NAME=SELECTED>
+            <option value="<TMPL_VAR PADIGLIONE />" selected><TMPL_VAR PADIGLIONE /></option>
+          <TMPL_ELSE>
+            <option value="<TMPL_VAR PADIGLIONE />"><TMPL_VAR PADIGLIONE /></option>
+          </TMPL_IF>
+        </TMPL_LOOP>
+        </select></li>
+        <li><label for="data">Data:</label><input type="text" name="data" placeholder="aaaa-mm-dd" value="<TMPL_VAR DATA />" title="Formato aaaa-mm-dd" /> (aaaa-mm-dd)</li>
+        <li><label for="inizio">Ora nizio:</label><input type="text" name="inizio" placeholder="hh:mm" value="<TMPL_VAR INIZIO />" title="Formato hh:mm" /> (hh:mm)</li>
+        <li><label for="fine">Ora fine:</label><input type="text" name="fine" placeholder="hh:mm" value="<TMPL_VAR FINE />" title="Formato hh:mm" /> (hh:mm)</li>
       </ul>
-    </fieldset>
-  </form>
-</TMPL_IF>
-
-<div id="sorting">
-  <a href="eventi.cgi?sort=0">A-Z</a>  
-  <a href="eventi.cgi?sort=1">data</a>  
-  <a href="eventi.cgi?sort=2">Padiglione</a>
-</div>
-
-<div id="eventi">
-  <TMPL_LOOP NAME=EVENTI>
-    <div class="evento">
-      <strong><TMPL_VAR NAME=NOME /></strong>
-      <div class="dataora">Data: <TMPL_VAR NAME=DATA />, Inizio: <TMPL_VAR NAME=INIZIO />, Fine: <TMPL_VAR NAME=FINE /></div>
-      <p> <TMPL_VAR NAME=DESCRIZIONE /> </p>
-      <TMPL_IF NAME=ADMIN>
-	<form class="eventi-form eventi-modifica" action="eventi.cgi" method="POST">
-	  <input type="hidden" name="mod" value="1" />
-	  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-	  <input type="submit" name="action" value="Modifica" />
-	  <input type="submit" name="action" value="Elimina" />
-	</form>
+      <TMPL_IF NAME=MODIFICA>
+        <input type="hidden" name="action" value="Modifica" />
+        <input type="hidden" name="id" value="<TMPL_VAR ID />" />
+      <TMPL_ELSE>
+        <input type="hidden" name="action" value="Nuovo" />
       </TMPL_IF>
+      <input type="hidden" name="submitted" value="1" />
+      <input type="submit" name="submit" value="Invia" />
+    </form>
+  </TMPL_IF>
+<TMPL_ELSE>
+  <h1> Eventi </h1>
+  <TMPL_IF NAME=ADMIN>
+    <div>
+      <a href="eventi.cgi?mod=1">Inserisci nuovo evento</a>
     </div>
-  </TMPL_LOOP>
-</div>
+  </TMPL_IF>
+
+  <div id="sorting">
+    <a href="eventi.cgi?sort=0">A-Z</a>  
+    <a href="eventi.cgi?sort=1">data</a>  
+    <a href="eventi.cgi?sort=2">Padiglione</a>
+  </div>
+
+  <div id="eventi">
+    <TMPL_LOOP NAME=EVENTI>
+      <div class="evento">
+        <strong><TMPL_VAR NAME=NOME /></strong>
+        <div class="dataora">Data: <TMPL_VAR NAME=DATA />, Inizio: <TMPL_VAR NAME=INIZIO />, Fine: <TMPL_VAR NAME=FINE /></div>
+        <p> <TMPL_VAR NAME=DESCRIZIONE /> </p>
+        <TMPL_IF NAME=ADMIN>
+          <form class="eventi-form" action="eventi.cgi" method="POST">
+            <input type="hidden" name="mod" value="1" />
+            <input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
+            <input type="submit" name="action" value="Modifica" />
+            <input type="submit" name="action" value="Elimina" />
+          </form>
+        </TMPL_IF>
+      </div>
+    </TMPL_LOOP>
+  </div>
+</TMPL_IF>
