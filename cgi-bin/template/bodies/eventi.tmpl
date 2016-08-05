@@ -1,20 +1,28 @@
 <TMPL_IF NAME=MOD>
-  <TMPL_IF NAME=OK>
-    blah
+  <TMPL_IF NAME=MODIFICA>
+    <h1>Modifica un evento</h1>
   <TMPL_ELSE>
+    <h1>Inserisci nuovo evento</h1>
+  </TMPL_IF>
+  <TMPL_IF NAME=OK>
     <TMPL_IF NAME=MODIFICA>
-      <h1>Modifica un evento</h1>
+      <p>Evento modificato con successo.</p>
     <TMPL_ELSE>
-      <h1>Inserisci nuovo evento</h1>
+      <p>Evento inserito con successo.</p>
     </TMPL_IF>
-    <form action="eventi.cgi" method="POST" />
+      <a href="eventi.cgi">Torna indietro</a>
+  <TMPL_ELSE>
+    <TMPL_IF NAME=ERRORI>
+      <p><TMPL_VAR STRERR /></p>
+    </TMPL_IF>
+    <form action="eventi.cgi?mod=1" method="POST" />
       <ul class="form">
         <TMPL_IF NAME=MODIFICA>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />" readonly/></li>
         <TMPL_ELSE>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />"/></li>
         </TMPL_IF>
-        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" rows="7" cols="40"><TMPL_VAR DESC /></textarea></li>
+        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" rows="7" cols="40"><TMPL_VAR DESCRIZIONE /></textarea></li>
         <li><label for="padiglione">Padiglione:</label><select name="padiglione">
         <TMPL_LOOP NAME=PADIGLIONI>
           <TMPL_IF NAME=SELECTED>
@@ -35,6 +43,7 @@
         <input type="hidden" name="action" value="Nuovo" />
       </TMPL_IF>
       <input type="hidden" name="submitted" value="1" />
+      <input type="hidden" name="mod" value="1" />
       <input type="submit" name="submit" value="Invia" />
     </form>
   </TMPL_IF>

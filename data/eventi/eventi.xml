@@ -1,4 +1,14 @@
 <?xml version="1.0"?>
 <e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
 	
+	
+	<evento>
+		<id>ZHpmZ2hkZmc=</id>
+		<nome>dzfghdfg</nome>
+		<descrizione>dfgdfgdg</descrizione>
+		<padiglione>D</padiglione>
+		<data>2016-08-13</data>
+		<inizio>09:00:00</inizio>
+		<fine>12:00:00</fine>
+	</evento>
 </e:eventi>
