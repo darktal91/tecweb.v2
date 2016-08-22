@@ -169,13 +169,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  $doc->toFile($filedati);
 	  #il nodo evento è stato inserito
 	  
-	  #INSERISCO IN PADIGLIONI
-	  $frammento = "\t\t\t<evento>$nid</evento>\n";
-	  $newnodo = $parserpad->parse_balanced_chunk($frammento) or die("Frammento padiglione non formato");
-	  $padnode = $rootpad->findnodes("//padiglione[nome='$npad']/eventi")->get_node(1) or die ("Fallimento nel recupero del nodo eventi del padiglione");
-	  $padnode->appendChild($newnodo);
-	  $docpad->toFile($filepad);
-	  
 	  #passo parametri al template
 	  $template->param(OK=>1);
 	}
@@ -373,13 +366,6 @@ else {  #visualizzazione o elimina
     $node->parentNode->removeChild($node) or die("Fallimento di unbind evento");
     $doc->toFile($filedati) or die("Fallimento in scrittura eventi");
     
-    #eliminazione da padiglioni
-    $node = $rootpad->findnodes("//evento[text()='$id']")->get_node(1) or do {
-      $errori = 1;
-      $strerr .= "L'evento selezionato non esiste nei padiglioni.<br />";
-    };
-    $node->parentNode->removeChild($node) or die("Fallimento di unbind padiglione");
-    $docpad->toFile($filepad) or die("Fallimento in scrittura padiglioni");
     print $page->header(-location => "eventi.cgi");
     #trattare errori TODO
   } #fine eliminazione

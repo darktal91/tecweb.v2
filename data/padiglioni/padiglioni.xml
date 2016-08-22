@@ -3,51 +3,33 @@
 	<padiglione>
 		<nome>A</nome>
 		<settore>Nord</settore>
-		<eventi>
-					
-			<evento>ZHpmZ2hkZmc=</evento>
-</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>B</nome>
 		<settore>Nord</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>C</nome>
 		<settore>Nord</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>D</nome>
 		<settore>Est</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>E</nome>
 		<settore>Sud</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>F</nome>
 		<settore>Sud</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>G</nome>
 		<settore>Sud</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 	<padiglione>
 		<nome>H</nome>
 		<settore>Ovest</settore>
-		<eventi>
-		</eventi>
 	</padiglione>
 </p:padiglioni>
