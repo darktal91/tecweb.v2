@@ -62,7 +62,10 @@ $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 $temp->param(UTENTE=>$user);
 $temp->param(ADMIN=>$admin);
 $temp->param(RIFE=>$referrer);
-
+my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
+$template->param(PAGE => "Eventi");
+$template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
+$template->param(ADMIN=>$admin);
 
 #eventuale modifica
 #  0/null -> visualizzazione
@@ -115,11 +118,7 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
         }
         #FINE CONTROLLI
 	
-	#compilazione template
-        my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-        $template->param(PAGE => "Eventi");
-        $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-        $template->param(ADMIN=>$admin);
+	#passaggio parametri a template
         $template->param(MOD=>1);
 	
 	#se errore=1 -> ci sono stati errori
@@ -141,8 +140,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  }
 	  
 	  $template->param(OK=>0);
-	  $template->param(ERRORI=>$errori);
-	  $template->param(STRERR=>$strerr);
 	  $template->param(PADIGLIONI=> \@padiglioni);
 	  $template->param(NOME=>$nnome);
 	  $template->param(DESCRIZIONE=>$ndesc);
@@ -172,8 +169,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  #passo parametri al template
 	  $template->param(OK=>1);
 	}
-	HTML::Template->config(utf8=>1);
-	print "Content-Type: text/html\n\n", $template->output;
       }
       else { #primo accesso, devo mostrare la form
         my @padiglioni = ();
@@ -184,16 +179,10 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
           $i += 1;
         }
         
-        #compilazione template
-        my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-        $template->param(PAGE => "Eventi");
-        $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-        $template->param(ADMIN=>$admin);
+        #passaggio parametri a template
         $template->param(MOD=>1);
         $template->param(PADIGLIONI=> \@padiglioni);
 
-        HTML::Template->config(utf8=>1);
-        print "Content-Type: text/html\n\n", $template->output;
       }
     }
     elsif ($action eq "Modifica") { #modifica di un evento
@@ -229,11 +218,7 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
           $i += 1;
         }
 	
-	#compilazione template
-        my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-        $template->param(PAGE => "Eventi");
-        $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-        $template->param(ADMIN=>$admin);
+	#passaggio parametri a template
         $template->param(MOD=>1);
         $template->param(PADIGLIONI=> \@padiglioni);
         $template->param(MODIFICA=>1);
@@ -244,8 +229,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
         $template->param(INIZIO=>$dati{"inizio"});
         $template->param(FINE=>$dati{"fine"});
 
-        HTML::Template->config(utf8=>1);
-        print "Content-Type: text/html\n\n", $template->output;
       }
       else { # modifica avvenuta
 	my %cambiati; #hash per contenere i valori modificati
@@ -297,17 +280,11 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  
 	  $doc->toFile($filedati) or die("Fallimento in scrittura");
 	  
-	  #compilazione template
-	  my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-	  $template->param(PAGE => "Eventi");
-	  $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-	  $template->param(ADMIN=>$admin);
+	  #passaggio parametri a template
 	  $template->param(MOD=>1);
 	  $template->param(MODIFICA=>1);
 	  $template->param(OK=>1);
 
-	  HTML::Template->config(utf8=>1);
-	  print "Content-Type: text/html\n\n", $template->output;
         }
         else { # ci sono stati degli errori, rimando i dati modificati al template insieme agli errori
 	  # preparo array padiglioni
@@ -324,11 +301,7 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	    $i += 1;
 	  }
 	  
-	  #compilazione template
-	  my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-	  $template->param(PAGE => "Eventi");
-	  $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-	  $template->param(ADMIN=>$admin);
+	  #passaggio parametri a template
 	  $template->param(MOD=>1);
 	  $template->param(PADIGLIONI=> \@padiglioni);
 	  $template->param(MODIFICA=>1);
@@ -338,17 +311,12 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  $template->param(DATA=>$cambiati{"data"});
 	  $template->param(INIZIO=>$cambiati{"inizio"});
 	  $template->param(FINE=>$cambiati{"fine"});
-	  $template->param(ERRORI=>1);
-	  $template->param(STRERR=>$strerr);
-
-	  HTML::Template->config(utf8=>1);
-	  print "Content-Type: text/html\n\n", $template->output;
         }
       }
     }
   }
   else { #c'è un tentativo di modifica da parte di un utente non admin
-    #errore TODO
+    $strerr .= "Non si posseggono i permessi necessari per eseguire azioni di modifica. <br />";
   }
 }
 else {  #visualizzazione o elimina
@@ -367,7 +335,6 @@ else {  #visualizzazione o elimina
     $doc->toFile($filedati) or die("Fallimento in scrittura eventi");
     
     print $page->header(-location => "eventi.cgi");
-    #trattare errori TODO
   } #fine eliminazione
   
   my @eventi = ();
@@ -411,18 +378,16 @@ else {  #visualizzazione o elimina
   }
     
 
-  #compilazione template
-  my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
-  $template->param(PAGE => "Eventi");
-  $template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
-  $template->param(ADMIN=>$admin);
+  #passaggio parametri a template
   $template->param(EVENTI=> \@sortedevents);
 
-  HTML::Template->config(utf8=>1);
-  print "Content-Type: text/html\n\n", $template->output;
+  
 } #fine visualizzazione
 
-
+$template->param(ERRORI=>$errori);
+$template->param(STRERR=>$strerr);
+HTML::Template->config(utf8=>1);
+print "Content-Type: text/html\n\n", $template->output;
 
 sub italianize_date {
   my $tdata = @_[0];
