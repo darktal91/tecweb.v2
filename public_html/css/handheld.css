@@ -9,6 +9,7 @@
 #contenuto {
 	width: 100%;
 }
+
 #bar {
 	float: none;
 	clear: both;
@@ -36,5 +37,8 @@
 	margin-left: 0px;
 	width: auto;
 }
-
+#tornasu {
+	margin-left: 0px;
+	width: auto;
+}
 }
