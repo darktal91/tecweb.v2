@@ -113,7 +113,7 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
         $nid = encode_base64($nnome);
         chomp($nid);
         if ($root->exists("//evento[id='$nid']") != 0) {
-	  $errore = 1;
+	  $errori = 1;
 	  $strerr .= "Il nome dell'evento inserito è già esistente. <br />";
         }
         #FINE CONTROLLI
@@ -369,6 +369,69 @@ else {  #visualizzazione o elimina
   my @sortedevents = ();
   if($ord == 2) { #padiglioni
     @sortedevents = sort { $a->{PADIGLIONE} <=> $b->{PADIGLIONE} } @eventi;
+    $template->param(ORDPAD=>1);
+    my @A = @B = @C = @D = @E = @F = @G = @H = ();
+    my $a = $b = $c = $d = $e = $f = $g = $h = 0;
+    
+    for (my $j=0; $j<$i; $j++) {
+      if ($sortedevents[$j]{PADIGLIONE} eq "A") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $A[$a]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$a +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "B") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $B[$b]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$b +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "C") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $C[$c]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$c +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "D") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $D[$d]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$d +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "E") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $E[$e]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$e +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "F") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $F[$f]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$f +=1;
+      }
+     elsif ($sortedevents[$j]{PADIGLIONE} eq "G") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $G[$g]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$g +=1;
+      }
+      elsif ($sortedevents[$j]{PADIGLIONE} eq "H") { 
+	foreach my $keys (keys $sortedevents[$j]) {
+	  $H[$h]{$keys} = $sortedevents[$j]{$keys};
+	}
+	$h +=1;
+      }
+    }
+    
+    $template->param(A=> \@A);
+    $template->param(B=> \@B);
+    $template->param(C=> \@C);
+    $template->param(D=> \@D);
+    $template->param(E=> \@E);
+    $template->param(F=> \@F);
+    $template->param(G=> \@G);
+    $template->param(H=> \@H);
   }
   elsif ($ord == 1) { #datetime
     @sortedevents = sort { $a->{DATETIME} <=> $b->{DATETIME} } @eventi;
