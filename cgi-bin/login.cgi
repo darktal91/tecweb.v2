@@ -87,7 +87,7 @@ else {
     $template->param(PAGE => "Login");
     $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention");
     $template->param(ERRORE => $strerr);
-    $template->param(RIFE => $riferimento);
+    $template->param(RIFE => $referrer); # cambiato nome della variabile, che era riferimento - Gobbo 20160824
 
     HTML::Template->config(utf8 => 1);
     print "Content-Type: text/html\n\n", $template->output;

@@ -38,14 +38,14 @@ a:visited {
 #contenuto {
 	margin-left: auto;
 	margin-right: auto;
-	width: 80%;
+	/*width: 80%;*/
 	max-width: 1024px;
-	/* ombreggiatura (da rivedere/ripudiare quella per ie8) */
+	/* ombreggiatura (da rivedere/ripudiare quella per ie8)
 	-moz-box-shadow: 0px 0px 15px #fff;
 	-webkit-box-shadow: 0px 0px 15px #fff;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#fff')";
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#fff');
-	box-shadow: 0px 0px 15px #fff;
+	box-shadow: 0px 0px 15px #fff;*/
 	
 	border-style: solid solid none solid;
 	border-color: #fff;
@@ -55,6 +55,12 @@ a:visited {
 #posizione {
 	background-color: #550000;
 	padding: 0.2em;
+}
+#posizione a:link {
+	color: #FF0000;
+}
+#posizione a:visited {
+	color: #FF0000;
 }
 #posizione #nomeposizione {
 	font-weight: bold;
@@ -158,6 +164,12 @@ a:visited {
 	#corpo a:focus {
 	outline: 2px dashed #f00;
 	border: none;
+}
+#tornasu {
+	bottom: 0;
+	margin-left: 200px;
+	background-color: #fff;
+	padding: 0.5em;
 }
 #footer {
 	border-style: solid none solid none;
