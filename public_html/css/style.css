@@ -163,6 +163,7 @@ a:visited {
 	color: #fff;
 	background-color: #000;
 	border: 1px solid #fff;
+	cursor:pointer;
 }
 #login input:focus, #login a:focus {
 	outline: 1px dashed #f00;
@@ -252,11 +253,17 @@ h2 {
 	line-height: 1.5em;
 }
 p {
+	display:block;
 	margin-top:0.2em;
 	margin-bottom:0.2em;
+	white-space: normal;
+	padding:2px 0px 2px 0px;
 }
 dd {
 	text-indent: 20px;
+}
+strong {
+	font-weight: bolder;
 }
 
 
@@ -269,6 +276,7 @@ dd {
 /* ------------------------------------ */
 
 /* LOGIN e REGISTRAZIONE                */
+/* ------------------------------------ */
 #errorbox {
 	color: #F00;
 	font-size: 1.5em;
@@ -311,9 +319,40 @@ dd {
     border: 1px solid #000;
     margin-top: 10px;
 }
+.formfields textarea {
+	border: 1px solid #000;
+	padding: 5px 0px 5px 0px;
+	height: 80px;
+    width: 265px;
+}
 .formfields input.button {
 	clear:both;
     display:block; 
     width:265px;
     list-style: none;
+    cursor:pointer;
+}
+
+/* EVENTI e COMMENTI                    */
+/* ------------------------------------ */
+
+.evento, .commento {
+	padding: 8px 0px 8px 0px;
+	border-bottom: 1px solid #ccc;
+}
+/* ------------------------------------ */
+/* -----------CLASSI IN COMUNE--------- */
+/* ------------------------------------ */
+
+.flatbutton {
+	width: 75px;
+	cursor:pointer;
+	font-family: Georgia, serif;
+	font-size: 1em;
+	padding: 2px 6px 2px 6px;
+	text-decoration: underline;
+	color: #6d0000;
+	background-color: #FFF;
+	border: 0;
+}
 }

@@ -37,4 +37,15 @@
 		<datetime>2016-08-24T14:01:22</datetime>
 		<testo>34455</testo>
 	</commento>
+	
+	<commento>
+		<username>user</username>
+		<datetime>2016-08-28T14:38:32</datetime>
+		<testo>Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. Io mi oppongo al 14simo emendamento. </testo>
+	</commento>
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-28T14:50:53</datetime>
+		<testo><b>Kamikaze</b></testo>
+	</commento>
 </c:commentbook>

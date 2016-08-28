@@ -2,13 +2,23 @@
 <e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
 	
 	
+	
 	<evento>
-		<id>ZHpmZ2hkZmc=</id>
-		<nome>dzfghdfg</nome>
-		<descrizione>dfgdfgdg</descrizione>
-		<padiglione>D</padiglione>
-		<data>2016-08-13</data>
-		<inizio>09:00:00</inizio>
-		<fine>12:00:00</fine>
+		<id>RWx2aXMgUHJlc2xleQ==</id>
+		<nome>Elvis Presley</nome>
+		<descrizione>Elvis e un grande e a me mi piace atanto. Divertit con Elvis e ad ascolta musica bella che fa ballare ed e' yeah.</descrizione>
+		<padiglione>A</padiglione>
+		<data>2016-10-12</data>
+		<inizio>12:12:00</inizio>
+		<fine>13:12:00</fine>
+	</evento>
+	<evento>
+		<id>RGFydGggVmFkZXI=</id>
+		<nome>Darth Vader</nome>
+		<descrizione>Il discorso tanto atteso di Dark Vader. Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.</descrizione>
+		<padiglione>G</padiglione>
+		<data>2016-05-12</data>
+		<inizio>12:12:00</inizio>
+		<fine>13:13:00</fine>
 	</evento>
 </e:eventi>
