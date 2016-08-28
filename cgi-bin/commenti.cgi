@@ -116,11 +116,12 @@ foreach ($results->get_nodelist) {
 
 #ordino l'array per date discendenti
 my @sortedcomments = ();
-@sortedcomments =  sort { $b->{DATETIME} <=> $a->{DATETIME} } @commenti;
+@sortedcomments =  sort { lc($b->{DATETIME}) cmp lc($a->{DATETIME}) } @commenti;
+
 
 
 #creo il template
-my $temp = HTML::Template->new(filename=>$templatePage);
+my $temp = HTML::Template->new(filename=>$templatePage, die_on_bad_params => 0);
 $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
 $temp->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Commenti");
 $temp->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
@@ -130,7 +131,7 @@ $temp->param(ADMIN=>$admin);
 $temp->param(RIFE=>$referrer);
 
 #compilazione template
-my $template = new HTML::Template(scalarref => \$temp->output());
+my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
 $template->param(PAGE => "Commenti");
 $template->param(KEYWORD => "commenti, EmpireCon, fiera, Impero, Star Wars, Convention");
 $template->param(COMMENTI=> \@sortedcomments);
@@ -141,6 +142,6 @@ print "Content-Type: text/html\n\n", $template->output;
 
 sub normalize_datetime {
   my $dt=@_[0];
-  $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/) || die("boh");
+  $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/);
   return $3 . "/" . $2 . "/" . $1 . " alle " . $4;
 }
