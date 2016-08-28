@@ -13,13 +13,14 @@
 
   <xs:complexType name="Ttipologia">
     <xs:sequence>
-      <xs:element name="acquisto" maxOccurs="unbounded" type="Tacquisto" />
+      <xs:element name="acquisto" minOccurs="0" maxOccurs="unbounded" type="Tacquisto" />
     </xs:sequence>
     <xs:attributeGroup ref="Ttipologiattr"/>
   </xs:complexType>
   
   <xs:attributeGroup name="Ttipologiattr">
     <xs:attribute name="id" type="Ttipo" use="required" />
+		<xs:attribute name ="descrizione" type="xs:string" use="required" />
     <xs:attribute name="prezzo" type="Tprezzo" use="required" />
   </xs:attributeGroup>
 
