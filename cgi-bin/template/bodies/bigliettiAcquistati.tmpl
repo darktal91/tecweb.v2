@@ -1,0 +1,13 @@
+<TMPL_IF AUTENTICATO>
+	<p>Finora hai acquistato:</p>
+	<TMPL_LOOP NAME="INFOACQUISTI">
+		<p>
+			<TMPL_VAR NAME="NUMDATATIME" ESCAPE=HTML> biglietti di tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> per il costo di 
+			<TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€  alle ore:</p>
+			<TMPL_LOOP NAME="INFO_DATATIME">
+				<p><TMPL_VAR NAME="DATATIME" ESCAPE=HTML></p>
+			</TMPL_LOOP>
+	</TMPL_LOOP>
+<TMPL_ELSE>
+	<p>Attenzione : per visualizzare i biglietti acquistati devi prima effetturare il <span xml:lang="en">login</span> </p>
+</TMPL_IF AUTENTICATO>
