@@ -1,6 +1,64 @@
 @media screen, handheld {
+/*  reset delle regole del CSS by 
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* -------------------- fine reset */
+
+
+
+
+
+
+
+
 
  body {
+ 	line-height: 1.2em;
 	font-family: Georgia, serif;
 	font-size: 0.8em;
 	color: #fff;
@@ -38,15 +96,7 @@ a:visited {
 #contenuto {
 	margin-left: auto;
 	margin-right: auto;
-	/*width: 80%;*/
 	max-width: 1024px;
-	/* ombreggiatura (da rivedere/ripudiare quella per ie8)
-	-moz-box-shadow: 0px 0px 15px #fff;
-	-webkit-box-shadow: 0px 0px 15px #fff;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#fff')";
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#fff');
-	box-shadow: 0px 0px 15px #fff;*/
-	
 	border-style: solid solid none solid;
 	border-color: #fff;
 	border-width: 1px;
@@ -113,6 +163,7 @@ a:visited {
 	color: #fff;
 	background-color: #000;
 	border: 1px solid #fff;
+	cursor:pointer;
 }
 #login input:focus, #login a:focus {
 	outline: 1px dashed #f00;
@@ -179,5 +230,138 @@ a:visited {
 	background-color: #550000;
 	padding: 0.5em;
 }
+/* ------------------------------------ */
+/* ---------TITOLI E PARAGRAFI--------- */
+/* ------------------------------------ */
+h1 {
+	font-family: Georgia, serif;
+	font-size: 2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+	line-height: 1.5em;
+	border-bottom:1px solid #000;
+	margin-bottom: 0.3em;
+}
+h2 {
+	font-family: Georgia, serif;
+	font-size: 1.3em;
+	font-weight: bolder;
+	font-style: italic;
+	text-decoration: none;
+	color: #900;
+	line-height: 1.5em;
+}
+h3 {
+	font-family: Georgia, serif;
+	font-size: 1.3em;
+	font-weight: normal;
+	font-style: italic;
+	text-decoration: underline;
+	color: #900;
+	line-height: 1.5em;
+}
+p {
+	display:block;
+	margin-top:0.2em;
+	margin-bottom:0.2em;
+	white-space: normal;
+	padding:2px 0px 2px 0px;
+}
+dd {
+	text-indent: 20px;
+}
+strong {
+	font-weight: bolder;
+}
 
+
+
+
+
+
+/* ------------------------------------ */
+/* ---------------PAGINE--------------- */
+/* ------------------------------------ */
+
+/* LOGIN e REGISTRAZIONE                */
+/* ------------------------------------ */
+#errorbox {
+	color: #F00;
+	font-size: 1.5em;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+.formfields fieldset {
+	border: none;
+	margin-top:1em;
+}
+.formfields legend {
+	font-weight: bold;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+}
+.formfields ul
+{
+    list-style: none;
+    padding-left:0;
+}
+.formfields li
+{
+    line-height:20px;
+}
+.formfields label, #infoutente label {
+    display: inline-block;
+    color: #333;
+    height: 20px;
+    width: 115px;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: right;
+    margin-right:15px;
+}
+.formfields input {
+    height: 20px;
+    line-height:20px;
+    width: 120px;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+.formfields textarea {
+	border: 1px solid #000;
+	padding: 5px 0px 5px 0px;
+	height: 80px;
+    width: 265px;
+}
+.formfields input.button {
+	clear:both;
+    display:block; 
+    width:265px;
+    list-style: none;
+    cursor:pointer;
+}
+
+/* EVENTI e COMMENTI                    */
+/* ------------------------------------ */
+
+.evento, .commento {
+	padding: 8px 0px 8px 0px;
+	border-bottom: 1px solid #ccc;
+}
+/* ------------------------------------ */
+/* -----------CLASSI IN COMUNE--------- */
+/* ------------------------------------ */
+
+.flatbutton {
+	width: 75px;
+	cursor:pointer;
+	font-family: Georgia, serif;
+	font-size: 1em;
+	padding: 2px 6px 2px 6px;
+	text-decoration: underline;
+	color: #6d0000;
+	background-color: #FFF;
+	border: 0;
+}
 }
