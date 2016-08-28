@@ -13,9 +13,9 @@
       <a href="eventi.cgi">Torna indietro</a>
   <TMPL_ELSE>
     <TMPL_IF NAME=ERRORI>
-      <p><TMPL_VAR STRERR /></p>
+      <div id="errorbox"><TMPL_VAR STRERR /></div>
     </TMPL_IF>
-    <form action="eventi.cgi?mod=1" method="POST" />
+    <form action="eventi.cgi?mod=1" method="POST" class="formfields"/>
       <ul class="form">
         <TMPL_IF NAME=MODIFICA>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />" readonly/></li>
@@ -44,7 +44,7 @@
       </TMPL_IF>
       <input type="hidden" name="submitted" value="1" />
       <input type="hidden" name="mod" value="1" />
-      <input type="submit" name="submit" value="Invia" />
+      <input type="submit" name="submit" value="Invia" class="button"/>
     </form>
   </TMPL_IF>
 <TMPL_ELSE>
@@ -56,6 +56,7 @@
   </TMPL_IF>
 
   <div id="sorting">
+    Ordina Eventi per:
     <a href="eventi.cgi?sort=0">A-Z</a>  
     <a href="eventi.cgi?sort=1">data</a>  
     <a href="eventi.cgi?sort=2">Padiglione</a>
