@@ -21,4 +21,22 @@
 		<inizio>12:12:00</inizio>
 		<fine>13:13:00</fine>
 	</evento>
+	<evento>
+		<id>UXVhbGNvc2E=</id>
+		<nome>Qualcosa</nome>
+		<descrizione>Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test </descrizione>
+		<padiglione>A</padiglione>
+		<data>2016-05-05</data>
+		<inizio>10:20:00</inizio>
+		<fine>10:45:00</fine>
+	</evento>
+	<evento>
+		<id>T3JkaW5hbWVudG9BWg==</id>
+		<nome>OrdinamentoAZ</nome>
+		<descrizione>Test OrdinamentoAZ Test OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZ</descrizione>
+		<padiglione>G</padiglione>
+		<data>2017-05-12</data>
+		<inizio>12:15:00</inizio>
+		<fine>19:15:00</fine>
+	</evento>
 </e:eventi>

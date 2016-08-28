@@ -7,7 +7,7 @@
     <TMPL_IF NAME=AUTENTICATO>
       <p> Lascia qui i tuoi commenti </p>
       <form action="commenti.cgi" method="POST" class="formfields">
-        <textarea name="testo" rows="7" cols="40" placeholder="Scrivi un commento qui!"></textarea><br />
+        <textarea name="testo" rows="7" cols="40" placeholder="Scrivi un commento qui"></textarea><br />
         <input type="hidden" name="operation" value="insert" />
         <input type="submit" value="Invia!" class="button"/>
       </form>
@@ -26,7 +26,7 @@
           <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
           <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
           <input type="hidden" name="operation" value="delete" />
-          <input type="submit" value="elimina" class="flatbutton"/>
+          <input type="submit" value="(elimina il commento)" class="flatbutton"/>
           </form>
         </TMPL_IF>
       </div>

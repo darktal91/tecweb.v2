@@ -48,4 +48,9 @@
 		<datetime>2016-08-28T14:50:53</datetime>
 		<testo><b>Kamikaze</b></testo>
 	</commento>
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-28T16:24:09</datetime>
+		<testo/>
+	</commento>
 </c:commentbook>

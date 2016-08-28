@@ -22,7 +22,7 @@
         <TMPL_ELSE>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME />"/></li>
         </TMPL_IF>
-        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" rows="7" cols="40"><TMPL_VAR DESCRIZIONE /></textarea></li>
+        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" placeholder="Descrizione dell'evento" rows="7" cols="40"><TMPL_VAR DESCRIZIONE /></textarea></li>
         <li><label for="padiglione">Padiglione:</label><select name="padiglione">
         <TMPL_LOOP NAME=PADIGLIONI>
           <TMPL_IF NAME=SELECTED>
@@ -61,10 +61,9 @@
     <a href="eventi.cgi?sort=1">data</a>  
     <a href="eventi.cgi?sort=2">Padiglione</a>
   </div>
-
   <div id="eventi">
     <TMPL_IF NAME=ORDPAD>
-      <div id="A">
+      <div id="A" class="padiglione">
 	<h3>Padiglione A</h3>
 	<TMPL_LOOP NAME=A>
 	  <div class="evento">
@@ -75,14 +74,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="B">
+      <div id="B" class="padiglione">
 	<h3>Padiglione B</h3>
 	<TMPL_LOOP NAME=B>
 	  <div class="evento">
@@ -93,14 +92,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="C">
+      <div id="C" class="padiglione">
 	<h3>Padiglione C</h3>
 	<TMPL_LOOP NAME=C>
 	  <div class="evento">
@@ -111,14 +110,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="D">
+      <div id="D" class="padiglione">
 	<h3>Padiglione D</h3>
 	<TMPL_LOOP NAME=D>
 	  <div class="evento">
@@ -129,14 +128,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="E">
+      <div id="E" class="padiglione">
 	<h3>Padiglione E</h3>
 	<TMPL_LOOP NAME=E>
 	  <div class="evento">
@@ -147,14 +146,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="F">
+      <div id="F" class="padiglione">
 	<h3>Padiglione F</h3>
 	<TMPL_LOOP NAME=F>
 	  <div class="evento">
@@ -165,14 +164,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="G">
+      <div id="G" class="padiglione">
 	<h3>Padiglione G</h3>
 	<TMPL_LOOP NAME=G>
 	  <div class="evento">
@@ -183,14 +182,14 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
 	</TMPL_LOOP>
       </div>
-      <div id="H">
+      <div id="H" class="padiglione">
 	<h3>Padiglione H</h3>
 	<TMPL_LOOP NAME=H>
 	  <div class="evento">
@@ -201,8 +200,8 @@
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
 		<input type="hidden" name="mod" value="1" />
 		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-		<input type="submit" name="action" value="Modifica" />
-		<input type="submit" name="action" value="Elimina" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -218,8 +217,8 @@
 	    <form class="eventi-form" action="eventi.cgi" method="POST">
 	      <input type="hidden" name="mod" value="1" />
 	      <input type="hidden" name="id" value="<TMPL_VAR NAME=ID />" />
-	      <input type="submit" name="action" value="Modifica" />
-	      <input type="submit" name="action" value="Elimina" />
+	      <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+	      <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
 	    </form>
 	  </TMPL_IF>
 	</div>
