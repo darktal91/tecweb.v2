@@ -254,7 +254,7 @@ h2 {
 	line-height: 1.5em;
 }
 h3 {
-	text-align: center;
+	/*text-align: center;*/
 	font-family: Georgia, serif;
 	font-size: 1.2em;
 	font-weight: normal;
@@ -263,6 +263,16 @@ h3 {
 	color: #008;
 	line-height: 1.5em;
     padding:5px 0px 2px 2px;
+}
+h4 {
+    text-transform: uppercase;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #008;
+	line-height: 1em;
+    padding:0px 0px 2px 2px;
 }
 p {
 	display:block;
@@ -286,6 +296,13 @@ strong {
 /* ------------------------------------ */
 /* ---------------PAGINE--------------- */
 /* ------------------------------------ */
+
+/* INDEX                                */
+/* ------------------------------------ */
+.imagecontainer {
+	margin: 15px 0px 15px 0px;
+	text-align: center;
+}
 
 /* LOGIN e REGISTRAZIONE                */
 /* ------------------------------------ */
@@ -375,5 +392,22 @@ strong {
 	margin-top:20px;
 	margin-bottom:5px;
 	
+}
+.row {
+	width:100%;
+	border-bottom:1px solid #999;
+	margin: 10px 0px 10px 0px;
+}
+.date {
+	margin-top: 10px;
+	color:#000;
+}
+.imagepreview {
+	max-width:320px;
+	max-height:200px;
+	margin:5px;
+	width:30%;
+	height:30%;
+	border:1px solid #000;
 }
 }
