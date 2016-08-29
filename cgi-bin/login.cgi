@@ -61,7 +61,12 @@ else {
   if ($success) {
     $session = new CGI::Session();
     $session->param('utente', $username);
-    print $session->header(-location=>"$referrer");
+    if($referrer ne "") {
+      print $session->header(-location=>"$referrer");
+    }
+    else {
+      print $session->header(-location=>"$riferimento");
+    }
 
   #   $template->param(SUCCESS => 1);
   #   $template->param(REFER => $referrer);
