@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <c:commentbook xmlns:c="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="commenti.xsd">
 	
 	<commento>
@@ -52,5 +52,16 @@
 		<username>admin</username>
 		<datetime>2016-08-28T16:24:09</datetime>
 		<testo/>
+	</commento>
+	
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-29T11:27:42</datetime>
+		<testo>prova</testo>
+	</commento>
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-29T11:46:41</datetime>
+		<testo>àòèì</testo>
 	</commento>
 </c:commentbook>

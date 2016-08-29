@@ -7,6 +7,7 @@ use CGI::Session();
 use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use HTML::Template;
+use Encode;
 
 #variabili
 my $page = new CGI;
@@ -98,9 +99,9 @@ my @commenti = ();
 my %row;
 my $i=0;
 foreach ($results->get_nodelist) {
-  $row{"USERNAME"} = $_->findvalue('username');
-  $row{"DATETIME"} = $_->findvalue('datetime');
-  $row{"TESTO"} = $_->findvalue('testo');
+  $row{"USERNAME"} = encode('UTF-8', $_->findvalue('username'), Encode::FB_CROAK);
+  $row{"DATETIME"} = encode('UTF-8', $_->findvalue('datetime'), Encode::FB_CROAK); 
+  $row{"TESTO"} = encode('UTF-8', $_->findvalue('testo'), Encode::FB_CROAK); 
   if ($row{"USERNAME"} eq $user || $user eq "admin") {
     $row{"DEL"} = "1";
   }
