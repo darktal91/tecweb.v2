@@ -1,16 +1,16 @@
 <h1> Area Utente </h1>
-<h2> Utente: <TMPL_VAR USERNAME></h2>
+<h2> Utente: <TMPL_VAR USERNAME ESCAPE=HTML /></h2>
 	<TMPL_IF ZERO>
 	  <dl id="infoutente">
-	    <dt><label>Nome: </label><TMPL_VAR NOME></dt>
-	    <dt><label>Cognome: </label><TMPL_VAR COGNOME></dt>
-	    <dt><label>Data di nascita: </label><TMPL_VAR DATANASCITA></dt>
-	    <dt><label>Via: </label><TMPL_VAR VIA></dd>
-	    <dt><label>Numero: </label><TMPL_VAR NUMERO></dd>
-	    <dt><label>Città: </label><TMPL_VAR CITTA></dd>
-	    <dt><label>Provincia: </label><TMPL_VAR PROVINCIA></dd>
-	    <dt><label>CAP: </label><TMPL_VAR CAP></dd>
-	    <dt><label><span xml:lang="en">Email: </span></label><TMPL_VAR EMAIL></dt>
+	    <dt><label>Nome: </label><TMPL_VAR NOME ESCAPE=HTML /></dt>
+	    <dt><label>Cognome: </label><TMPL_VAR COGNOME ESCAPE=HTML /></dt>
+	    <dt><label>Data di nascita: </label><TMPL_VAR DATANASCITA ESCAPE=HTML /></dt>
+	    <dt><label>Via: </label><TMPL_VAR VIA ESCAPE=HTML /></dd>
+	    <dt><label>Numero: </label><TMPL_VAR NUMERO ESCAPE=HTML /></dd>
+	    <dt><label>Città: </label><TMPL_VAR CITTA ESCAPE=HTML /></dd>
+	    <dt><label>Provincia: </label><TMPL_VAR PROVINCIA ESCAPE=HTML /></dd>
+	    <dt><label>CAP: </label><TMPL_VAR CAP ESCAPE=HTML /></dd>
+	    <dt><label><span xml:lang="en">Email: </span></label><TMPL_VAR EMAIL ESCAPE=HTML /></dt>
 	  </dl>
 	  <p>
 	  	<a href="areautente.cgi?modifica=1">Modifica dati personali</a>
@@ -22,31 +22,31 @@
 	      Dati personali modificati con successo. <br />
 	      <a href="areautente.cgi">Torna indietro</a>
 	    <TMPL_ELSE>
-	      <div id="errorbox"><TMPL_VAR STRERR></div>
+	      <div id="errorbox"><TMPL_VAR STRERR /></div>
 	      <form method="post" action="areautente.cgi?modifica=1" class="formfields">
 		<fieldset>
 		  <legend>Modifica dati personali</legend>
 		  <ul class="form">
 		    <li><label for="nome">Nome:</label>
-		    <input type="text" name="nome" id="nome" value="<TMPL_VAR NOME ESCAPE=HTML>" /></li>
+		    <input type="text" name="nome" id="nome" value="<TMPL_VAR NOME ESCAPE=HTML />" /></li>
 
 		    <li><label for="cognome">Cognome:</label>
-		    <input type="text" name="cognome" id="cognome" value="<TMPL_VAR COGNOME ESCAPE=HTML>" /></li>
+		    <input type="text" name="cognome" id="cognome" value="<TMPL_VAR COGNOME ESCAPE=HTML />" /></li>
 
 		    <li><label for="datanascita">Data di nascita:</label>
-		    <input type="text" name="datanascita" id="datanascita" value="<TMPL_VAR DATANASCITA ESCAPE=HTML>" size="10" title="formato AAAA-MM-GG" /> (aa-mm-gg)</li>
+		    <input type="text" name="datanascita" id="datanascita" value="<TMPL_VAR DATANASCITA ESCAPE=HTML />" size="10" title="formato AAAA-MM-GG" /> (aa-mm-gg)</li>
 
 		    <li><label for="via">Via:</label>
-		    <input type="text" name="via" id="via" value="<TMPL_VAR VIA ESCAPE=HTML>" size="30" /></li>
+		    <input type="text" name="via" id="via" value="<TMPL_VAR VIA ESCAPE=HTML />" size="30" /></li>
 
 		    <li><label for="numero">N°:</label>
-		    <input type="text" name="numero" id="numero" value="<TMPL_VAR NUMERO ESCAPE=HTML>" size="4" /></li>
+		    <input type="text" name="numero" id="numero" value="<TMPL_VAR NUMERO ESCAPE=HTML />" size="4" /></li>
 
 		    <li><label for="citta">Città:</label>
-		    <input type="text" name="citta" id="citta" value="<TMPL_VAR CITTA ESCAPE=HTML>" size="25"/></li>
+		    <input type="text" name="citta" id="citta" value="<TMPL_VAR CITTA ESCAPE=HTML />" size="25"/></li>
 
 		    <li><label for="provincia">Provincia:</label>
-		    <input type="text" name="provincia" id="provincia" value="<TMPL_VAR PROVINCIA ESCAPE=HTML>" size="2" /></li>
+		    <input type="text" name="provincia" id="provincia" value="<TMPL_VAR PROVINCIA ESCAPE=HTML />" size="2" /></li>
 
 		    <li><label for="cap">CAP:</label>
 		    <input type="text" name="cap" id="cap" value="<TMPL_VAR CAP ESCAPE=HTML>" size="5" /></li>
@@ -65,7 +65,7 @@
 	      Password modificata con successo. <br />
 	      <a href="areautente.cgi">Torna indietro</a>
 	    <TMPL_ELSE>
-	      <div id="errorbox"><TMPL_VAR STRERR></div>
+	      <div id="errorbox"><TMPL_VAR STRERR /></div>
 	      <form method="post" action="areautente.cgi?modifica=2" class="formfields">
 		<fieldset>
 		  <legend>Imposta nuova <span xml:lang="en">password:</span></legend>
