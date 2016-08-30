@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <u:utenti xmlns:u="http://imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="utenti.xsd">
 	<utente>
 		<nickname>admin</nickname>
@@ -60,4 +60,4 @@
 		</indirizzo>
 		<email>13@13.com</email>
 	</utente>
-</u:utenti>
+<utente><nickname>prova1</nickname><password>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</password><nome>utenteDi</nome><cognome>prova</cognome><datanascita>1989-06-14</datanascita><indirizzo><via>ljkndv</via><numero>42</numero><citta>asdà</citta><provincia>PD</provincia><CAP>58156</CAP></indirizzo><email>boh@qualcosa.it</email></utente></u:utenti>

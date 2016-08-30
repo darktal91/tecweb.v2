@@ -261,27 +261,46 @@ else {
   my $hashpwd = sha256_hex("$password");
   $provincia = uc($provincia);
 
-  #creo frammento da aggiungere
-  my $frammento = "\t<utente>
-\t\t<nickname>$username</nickname>
-\t\t<password>$hashpwd</password>
-\t\t<nome>$nome</nome>
-\t\t<cognome>$cognome</cognome>
-\t\t<datanascita>$datanascita</datanascita>
-\t\t<indirizzo>
-\t\t\t<via>$via</via>
-\t\t\t<numero>$numero</numero>
-\t\t\t<citta>$citta</citta>
-\t\t\t<provincia>$provincia</provincia>
-\t\t\t<CAP>$cap</CAP>
-\t\t</indirizzo>
-\t\t<email>$email</email>
-\t</utente>\n";
-
-
-  my $newnodo = $parser->parse_balanced_chunk($frammento) || die("Frammento non ben formato");
-
-  $root->appendChild($newnodo) || die ("non riesco a trovare il padre");
+  # creo i nuovi nodi
+  my $new_utente = $doc->createElement("utente");
+  my $new_nickname = $doc->createElement("nickname");
+  my $new_password = $doc->createElement("password");
+  my $new_nome = $doc->createElement("nome");
+  my $new_cognome = $doc->createElement("cognome");
+  my $new_datanascita = $doc->createElement("datanascita");
+  my $new_indirizzo = $doc->createElement("indirizzo");
+  my $new_via = $doc->createElement("via");
+  my $new_numero = $doc->createElement("numero");
+  my $new_citta = $doc->createElement("citta");
+  my $new_provincia = $doc->createElement("provincia");
+  my $new_CAP = $doc->createElement("CAP");
+  my $new_email = $doc->createElement("email");
+  # inserisco i nuovi nodi
+  $new_utente->addChild($new_nickname);
+  $new_utente->addChild($new_password);
+  $new_utente->addChild($new_nome);
+  $new_utente->addChild($new_cognome);
+  $new_utente->addChild($new_datanascita);
+  $new_utente->addChild($new_indirizzo);
+  $new_utente->addChild($new_email);
+  $new_indirizzo->addChild($new_via);
+  $new_indirizzo->addChild($new_numero);
+  $new_indirizzo->addChild($new_citta);
+  $new_indirizzo->addChild($new_provincia);
+  $new_indirizzo->addChild($new_CAP);
+  $root->addChild($new_utente);
+  # inserisco dati nei nodi
+  $new_nickname->appendText($username);
+  $new_password->appendText($hashpwd);
+  $new_nome->appendText($nome);
+  $new_cognome->appendText($cognome);
+  $new_datanascita->appendText($datanascita);
+  $new_via->appendText($via);
+  $new_numero->appendText($numero);
+  $new_citta->appendText($citta);
+  $new_provincia->appendText($provincia);
+  $new_CAP->appendText($cap);
+  $new_email->appendText($email);
 
   $doc->toFile($filedati);
 
