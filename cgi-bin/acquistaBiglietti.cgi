@@ -14,7 +14,7 @@ my $page = new CGI;
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
-my $templateContent= "template/bodies/acquisti.tmpl";
+my $templateContent= "template/bodies/acquistaBiglietti.tmpl";
 my $file_acquisti = '../data/acquisti/acquisti.xml';
 
 
@@ -44,7 +44,7 @@ if ($sessionname ne "") {
   }
 }
 else {
-  $referrer = "acquisti.cgi";
+  $referrer = "acquistaBiglietti.cgi";
 }
 
 my $acquista   = $page->param('acquista');
@@ -142,8 +142,11 @@ if ($acquista ) {
     $errqta = 1;
     $acquista = 0;
   } else {
-    if (!$zerobiglietti) {
-      $infotipi = remove_empty_ticket_types($infotipi);
+    if ($zerobiglietti) {
+      $acquista = 0;
+    }
+    else{
+			$infotipi = remove_empty_ticket_types($infotipi);
     }
   }
 }
@@ -169,6 +172,7 @@ $tempF->param(ACQUISTA=>$acquista);
 $tempF->param(CONFERMA=>$conferma);
 $tempF->param(ERRQTA=>$errqta);
 $tempF->param(ZEROBIGLIETTI=>$zerobiglietti);
+
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;
