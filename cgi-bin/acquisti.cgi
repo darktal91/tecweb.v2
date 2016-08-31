@@ -5,8 +5,8 @@ use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use CGI::Session();
 use HTML::Template;
-use feature qw(switch);
 use Scalar::Util 'looks_like_number';
+use Encode;
 
 # $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
 
@@ -39,7 +39,7 @@ my $referrer = "";
 if ($sessionname ne "") {
   $user=$sessionname;
   $auth = 1;
-  if($sessionname == "admin"){
+  if($sessionname ne "admin"){
     $admin=1;
   }
 }
@@ -56,10 +56,10 @@ sub get_info_biglietti {
   
   foreach my $tipologia ($doc->findnodes('//tipologia')) {
     my $info = {
-      id          => $tipologia->{id}, 
-      prezzo      => $tipologia->{prezzo},
-      descrizione => $tipologia->{descrizione},
-      quantita    => defined($page->param($tipologia->{id})) ? $page->param($tipologia->{id}) : 0
+      id          => encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK),
+      prezzo      => $tipologia->getAttribute(prezzo),
+      descrizione => encode('UTF-8',$tipologia->getAttribute(descrizione),  Encode::FB_CROAK),
+      quantita    => defined($page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK))) ? $page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK)) : 0
     };
     push @res, $info;
   }
