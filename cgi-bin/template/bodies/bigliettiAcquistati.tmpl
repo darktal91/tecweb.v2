@@ -6,7 +6,7 @@
         Tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> per il costo di 
         <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ caduno:</p>
         <TMPL_LOOP NAME="INFO_DATATIME">
-          <p><TMPL_VAR NAME="NACQUISTI" ESCAPE=HTML> alle ore <TMPL_VAR NAME="DATATIME" ESCAPE=HTML></p>
+          <p><TMPL_VAR NAME="NACQUISTI" ESCAPE=HTML> il giorno <TMPL_VAR NAME="DATE" ESCAPE=HTML> alle ore <TMPL_VAR NAME="TIME" ESCAPE=HTML></p>
         </TMPL_LOOP>
     </TMPL_LOOP>
   <TMPL_ELSE>

@@ -94,7 +94,9 @@ while (@ids){
   {
     my %nested_row_data;
     $nested_row_data{NACQUISTI} = shift @nacquisti;
-    $nested_row_data{DATATIME} = shift @datatime;
+    my $dt = shift @datatime;
+    $nested_row_data{DATE} = normalize_date($dt);
+    $nested_row_data{TIME} = normalize_time($dt);
     push(@info_datatime, \%nested_row_data);
   }
   $row_data{INFO_DATATIME} = \@info_datatime;
@@ -124,3 +126,14 @@ $tempF->param(NACQUISTITOT=>$nacquistitot);
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;
 
+sub normalize_date {
+  my $dt=@_[0];
+  $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/);
+  return $3 . "/" . $2 . "/" . $1;
+}
+
+sub normalize_time {
+  my $dt=@_[0];
+  $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/);
+  return $4;
+}

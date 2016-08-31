@@ -54,12 +54,21 @@ my $conferma = $page->param('conferma');
 sub get_info_biglietti {
   my @res = ();
   
+  
   foreach my $tipologia ($doc->findnodes('//tipologia')) {
+    
+     my $qta =  $page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK));
+     if (defined($qta)) {
+       $qta +=0; # elimino eventuali zeri in eccesso
+     } else {
+       $qta = 0;
+     }
+  
     my $info = {
       id          => encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK),
       prezzo      => $tipologia->getAttribute(prezzo),
       descrizione => encode('UTF-8',$tipologia->getAttribute(descrizione),  Encode::FB_CROAK),
-      quantita    => defined($page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK))) ? $page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK)) : 0
+      quantita    => $qta
     };
     push @res, $info;
   }
