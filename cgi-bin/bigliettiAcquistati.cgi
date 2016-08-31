@@ -5,7 +5,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use CGI::Session();
 use HTML::Template;
-use feature qw(switch);
+use Encode;
 
 # $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
 
@@ -53,16 +53,22 @@ my @prices = ();
 my @ntickets = ();
 my @datatime = ();
 my @numdatatime = ();
+my @nacquisti = ();
+my $nacquistitot = 0;
+
 
 foreach my $tipologia ($doc->findnodes(qq(//acquisto[\@username="$sessionname"]/..))) {
-  push @ids, $tipologia->{id};
-#  push @descriptions, $tipologia->{descrizione};
-  push @prices, $tipologia->{prezzo};
+  push @ids, encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK);
+#  push @descriptions, encode('UTF-8',$tipologia->getAttribute(descrizione)),  Encode::FB_CROAK);
+  push @prices, $tipologia->getAttribute(prezzo);
     
   my $count = 0;
   
   foreach my $acquisto ($tipologia->findnodes(qq(./acquisto[\@username="$sessionname"]))) {
-    push @datatime,$acquisto->{datatime};
+    push @datatime,$acquisto->getAttribute(datatime);
+    my $acq = $acquisto->findvalue('./text()');
+    $nacquistitot += $acq;
+    push @nacquisti, $acq;
     $count++;
   }
   
@@ -78,13 +84,16 @@ while (@ids){
   $row_data{ID} = shift @ids;
   #$row_data{DESCRIZIONE} = shift @descriptions;
   $row_data{PREZZO} = shift @prices;
-  $row_data{NUMDATATIME} = shift @numdatatime;
+#   $row_data{NUMDATATIME} = shift @numdatatime;
+  my $ndt = shift @numdatatime;
+  
   
   my @info_datatime = ();
   
-  for (my $i = 0; $i < $row_data{NUMDATATIME}; $i++)
+  for (my $i = 0; $i < $ndt; $i++)
   {
     my %nested_row_data;
+    $nested_row_data{NACQUISTI} = shift @nacquisti;
     $nested_row_data{DATATIME} = shift @datatime;
     push(@info_datatime, \%nested_row_data);
   }
@@ -109,6 +118,8 @@ $tempF->param(PAGE => "Acquista biglietti");
 $tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Rovigo, Impero,Empire");
 $tempF->param(INFOACQUISTI=>\@infoacquisti);
 $tempF->param(AUTENTICATO=>$auth);
+$tempF->param(NACQUISTITOT=>$nacquistitot);
+
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;
