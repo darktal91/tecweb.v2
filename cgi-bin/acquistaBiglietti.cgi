@@ -8,6 +8,7 @@ use HTML::Template;
 use Scalar::Util 'looks_like_number';
 use Encode;
 
+
 # $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
 
 my $page = new CGI;
@@ -49,6 +50,12 @@ else {
 
 my $acquista   = $page->param('acquista');
 my $conferma = $page->param('conferma');
+
+
+sub is_positive_integer {
+   defined $_[0] && $_[0] =~ /^[+]?\d+$/;
+}
+
 
 
 sub get_info_biglietti {
@@ -98,7 +105,7 @@ sub chk_dati {
   my $arr_ref = shift @_;
   my $res = 1;
   foreach my $ele (@{$arr_ref}) {
-    if (!(looks_like_number($ele->{quantita})) || ($ele->{quantita} < 0)) {
+    if (!(is_positive_integer($ele->{quantita})) || ($ele->{quantita} < 0)) {
       $res = 0;
     }
   }
@@ -109,7 +116,7 @@ sub conta_biglietti_acquistati {
   my $arr_ref = shift @_;
   my $res = 0;
   foreach my $ele (@{$arr_ref}) {
-    if (looks_like_number($ele->{quantita})) {
+    if (is_positive_integer($ele->{quantita})) {
       $res += $ele->{quantita};
     }
   }
