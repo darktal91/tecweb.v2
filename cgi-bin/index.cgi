@@ -23,7 +23,7 @@ my $referrer = "";
 if ($sessionname ne "") {
   $user=$sessionname;
   
-  if($sessionname == "admin"){
+  if($sessionname eq "admin"){
     $admin=1;
   }
 }

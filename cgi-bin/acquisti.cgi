@@ -39,7 +39,7 @@ my $referrer = "";
 if ($sessionname ne "") {
   $user=$sessionname;
   $auth = 1;
-  if($sessionname ne "admin"){
+  if($sessionname eq "admin"){
     $admin=1;
   }
 }

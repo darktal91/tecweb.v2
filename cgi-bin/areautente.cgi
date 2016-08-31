@@ -33,7 +33,7 @@ else {       #l'utente è loggato
   $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
   #setto valori template per gestire il box di login e il menu
   my $admin = 0;
-  if($username == "admin") {
+  if($username eq "admin") {
     $admin = 1;
   }
   $temp->param(UTENTE=>$username);
