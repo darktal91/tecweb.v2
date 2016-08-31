@@ -58,10 +58,12 @@ sub get_info_biglietti {
   foreach my $tipologia ($doc->findnodes('//tipologia')) {
     
      my $qta =  $page->param(encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK));
-     if (defined($qta)) {
+     if (defined($qta) && looks_like_number($qta)) {
        $qta +=0; # elimino eventuali zeri in eccesso
      } else {
-       $qta = 0;
+       if (looks_like_number($qta) || $qta eq "") {
+        $qta = 0;
+       }
      }
   
     my $info = {
@@ -155,7 +157,7 @@ if ($acquista ) {
       $acquista = 0;
     }
     else{
-			$infotipi = remove_empty_ticket_types($infotipi);
+      $infotipi = remove_empty_ticket_types($infotipi);
     }
   }
 }
