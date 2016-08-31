@@ -116,7 +116,7 @@ $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
-$tempF->param(PAGE => "Acquista biglietti");
+$tempF->param(PAGE => "Biglietti Acquistati");
 $tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Rovigo, Impero,Empire");
 $tempF->param(INFOACQUISTI=>\@infoacquisti);
 $tempF->param(AUTENTICATO=>$auth);
