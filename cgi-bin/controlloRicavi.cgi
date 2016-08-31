@@ -63,8 +63,8 @@ if ($sessionname ne "") {
     $ricavototale += $ricavotipo;
     
     my $info = {
-      id          => $tipologia->getAttribute(id), 
-      descrizione => $tipologia->getAttribute(descrizione),
+      id          => encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK), 
+      descrizione => encode('UTF-8',$tipologia->getAttribute(descrizione),  Encode::FB_CROAK),
       prezzo      => $prezzotipo,
       quantita    => $nbigliettitipo,
       ricavo      => $ricavotipo
