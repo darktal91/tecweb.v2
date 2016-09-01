@@ -450,10 +450,10 @@ else {  #visualizzazione o elimina
     $template->param(H=> \@H);
   }
   elsif ($ord == 1) { #datetime
-    @sortedevents = sort { $a->{DATETIME} <=> $b->{DATETIME} } @eventi;
+    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
   }
   else { #AZ
-    @sortedevents = sort { $a->{NOME} <=> $b->{NOME} } @eventi;
+    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
   }
     
 
