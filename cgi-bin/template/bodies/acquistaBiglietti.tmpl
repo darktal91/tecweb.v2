@@ -44,7 +44,7 @@
         <p>Errore: controlla se quello che hai inserito è un numero e, se è un numero, che non sia negativo o con la virgola.</p>
       </TMPL_IF>
       <TMPL_IF ZEROBIGLIETTI>
-        <p>Errore: non è stato selezionato nessun biglietto.</p>
+        <p>Errore: non è stato selezionato alcun biglietto.</p>
       </TMPL_IF>
     </TMPL_IF>
   </TMPL_IF>  
@@ -56,5 +56,5 @@
           Il tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ 
         </p>
       </TMPL_LOOP>
-  <p>Per poter effettuare l'acquisto dovrai però prima effettuare il login <span xml:lang="en"><a href="login.cgi">login</a></span>.</p>
+  <p>Per poter effettuare l'acquisto dovrai però prima effettuare il <span xml:lang="en"><a href="login.cgi">login</a></span>.</p>
 </TMPL_IF>

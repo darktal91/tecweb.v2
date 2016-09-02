@@ -14,7 +14,7 @@
 	  </dl>
 	  <p>
 	  	<a href="areautente.cgi?modifica=1">Modifica dati personali</a>
-	    <a href="areautente.cgi?modifica=2">Imposta nuova password</a>
+	    <a href="areautente.cgi?modifica=2">Imposta nuova <span xml:lang="en">password</span></a>
 	  </p>
 	<TMPL_ELSE>
 	  <TMPL_IF UNO>
@@ -62,7 +62,7 @@
 	    </TMPL_IF>
 	  <TMPL_ELSE>
 	    <TMPL_IF OK>
-	      Password modificata con successo. <br />
+	      <span xml:lang="en">Password</span> modificata con successo. <br />
 	      <a href="areautente.cgi">Torna indietro</a>
 	    <TMPL_ELSE>
 	      <div id="errorbox"><TMPL_VAR STRERR /></div>
