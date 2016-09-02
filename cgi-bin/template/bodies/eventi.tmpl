@@ -1,10 +1,228 @@
-<dl id="eventi">
-  <TMPL_LOOP NAME=EVENTI>
-    <dt id="#<TMPL_VAR NAME=ID ESCAPE=HTML>">
-      <TMPL_VAR TITOLO>
-    </dt>
-    <dd>
-      <TMPL_VAR DESCRIZIONE>
-    </dd>
-  </TMPL_LOOP>
-</dl>
+<TMPL_IF NAME=MOD>
+  <TMPL_IF NAME=MODIFICA>
+    <h1>Modifica un evento</h1>
+  <TMPL_ELSE>
+    <h1>Inserisci nuovo evento</h1>
+  </TMPL_IF>
+  <TMPL_IF NAME=OK>
+    <TMPL_IF NAME=MODIFICA>
+      <p>Evento modificato con successo.</p>
+    <TMPL_ELSE>
+      <p>Evento inserito con successo.</p>
+    </TMPL_IF>
+      <a href="eventi.cgi">Torna indietro</a>
+  <TMPL_ELSE>
+    <TMPL_IF NAME=ERRORI>
+      <div id="errorbox"><TMPL_VAR STRERR /></div>
+    </TMPL_IF>
+    <form action="eventi.cgi?mod=1" method="POST" class="formfields"/>
+      <ul class="form">
+        <TMPL_IF NAME=MODIFICA>
+          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />" readonly/></li>
+        <TMPL_ELSE>
+          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />"/></li>
+        </TMPL_IF>
+        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" placeholder="Descrizione dell'evento" rows="7" cols="40"><TMPL_VAR DESCRIZIONE ESCAPE=HTML /></textarea></li>
+        <li><label for="padiglione">Padiglione:</label><select name="padiglione">
+        <TMPL_LOOP NAME=PADIGLIONI>
+          <TMPL_IF NAME=SELECTED>
+            <option value="<TMPL_VAR PADIGLIONE ESCAPE=HTML />" selected><TMPL_VAR PADIGLIONE ESCAPE=HTML /></option>
+          <TMPL_ELSE>
+            <option value="<TMPL_VAR PADIGLIONE ESCAPE=HTML />"><TMPL_VAR PADIGLIONE ESCAPE=HTML /></option>
+          </TMPL_IF>
+        </TMPL_LOOP>
+        </select></li>
+        <li><label for="data">Data:</label><input type="text" name="data" placeholder="aaaa-mm-dd" value="<TMPL_VAR DATA ESCAPE=HTML />" title="Formato aaaa-mm-dd" /> (aaaa-mm-dd)</li>
+        <li><label for="inizio">Ora nizio:</label><input type="text" name="inizio" placeholder="hh:mm" value="<TMPL_VAR INIZIO ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
+        <li><label for="fine">Ora fine:</label><input type="text" name="fine" placeholder="hh:mm" value="<TMPL_VAR FINE ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
+      </ul>
+      <TMPL_IF NAME=MODIFICA>
+        <input type="hidden" name="action" value="Modifica" />
+        <input type="hidden" name="id" value="<TMPL_VAR ID ESCAPE=HTML />" />
+      <TMPL_ELSE>
+        <input type="hidden" name="action" value="Nuovo" />
+      </TMPL_IF>
+      <input type="hidden" name="submitted" value="1" />
+      <input type="hidden" name="mod" value="1" />
+      <input type="submit" name="submit" value="Invia" class="button"/>
+    </form>
+  </TMPL_IF>
+<TMPL_ELSE>
+  <h1> Eventi </h1>
+  <TMPL_IF NAME=ADMIN>
+    <div>
+      <a href="eventi.cgi?mod=1">Inserisci nuovo evento</a>
+    </div>
+  </TMPL_IF>
+
+  <div id="sorting">
+    Ordina Eventi per:
+    <a href="eventi.cgi?sort=0">A-Z</a>  
+    <a href="eventi.cgi?sort=1">data</a>  
+    <a href="eventi.cgi?sort=2">Padiglione</a>
+  </div>
+  <div id="eventi">
+    <TMPL_IF NAME=ORDPAD>
+      <div id="A" class="padiglione">
+	<h3>Padiglione A</h3>
+	<TMPL_LOOP NAME=A>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="B" class="padiglione">
+	<h3>Padiglione B</h3>
+	<TMPL_LOOP NAME=B>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="C" class="padiglione">
+	<h3>Padiglione C</h3>
+	<TMPL_LOOP NAME=C>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="D" class="padiglione">
+	<h3>Padiglione D</h3>
+	<TMPL_LOOP NAME=D>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="E" class="padiglione">
+	<h3>Padiglione E</h3>
+	<TMPL_LOOP NAME=E>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="F" class="padiglione">
+	<h3>Padiglione F</h3>
+	<TMPL_LOOP NAME=F>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="G" class="padiglione">
+	<h3>Padiglione G</h3>
+	<TMPL_LOOP NAME=G>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+      <div id="H" class="padiglione">
+	<h3>Padiglione H</h3>
+	<TMPL_LOOP NAME=H>
+	  <div class="evento">
+	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	    <TMPL_IF NAME=ADMIN>
+	      <form class="eventi-form" action="eventi.cgi" method="POST">
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </form>
+	    </TMPL_IF>
+	  </div>
+	</TMPL_LOOP>
+      </div>
+    <TMPL_ELSE>
+      <TMPL_LOOP NAME=EVENTI>
+	<div class="evento">
+	  <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
+	  <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	  <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
+	  <TMPL_IF NAME=ADMIN>
+	    <form class="eventi-form" action="eventi.cgi" method="POST">
+	      <input type="hidden" name="mod" value="1" />
+	      <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+	      <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+	      <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	    </form>
+	  </TMPL_IF>
+	</div>
+      </TMPL_LOOP>
+    </TMPL_IF>
+  </div>
+</TMPL_IF>

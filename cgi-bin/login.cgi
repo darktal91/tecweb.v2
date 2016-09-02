@@ -38,7 +38,7 @@ else {
   my $username = $page->param('username');
   my $password = $page->param('password');
   my $submitted = $page->param('submitted');
-
+  
   my $success = 0;
   my $strerr = "";
 
@@ -61,7 +61,12 @@ else {
   if ($success) {
     $session = new CGI::Session();
     $session->param('utente', $username);
-    print $session->header(-location=>"$referrer");
+    if($referrer ne "") {
+      print $session->header(-location=>"$referrer");
+    }
+    else {
+      print $session->header(-location=>"index.cgi");
+    }
 
   #   $template->param(SUCCESS => 1);
   #   $template->param(REFER => $referrer);
@@ -87,7 +92,7 @@ else {
     $template->param(PAGE => "Login");
     $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention");
     $template->param(ERRORE => $strerr);
-    $template->param(RIFE => $riferimento);
+    $template->param(RIFE => $referrer); # cambiato nome della variabile, che era riferimento - Gobbo 20160824
 
     HTML::Template->config(utf8 => 1);
     print "Content-Type: text/html\n\n", $template->output;

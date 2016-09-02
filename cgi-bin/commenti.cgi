@@ -7,9 +7,10 @@ use CGI::Session();
 use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use HTML::Template;
+use Encode;
 
 #variabili
-my $cgi = new CGI;
+my $page = new CGI;
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
@@ -17,175 +18,138 @@ my $templateContent= "template/bodies/commenti.tmpl";
 
 ## Controllo sessione
 my $session = CGI::Session->load();
-my $sessionname = $session->param('utente');
+my $sessionname = $session->param(-name => 'utente');
 
-my $user=0;
-my $admin=0;
+#interazione con XML
+my $filedati = "../data/commenti/commenti.xml";
+my $parser = XML::LibXML -> new(); #creo il parser
+#apertura file
+my $doc = $parser->parse_file($filedati) || die("Operazione di parsificazione fallita");
+#leggo la radice
+my $root = $doc->getDocumentElement || die("Accesso alla radice fallita");
+
+#setto i valori template per gestire il box di login e il menu
+my $user = 0;
+my $admin = 0;
+my $auth = 0;
 my $referrer = "";
 if ($sessionname ne "") {
-  $user=$sessionname;
-  if($sessionname == "admin"){
-    $admin=1;
+  $user = $sessionname;
+  $auth = 1;
+  if ($sessionname eq "admin") {
+    $admin = 1;
   }
+  
+  #INIZIO PARTE MODIFICA
+  #se operation=insert => inserimento commento
+  #se operation=delete => cancellazione commento (admin + owner)
+  my $operation = "";
+  $operation = $page->param("operation");
+  if ($operation eq "insert") { #inserimento di un commento
+    # prendo datetime del momento dell'inserimento
+    (my $sec, my $min, my $hour, my $day, my $mon, my $year, my @rest) = localtime(time);
+    $year += 1900; #normalizzo l'anno
+    #aggiungo eventuali 0 se <10 per normalizzare
+    $sec = sprintf("%02d", $sec);
+    $min = sprintf("%02d", $min);
+    $hour = sprintf("%02d", $hour);
+    $day = sprintf("%02d", $day);
+    $mon = sprintf("%02d", $mon+1);
+    my $curdate = "$year-$mon-$day" . "T$hour:$min:$sec";
+    my $comment = $page->param("testo");
+    
+    #creo i nuovi nodi
+    my $new_commento = $doc->createElement("commento");
+    my $new_username = $doc->createElement("username");
+    my $new_datetime = $doc->createElement("datetime");
+    my $new_testo = $doc->createElement("testo");
+    # inserisco i nuovi nodi
+    $new_commento->addChild($new_username);
+    $new_commento->addChild($new_datetime);
+    $new_commento->addChild($new_testo);
+    $root->addChild($new_commento);
+    # inserisco i dati nei nodi
+    $new_username->appendText($user);
+    $new_datetime->appendText($curdate);
+    $new_testo->appendText($comment);
+
+    # stampo le modifiche su xml
+    $doc->toFile($filedati);
+    
+    #eseguo il redirect su commenti.cgi per svuotare le variabili post
+    print $page->header(-location => "commenti.cgi");
+  }
+  elsif ($operation eq "delete") { #cancellazione di un commento
+    my $owner = $page->param("username");
+    my $dt = $page->param("datetime");
+    if ($owner ne $user && $user ne "admin") { #non posso cancellare
+      #errore
+    }
+    else { #cancello
+      my $node = $root->findnodes("//commento[username='$owner' and datetime='$dt']")->get_node(1) or die("Fallimento nel recupero del nodo per l'eliminazione");
+      $node->parentNode->removeChild($node) or die("Fallimento di unbind");
+      $doc->toFile($filedati) or die("Fallimento in scrittura");
+      print $page->header(-location => "commenti.cgi");
+    }
+  }
+  
 }
-else {
+else { #l'utente non è loggato
   $referrer = "commenti.cgi";
 }
 
-
-(my $sec, my $min, my $hour, my $mday, my $mon, my $year, my @rest) = localtime();
-$year +=1900;
-$min = sprintf("%02d", $min); # aggiunge lo zero se $min < 10
-$hour = sprintf("%02d", $hour);
-$mday = sprintf("%02d", $mday);
-$mon = sprintf("%02d", $mon);
-my $currentdatetime = "$mday/$mon/$year alle $hour:$min";
-
-my $key;
-my %input;
-my @errori;
-
-# variabile dei commenti
-my @messaggi;
-my $admin=0;
-my $autenticato=0;
-# - LETTURA VALORI RICEVUTI (POST)
-#	vengono inseriti nell'hash %input
-
-if ($cgi->param()) {
-  for $key($cgi->param()) {
-    $input{$key} = $cgi->param($key);
+#RECUPERO TUTTI I COMMENTI
+my $results = $root->findnodes('//commento');
+my $context = $results->get_nodelist;
+#butto tutto in un array
+my @commenti = ();
+my %row;
+my $i=0;
+foreach ($results->get_nodelist) {
+  $row{"USERNAME"} = encode('UTF-8', $_->findvalue('username'), Encode::FB_CROAK);
+  $row{"DATETIME"} = encode('UTF-8', $_->findvalue('datetime'), Encode::FB_CROAK); 
+  $row{"TESTO"} = encode('UTF-8', $_->findvalue('testo'), Encode::FB_CROAK); 
+  if ($row{"USERNAME"} eq $user || $user eq "admin") {
+    $row{"DEL"} = "1";
   }
+  else { 
+    $row{"DEL"} = "0";
+  }
+  $row{"NORMDT"} = normalize_datetime($row{"DATETIME"});
+  foreach my $key (keys %row) {
+    $commenti[$i]{$key}=$row{$key};
+  }
+  $i += 1;
 }
 
-#	$login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
-
-my %login = ("username" => "Giammariagianni", "level" => 2);
-if($login{"level"} > 0){
-  $autenticato=1;
-  if($login{"level"}==2){
-    $admin=1;
-  }
-}
-my $file = '../data/commenti/commenti.xml';
-my $parser = XML::LibXML->new();
-#messaggi errore
-my $parsing_err     = "Operazione di parsing fallita";
-my $access_root_err = "Impossibile accedere alla radice";
-
-my $doc = $parser->parse_file($file) || die ($parsing_err);
-my $root = $doc->getDocumentElement || die ($access_root_err);
-# $doc->documentElement->setNamespace("http://www.empirecon.it", "ns");
-
-# - GESTORE ELIMINAZIONE POST
-
-my $query;
-my $commento;
-my $parent;
-if ( exists($input{"operation"}) && $input{"operation"} eq "DELETE" ) {
-  if ( $admin == 1 ) {
-    $query = "//ns:commento[ ns:username/text() = '$input{username}' and ns:datetime/text() = '$input{datetime}' ]";
-    $commento = $root->findnodes($query)->get_node(1) ||
-                  die ("Il messaggio non esiste oppure e' gia' stato eliminato");
-    $parent = $commento->parentNode;
-    $parent->removeChild($commento);
-    $doc->setEncoding('UTF-8');
-    $doc->toFile('../data/commenti/commenti.xml', 0) || die ("error", "Errore salvataggio .xml!");
-    chmod 0664, $doc;
-    my %row;
-    $row{TIPO} = "info";
-    $row{TESTO} = "Messaggio eliminato!";
-    push(@errori, \%row);
-  }
-  else {
-    my %row;
-    $row{TIPO} = "error";
-    $row{TESTO} = "Non si dispone dell'autorizzazione per eliminare questo commento.";
-    push(@errori, \%row);
-  }
-}
+#ordino l'array per date discendenti
+my @sortedcomments = ();
+@sortedcomments =  sort { lc($b->{DATETIME}) cmp lc($a->{DATETIME}) } @commenti;
 
 
 
-# - GESTORE INSERIMENTO POST
+#creo il template
+my $temp = HTML::Template->new(filename=>$templatePage, die_on_bad_params => 0);
+$temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
+$temp->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Commenti");
+$temp->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
+$temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
+$temp->param(UTENTE=>$user);
+$temp->param(ADMIN=>$admin);
+$temp->param(RIFE=>$referrer);
 
-if ( exists($input{"operation"}) && $input{"operation"} eq "INSERT") {
-  if ($login{"level"} > 0) {
-    $query = "//ns:commento[ ns:username/text() = '$input{username}' and ns:datetime/text() = '$currentdatetime' ]";
-    $commento = $root->findnodes($query)->get_node(1);
-    # se trova un commento con stesso username e datetime si attiva un filtro antispam
-    if ($commento) {
-      my %row;
-      $row{TIPO} = "error";
-      $row{TESTO} = "Filtro antispam: aspettare un minuto tra l'inserimento di due messaggi.";
-      push(@errori, \%row);
-    }
-    # creazione del frammento e inserimento
-    else {
-      $commento = "\n  <commento>\n    <username>$input{'username'}</username>
-	\n    <datetime>$currentdatetime</datetime>\n    <testo>$input{'testo'}</testo>\n  </commento>\n";
-      my $frammento = $parser->parse_balanced_chunk($commento) ||
-                        die ("error", "Commento malformato!");
-      $query = '/ns:commentbook';
-      $parent = $root->findnodes($query)->get_node(1) || die ("error", "Errore nel recupero del nodo commentbook.");
-      # se esistono gia' dei commenti, inserisco quello nuovo per primo
-      if ($parent->findnodes('./ns:commento')) {
-	       my $first = ${[$parent->findnodes('./ns:commento')]}[0];
-         $parent->insertBefore($frammento, $first);
-      }
-      # se non esistono ancora commenti uso appendChild()
-      else {
-        $parent->appendChild($frammento) || die ("error", "Errore nell'inserimento del nuovo nodo.");
-      }
-      # salvataggio del file
-      $doc->setEncoding('UTF-8');
-      $doc->toFile('../data/commenti/commenti.xml', 0) || die ("error", "Errore salvataggio .xml!");
-      chmod 0664, $doc;
-      # un nuovo parsing DOVREBBE aggiornare la lista dei nodi e mostrare il nuovo commento
-      $doc = $parser->parse_file($file) || die ("Parser fallito!");
-      $root = $doc->getDocumentElement || die ("error", "Root non trovata!");
-      $doc->documentElement->setNamespace("http://www.empirecon.it", "ns");
-    }
-  }
-  else {
-    my %row;
-    $row{TIPO} = "error";
-    $row{TESTO} = "Non si dispone dell'autorizzazione per inserire commenti. Effettuare il login.";
-    push(@errori, \%row);
-  }
-}
-
-# - Recupero dei commenti
-
-my @risultati = $root->findnodes('//ns:commento');
-
-foreach (@risultati) {
-  my %row;
-  my $uz = $_->findnodes('./ns:username');
-  my $date = $_->findnodes('./ns:datetime');
-  my $texz = $_->findnodes('./ns:testo');
-  $row{USERNAME} = $uz->string_value();
-  $row{DATETIME} = $date->string_value();
-  $row{TESTO} = $texz->string_value();
-  $row{ADMIN} = $admin;
-  push(@messaggi, \%row);
-}
-
-my $template = HTML::Template->new(filename=>$templatePage);
-$template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
-$template->param(PATH=>"<a href=\"index.cgi\">Home</a> >> Commenti");
-$template->param(UTENTE=>$user);
-$template->param(ADMIN=>$admin);
-$template->param(RIFE=>$referrer);
-$template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
-$template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
-my $tempF = new  HTML::Template(scalarref => \$template->output());
-$tempF->param(PAGE => "Commenti");
-$tempF->param(KEYWORD => "commenti, EmpireCon, fiera, Rovigo, Impero,Empire");
-$tempF->param(ERRORI => \@errori);
-$tempF->param(COMMENTI => \@messaggi);
-$tempF->param(AUTENTICATO => \$autenticato);
-$tempF->param(USER => $login{"username"});
-HTML::Template->config(utf8 => 1);
-print "Content-Type: text/html\n\n", $tempF->output;
+my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
+$template->param(PAGE => "Commenti");
+$template->param(KEYWORD => "commenti, EmpireCon, fiera, Impero, Star Wars, Convention");
+$template->param(COMMENTI=> \@sortedcomments);
+$template->param(AUTENTICATO=>$auth);
+
+HTML::Template->config(utf8=>1);
+print "Content-Type: text/html\n\n", $template->output;
+
+sub normalize_datetime {
+  my $dt=@_[0];
+  $dt =~ (/(\d{4})\-(\d{2})\-(\d{2})T(\d{2}\:\d{2}\:\d{2})/);
+  return $3 . "/" . $2 . "/" . $1 . " alle " . $4;
+}

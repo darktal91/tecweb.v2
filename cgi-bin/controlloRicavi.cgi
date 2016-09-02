@@ -15,71 +15,65 @@ my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/controlloRicavi.tmpl";
-my $file_evento = "../data/acquisti/acquisti.xml";
-# my $ns_uri  = 'http://www.empirecon.it';
-# my $ns_abbr = 'b';
 
 ## Controllo sessione
 my $session = CGI::Session->load();
 my $sessionname = $session->param('utente');
 
-my $user=0;
-my $admin=0;
+#interazione con XML
+my $fileacquisti = "../data/acquisti/acquisti.xml";
+
+my $parser = XML::LibXML -> new();
+#apro il file
+my $doc = $parser -> parse_file($fileacquisti) || die ("operazione di parsificazione fallita.");
+#leggo la radice
+my $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
+
+
+my $user = 0;
+my $admin = 0;
+my $auth = 0;
 my $referrer = "";
 if ($sessionname ne "") {
-  $user=$sessionname;
-  if($sessionname == "admin"){
-    $admin=1;
-  }
+  $user = $sessionname;
+  $auth = 1;
+  if ($sessionname eq "admin") {
+    $admin = 1;
+  }  
+} else {
+  $referrer = "controlloRicavi.cgi";
 }
 
-#tutto ciò che viene dopo va risistemato, la pagina deve essere visibile solo all'admin
-
-
-#espressioni xpath
-my $big = "//${ns_abbr}:tipologia";
-
-#messaggi errore
-my $parsing_err     = "Operazione di parsing fallita";
-my $access_root_err = "Impossibile accedere alla radice";
-
-#creo il parser
-my $parser = XML::LibXML->new();
-
-#parser del documento
-my $doc = $parser->parse_file($file_evento) || die($parsing_err);
-
-#recupero l'elemento radice
-my $root_pad = $doc->getDocumentElement || die($access_root_err);
-
-#inserisco il namespace
-# $doc->documentElement->setNamespace($ns_uri,$ns_abbr);
-
-my @events = $root_pad->findnodes($big);
-my @result;
-
-# prendo i nodi ottenuti e li trasformo in modo da essere compatibili con il template
-my $totali=0;
-my $ricavi=0;
-foreach(@events){
-  my $id = $_->findvalue("./\@id/text()");
-  my $prezzo = $_->findvalue("./\@prezzo");
-  my @ac = $_->findnodes("./${ns_abbr}:acquisto");
-  my $totale=0;
-  foreach(@ac){
-    my $numero = $_->findvalue(".");
-    $totale=$totale+$numero;
+  my @inforicavi = ();
+  
+  my $ntotalebiglietti = 0;
+  my $ricavototale = 0;
+  
+  foreach my $tipologia ($doc->findnodes('//tipologia')) {
+    my $ricavotipo = 0;
+    my $nbigliettitipo = 0;
+    my $prezzotipo = $tipologia->getAttribute(prezzo);
+  
+    foreach my $acquisto ($tipologia->findnodes(qq(./acquisto))){
+      $nbigliettitipo += $acquisto->findvalue('./text()');
+    }
+    
+    $ntotalebiglietti += $nbigliettitipo;
+    $ricavotipo = $nbigliettitipo * $prezzotipo;
+    $ricavototale += $ricavotipo;
+    
+    my $info = {
+      id          => encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK), 
+      descrizione => encode('UTF-8',$tipologia->getAttribute(descrizione),  Encode::FB_CROAK),
+      prezzo      => $prezzotipo,
+      quantita    => $nbigliettitipo,
+      ricavo      => $ricavotipo
+    };
+    push @inforicavi,$info;
   }
-  my %row;
-  $row{TIPO} = $id;
-  $row{UNITARIO} = $prezzo;
-  $row{NUMERO}="prova";
-  $row{RICAVI}=$totale*$prezzo;
-  $totali=$totali+$totale;
-  $ricavi=$ricavi+$totale*$prezzo;
-  push(@result, \%row);
-}
-$nums=@events;
+
+
+
 # preparo la pagina usando i vari template
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
@@ -93,9 +87,11 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Controllo Ricavi");
 $tempF->param(KEYWORD => "ricavi, EmpireCon, fiera, Rovigo, Impero,Empire");
-$tempF->param(BIGLIETTI => \@result);
-$tempF->param(NUMERI => $totali);
-$tempF->param(RICAVO => $ricavi);
+$tempF->param(ADMIN => $admin);
+$tempF->param(INFORICAVI=>\@inforicavi);
+$tempF->param(NTOTALEBIGLIETTI=>$ntotalebiglietti);
+$tempF->param(RICAVOTOTALE=>$ricavototale);
+$tempF->param(AUTENTICATO=>$auth);
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;

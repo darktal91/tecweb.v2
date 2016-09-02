@@ -3,7 +3,7 @@
   <TMPL_VAR HEADER>
   <body>
   <div id="prettyimage"></div>
-  <div id="header"><img id="logo" src="/public_html/images/logo.gif" alt="EmpireCon"/></div>
+  <div id="header"><img id="logo" src="../images/logo.gif" alt="EmpireCon"/></div>
   <div id="contenuto">
     <div id="posizione">
        Ti trovi in: <span id="nomeposizione"><TMPL_VAR PATH></span>
@@ -28,7 +28,7 @@
 		<input type="hidden" name="submitted" value="1" /> 
 	    </form>
 	  <TMPL_ELSE>
-	    Accesso effettuato: <TMPL_VAR UTENTE>
+	    <p>Accesso effettuato: <TMPL_VAR UTENTE></p>
 	    <p><a class="button" accesskey="u" href="areautente.cgi">Area utente</a>
 	    <a class="button" accesskey="l" href="logout.cgi">Logout</a></p>
 	  </TMPL_UNLESS>
@@ -38,15 +38,14 @@
         <ul>
            <li><a accesskey="h" href="index.cgi">Home</a></li>
            <li><a accesskey="e" href="eventi.cgi">Eventi</a></li>
-           <li><a accesskey="p" href="photogallery.cgi">Photo Gallery</a></li>
-           <li><a accesskey="a" href="acquisti.cgi">Acquista biglietti</a></li>
+           <li><a accesskey="a" href="acquistaBiglietti.cgi">Acquista biglietti</a></li>
            <li><a accesskey="p" href="padiglioni.cgi">Padiglioni</a></li>
            <li><a accesskey="c" href="commenti.cgi">Commenti</a></li>
            <li><a accesskey="d" href="dovesiamo.cgi">Dove siamo</a></li>
            <li><a accesskey="n" href="contatti.cgi">Contatti</a></li>
            <TMPL_IF UTENTE>
              <!--<li><a accesskey="g" href="gestioneBiglietti.cgi">Gestione biglietti</a></li>-->
-             <li><a accesskey="g" href="#">Gestione biglietti</a></li>
+             <li><a accesskey="g" href="bigliettiAcquistati.cgi">Biglietti acquistati</a></li>
            </TMPL_IF>
            <TMPL_IF ADMIN>
              <li><a accesskey="r" href="controlloRicavi.cgi">Controllo ricavi</a></li>
@@ -55,7 +54,10 @@
     </div>
   </div>
   <div id="corpo">
-      <TMPL_VAR CONTENUTO>
+    <TMPL_VAR CONTENUTO>
+  </div>
+  <div id="tornasu">
+      <a class= "button" href="#corpo">Torna su</a>
   </div>
   <TMPL_VAR FOOTER>
   </div>

@@ -47,9 +47,13 @@ git merge --no-ff B
 
 ###### Eliminare un branch:
 
-Quando un branch termina la sua utilità, ad esempio quando l'issue corrispondente è stata risolta, e dopo un eventuale merge, si può voler eliminare un branch. Per fare ciò:
+Quando un branch termina la sua utilità, ad esempio quando l'issue corrispondente è stata risolta, e dopo un eventuale merge, si può voler eliminare un branch. Per fare ciò, si può prima eliminare il branch in locale:
 ```
 git branch -d _nomebranch_
+```
+Nel caso in cui il branch fosse stato pushato in remoto, è il caso di eliminarlo anche da li:
+```
+git push origin --delete _nomebranch_
 ```
 
 

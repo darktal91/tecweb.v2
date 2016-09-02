@@ -1,29 +1,33 @@
-<h1> Comment Book </h1>
-    <p> Lascia qui i tuoi commenti </p>
+<h1> <span xlm:lang="en">Comment Book</span> </h1>
     <div id="notifica">
       <TMPL_LOOP NAME=ERRORI>
-        <p id="<TMPL_VAR NAME=TIPO ESCAPE=HTML>"><TMPL_VAR NAME=TESTO></p>
+        <p id="<TMPL_VAR NAME=TIPO />"><TMPL_VAR NAME=TESTO /></p>
       </TMPL_LOOP>
     </div>
     <TMPL_IF NAME=AUTENTICATO>
-      <form action="commenti.cgi" method="POST">
-        <textarea name="testo" rows="7" cols="40">Scrivi un commento qui!</textarea><br />
-        <input type="hidden" name="username" value="<TMPL_VAR NAME=USER ESCAPE=HTML>"/>
-        <input type="hidden" name="operation" value="INSERT" />
-        <input type="submit" value="Invia!" />
+      <p> Lascia qui i tuoi commenti </p>
+      <form action="commenti.cgi" method="POST" class="formfields">
+        <textarea name="testo" rows="7" cols="40" placeholder="Scrivi un commento qui"></textarea><br />
+        <input type="hidden" name="operation" value="insert" />
+        <input type="submit" value="Invia!" class="button"/>
       </form>
+    <TMPL_ELSE>
+      <p>Per inserire un commento devi prima effettuare il <span xml:lang="en">login</span>.</p>
     </TMPL_IF>
     <TMPL_LOOP NAME=COMMENTI>
-      <div id="commento">
-        <p><b><TMPL_VAR NAME=USERNAME></b>, il <TMPL_VAR NAME=DATETIME> ha scritto:</p>
+      <div class="commento">
+        <p><strong><TMPL_VAR NAME=USERNAME ESCAPE=HTML /></strong> il <TMPL_VAR NAME=NORMDT ESCAPE=HTML /> ha scritto:</p>
         <TMPL_IF ADMIN>
-          <form action="commenti.cgi" method="POST">
-            <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
-            <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
-            <input type="hidden" name="operation" value="DELETE" />
-            <input type="submit" value="elimina">
           </form>
         </TMPL_IF>
-        <p> <TMPL_VAR NAME=TESTO> </p>
+        <p> <TMPL_VAR NAME=TESTO ESCAPE=HTML /> </p>
+        <TMPL_IF NAME=DEL>
+          <form action="commenti.cgi" method="POST">
+          <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
+          <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
+          <input type="hidden" name="operation" value="delete" />
+          <input type="submit" value="(elimina il commento)" class="flatbutton"/>
+          </form>
+        </TMPL_IF>
       </div>
-</TMPL_LOOP>
+    </TMPL_LOOP>
