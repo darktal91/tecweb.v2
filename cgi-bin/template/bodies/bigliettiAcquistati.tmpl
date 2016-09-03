@@ -2,7 +2,7 @@
   <TMPL_IF NACQUISTITOT>
     <p>Finora hai acquistato:</p>
     <TMPL_LOOP NAME="INFOACQUISTI">
-      <ul>Del tipo <TMPL_VAR NAME="ID" ESCAPE=HTML>, per il costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML> euro ciascuno:
+      <ul>Del tipo <TMPL_VAR NAME="ID" ESCAPE=HTML>, al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML> euro ciascuno:
         <TMPL_LOOP NAME="INFO_DATATIME">
           <li><TMPL_VAR NAME="NACQUISTI" ESCAPE=HTML> il giorno <TMPL_VAR NAME="DATE" ESCAPE=HTML> alle ore <TMPL_VAR NAME="TIME" ESCAPE=HTML></li>
         </TMPL_LOOP>
