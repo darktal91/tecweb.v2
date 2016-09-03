@@ -1,6 +1,13 @@
 <TMPL_IF AUTENTICATO>
   <TMPL_IF ADMIN>
-    <table id="ricavi" summary="In questa tabella sono contenuti il numero di biglietti venduti e ricavi totali per tipo di biglietto">
+    <table id="ricavi" summary="Riepilogo dei ricavi dei biglietti venduti su 5 colonne. -->
+      Nella prima colonna l'identificativo e la descrizione della tipologia del biglietto;
+      nella terza il prezzo unitario della tipologia di biglietti;
+      nella quarta il numero dei biglietti venduti per la tipologia;
+      nella quinta il ricavo totale per la tipologia.
+      Non ci sono celle vuote.
+    ">
+    <caption>Riepilogo dei ricavi dei biglietti venduti</caption>
       <thead>
         <tr>
           <th scope="col">Tipo</th>
@@ -22,10 +29,10 @@
           </TMPL_LOOP>
         </tbody>
     </table>
-    <p>Sono stati venduti <TMPL_VAR NTOTALEBIGLIETTI> biglietti, mentre il ricavo totale è <TMPL_VAR RICAVOTOTALE></p>
+    <p>Sono stati venduti in totale <TMPL_VAR NTOTALEBIGLIETTI> biglietti, per un ricavo complessivo <TMPL_VAR RICAVOTOTALE> euro</p>
   <TMPL_ELSE>
-    Non hai i privilegi sufficienti per poter visualizzare la pagina.
+    <p>Solo gli amministratori sono autorizzati a visualizzare questa pagina.</p>
   </TMPL_IF>
 <TMPL_ELSE>
-  <p>Per visualizzare questa pagina devi prima effettuare il <a href="login.cgi"><span xml:lang="en">login</span></a>.
+  <p>Per visualizzare questa pagina devi prima <a href="login.cgi">effettuare il <span xml:lang="en">login</span></a>.
 </TMPL_IF>
