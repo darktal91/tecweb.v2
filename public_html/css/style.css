@@ -404,7 +404,7 @@ strong {
     line-height:20px;
 }
 
-.formfields label, #infoutente label {
+.formfields label, #infoutente label, .formfields .tipobiglietto {
     display: inline-block;
     height: 20px;
     width: 115px;
@@ -453,6 +453,20 @@ strong {
 	border: 1px solid #CCC;
 	background: #EEE;
 }
+
+/* PADIGLIONI                           */
+/* ------------------------------------ */
+#padiglioni {
+	padding:5px;
+}
+#padiglioni dt {
+	font-style:italic;
+}
+#padiglioni dd {
+	list-style:none;
+}
+
+
 /* ------------------------------------ */
 /* -----------CLASSI IN COMUNE--------- */
 /* ------------------------------------ */
@@ -502,11 +516,19 @@ strong {
 	border:1px solid #000;
 }
 
-.floatright {
+.floatright30 {
 	position: relative;
 	float:right;
 	right: -14px;
 	width: 30% ;
+	z-index:0;
+}
+.floatright70 {
+	position: relative;
+	float:right;
+
+	max-width:77%;
+
 }
 
 }
