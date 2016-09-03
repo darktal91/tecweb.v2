@@ -1,17 +1,23 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <a:acquisti xmlns:a="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.imperofiere.com acquisti.xsd">
-  
-  <tipologia id="intero" prezzo="5">
-    <acquisto username="darktal91" datatime="2014-04-24T13:06:32">5</acquisto>
-    <acquisto username="sydernee" datatime="2014-03-17T06:13:50">9</acquisto>
-    <acquisto username="sydernee" datatime="2014-04-25T11:24:47">20</acquisto>
-  </tipologia>
-  
-  <tipologia id="ridotto" prezzo="25">
-    <acquisto username="gmarcomi" datatime="2014-05-01T10:03:10">3</acquisto>
-  </tipologia>
-  
-  <tipologia id="gratis" prezzo="0">
-    <acquisto username="ilcondor" datatime="2014-06-03T03:18:33">1</acquisto>
-  </tipologia>
+	<tipologia id="intero" descrizione="Riservato ai magnaschei di prima classe" prezzo="5">
+		<acquisto username="admin" datatime="2016-08-28T22:07:39">2</acquisto>
+		<acquisto username="admin" datatime="2016-08-28T22:16:41">5</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">1</acquisto>
+	</tipologia>
+	<tipologia id="ridotto" descrizione="Se sei uno studente pulcioso" prezzo="25">
+		<acquisto username="admin" datatime="2016-08-28T21:35:03">1</acquisto>
+		<acquisto username="admin" datatime="2016-08-28T22:07:39">1</acquisto>
+		<acquisto username="admin" datatime="2016-08-28T22:16:41">1</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">1</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:28:25">1</acquisto>
+	</tipologia>
+	<tipologia id="Iscrizione con Contributo Privilege Escalation" descrizione="Ti verrà regalato un Gadget serigrafato ESC!" prezzo="50">
+		<acquisto username="sydernee" datatime="2015-08-03T11:55:23">1</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-03T11:55:23">1</acquisto>
+		<acquisto username="admin" datatime="2016-08-28T21:35:03">10</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:10:50">1</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">2</acquisto>
+		<acquisto username="sydernee" datatime="2016-08-31T14:22:21">1</acquisto>
+	</tipologia>
 </a:acquisti>

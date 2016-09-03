@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
 	
 	
@@ -39,4 +39,4 @@
 		<inizio>12:15:00</inizio>
 		<fine>19:15:00</fine>
 	</evento>
-</e:eventi>
+<evento><id>w7LDqMO5</id><nome>òèù</nome><descrizione>asfasdfàòùlàk&lt;ojb&gt;mosion</descrizione><padiglione>A</padiglione><data>2016-08-13</data><inizio>09:00:00</inizio><fine>12:00:00</fine></evento></e:eventi>

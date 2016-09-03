@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <c:commentbook xmlns:c="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="commenti.xsd">
 	
 	<commento>
@@ -53,4 +53,15 @@
 		<datetime>2016-08-28T16:24:09</datetime>
 		<testo/>
 	</commento>
-</c:commentbook>
+	
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-29T11:27:42</datetime>
+		<testo>prova</testo>
+	</commento>
+	<commento>
+		<username>admin</username>
+		<datetime>2016-08-29T11:46:41</datetime>
+		<testo>àòèì</testo>
+	</commento>
+<commento><username>admin</username><datetime>2016-08-30T13:45:01</datetime><testo>prova nuovo sistema</testo></commento><commento><username>admin</username><datetime>2016-08-30T13:45:13</datetime><testo>prova &lt; caratteri &gt; speciali</testo></commento><commento><username>admin</username><datetime>2016-08-30T14:08:41</datetime><testo>&lt;&gt;/</testo></commento><commento><username>admin</username><datetime>2016-08-30T14:08:46</datetime><testo>àò+èùàòèò</testo></commento><commento><username>admin</username><datetime>2016-08-30T14:24:15</datetime><testo>&lt;&lt;</testo></commento><commento><username>admin</username><datetime>2016-08-30T14:24:26</datetime><testo>asd&lt;sgf&gt;sef</testo></commento></c:commentbook>

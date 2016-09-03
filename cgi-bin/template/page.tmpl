@@ -3,7 +3,7 @@
   <TMPL_VAR HEADER>
   <body>
   <div id="prettyimage"></div>
-  <div id="header"><img id="logo" src="../images/logo.gif" alt="EmpireCon"/></div>
+  <div id="header"><a href="index.cgi"><img id="logo" src="../images/logo.gif" alt="EmpireCon"/></a></div>
   <div id="contenuto">
     <div id="posizione">
        Ti trovi in: <span id="nomeposizione"><TMPL_VAR PATH></span>
@@ -16,10 +16,10 @@
 	  <TMPL_UNLESS UTENTE>
 	    <form method="post" action="login.cgi">
 		<fieldset>
-		  <legend>Login: inserisci i tuoi dati.</legend>
-		  <p><label for="username">Username:</label>
+		  <legend><span xml:lang="en">Login</span>: inserisci i tuoi dati.</legend>
+		  <p><label for="username"><span xml:lang="en">Username</span>:</label>
 		  <input class="field" type="text" name="username" id="username" value="" size="16" /></p>
-		  <p><label for="password">Password:</label>
+		  <p><label for="password"><span xml:lang="en">Password</span>:</label>
 		  <input class="field" type="password" name="password" id="password" value="" size="16" /></p>
 		  <p><input class="button" type="submit" value="Login" />
 		  <a class="button" accesskey="r" href="registrazione.cgi">Registrati</a></p>
@@ -30,23 +30,22 @@
 	  <TMPL_ELSE>
 	    <p>Accesso effettuato: <TMPL_VAR UTENTE></p>
 	    <p><a class="button" accesskey="u" href="areautente.cgi">Area utente</a>
-	    <a class="button" accesskey="l" href="logout.cgi">Logout</a></p>
+	    <a class="button" accesskey="l" href="logout.cgi"><span xml:lang="en">Logout</span></a></p>
 	  </TMPL_UNLESS>
 	</div>
       </TMPL_UNLESS>
      <div id="nav">
         <ul>
-           <li><a accesskey="h" href="index.cgi">Home</a></li>
+           <li><a accesskey="h" href="index.cgi"><span xml:lang="en">Home</span></a></li>
            <li><a accesskey="e" href="eventi.cgi">Eventi</a></li>
-           <li><a accesskey="p" href="photogallery.cgi">Photo Gallery</a></li>
-           <li><a accesskey="a" href="acquisti.cgi">Acquista biglietti</a></li>
+           <li><a accesskey="a" href="acquistaBiglietti.cgi">Acquista biglietti</a></li>
            <li><a accesskey="p" href="padiglioni.cgi">Padiglioni</a></li>
            <li><a accesskey="c" href="commenti.cgi">Commenti</a></li>
            <li><a accesskey="d" href="dovesiamo.cgi">Dove siamo</a></li>
            <li><a accesskey="n" href="contatti.cgi">Contatti</a></li>
            <TMPL_IF UTENTE>
              <!--<li><a accesskey="g" href="gestioneBiglietti.cgi">Gestione biglietti</a></li>-->
-             <li><a accesskey="g" href="#">Gestione biglietti</a></li>
+             <li><a accesskey="g" href="bigliettiAcquistati.cgi">Biglietti acquistati</a></li>
            </TMPL_IF>
            <TMPL_IF ADMIN>
              <li><a accesskey="r" href="controlloRicavi.cgi">Controllo ricavi</a></li>

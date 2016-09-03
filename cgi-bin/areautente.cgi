@@ -6,6 +6,7 @@ use XML::LibXML;
 use CGI::Session();
 use HTML::Template;
 use Digest::SHA qw(sha256_hex);
+use Encode;
 
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";
@@ -32,7 +33,7 @@ else {       #l'utente è loggato
   $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
   #setto valori template per gestire il box di login e il menu
   my $admin = 0;
-  if($username == "admin") {
+  if($username eq "admin") {
     $admin = 1;
   }
   $temp->param(UTENTE=>$username);
@@ -76,12 +77,12 @@ else {       #l'utente è loggato
     my $results = $root->findnodes("//utente[nickname='$username']");
     my $context = $results->get_nodelist;
     foreach my $context ($results->get_nodelist) {
-      $dati{"nome"} =  $context->findvalue("nome");
-      $dati{"cognome"} =  $context->findvalue("cognome");
+      $dati{"nome"} =  encode('UTF-8', $context->findvalue("nome"), Encode::FB_CROAK);
+      $dati{"cognome"} =  encode('UTF-8', $context->findvalue("cognome"), Encode::FB_CROAK);
       $dati{"datanascita"} =  $context->findvalue("datanascita");
-      $dati{"via"} =  $context->findvalue("indirizzo/via");
+      $dati{"via"} =  encode('UTF-8', $context->findvalue("indirizzo/via"), Encode::FB_CROAK);
       $dati{"numero"} =  $context->findvalue("indirizzo/numero");
-      $dati{"citta"} =  $context->findvalue("indirizzo/citta");
+      $dati{"citta"} =  encode('UTF-8', $context->findvalue("indirizzo/citta"), Encode::FB_CROAK);
       $dati{"provincia"} =  $context->findvalue("indirizzo/provincia");
       $dati{"cap"} =  $context->findvalue("indirizzo/CAP");
       $dati{"email"} =  $context->findvalue("email");

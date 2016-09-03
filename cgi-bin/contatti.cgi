@@ -22,7 +22,7 @@ my $user=0;
 my $admin=0;
 if ($sessionname ne "") {
   $user=$sessionname;
-  if($sessionname == "admin"){
+  if($sessionname eq "admin"){
     $admin=1;
   }
 }

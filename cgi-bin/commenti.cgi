@@ -7,6 +7,7 @@ use CGI::Session();
 use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use HTML::Template;
+use Encode;
 
 #variabili
 my $page = new CGI;
@@ -35,7 +36,7 @@ my $referrer = "";
 if ($sessionname ne "") {
   $user = $sessionname;
   $auth = 1;
-  if ($sessionname == "admin") {
+  if ($sessionname eq "admin") {
     $admin = 1;
   }
   
@@ -57,17 +58,24 @@ if ($sessionname ne "") {
     my $curdate = "$year-$mon-$day" . "T$hour:$min:$sec";
     my $comment = $page->param("testo");
     
-    #inserimento vero e proprio
-    my $frammento = "\t<commento>
-\t\t<username>$user</username>
-\t\t<datetime>$curdate</datetime>
-\t\t<testo>$comment</testo>
-\t</commento>\n";
-    
-    my $newnodo = $parser->parse_balanced_chunk($frammento) || die("Frammento non ben formato");
-    $root->appendChild($newnodo) || die("Non riesco a trovare il padre");
+    #creo i nuovi nodi
+    my $new_commento = $doc->createElement("commento");
+    my $new_username = $doc->createElement("username");
+    my $new_datetime = $doc->createElement("datetime");
+    my $new_testo = $doc->createElement("testo");
+    # inserisco i nuovi nodi
+    $new_commento->addChild($new_username);
+    $new_commento->addChild($new_datetime);
+    $new_commento->addChild($new_testo);
+    $root->addChild($new_commento);
+    # inserisco i dati nei nodi
+    $new_username->appendText($user);
+    $new_datetime->appendText($curdate);
+    $new_testo->appendText($comment);
+
+    # stampo le modifiche su xml
     $doc->toFile($filedati);
-    #il nodo è stato inserito
+    
     #eseguo il redirect su commenti.cgi per svuotare le variabili post
     print $page->header(-location => "commenti.cgi");
   }
@@ -98,9 +106,9 @@ my @commenti = ();
 my %row;
 my $i=0;
 foreach ($results->get_nodelist) {
-  $row{"USERNAME"} = $_->findvalue('username');
-  $row{"DATETIME"} = $_->findvalue('datetime');
-  $row{"TESTO"} = $_->findvalue('testo');
+  $row{"USERNAME"} = encode('UTF-8', $_->findvalue('username'), Encode::FB_CROAK);
+  $row{"DATETIME"} = encode('UTF-8', $_->findvalue('datetime'), Encode::FB_CROAK); 
+  $row{"TESTO"} = encode('UTF-8', $_->findvalue('testo'), Encode::FB_CROAK); 
   if ($row{"USERNAME"} eq $user || $user eq "admin") {
     $row{"DEL"} = "1";
   }

@@ -1,23 +1,31 @@
-<h3>Controllo dei ricavi</h3>
-<table id="ricavi" summary="In questa tabella sono contenuti il numero di biglietti venduti e ricavi totali
-per tipo di biglietto">
-	<thead>
-		<tr>
-			<th scope="col">Tipo</th>
-			<th scope="col">Prezzo unitario</th>
-			<th scope="col">Numero di biglietti venduti</th>
-			<th scope="col">Ricavo totale</th>
-		</tr>
-		</thead>
-		<tbody>
-			<TMPL_LOOP NAME=BIGLIETTI>
-				<tr>
-					<td><TMPL_VAR TIPO></td>
-					<td><TMPL_VAR UNITARIO></td>
-					<td><TMPL_VAR NUMERO></td>
-					<td><TMPL_VAR RICAVI></td>
-				</tr>
-			</TMPL_LOOP>
-		</tbody>
-</table>
-<p>Sono stati venduti <TMPL_VAR NUMERI> biglietti, mentre il ricavo totale è <TMPL_VAR RICAVO></p>
+<TMPL_IF AUTENTICATO>
+  <TMPL_IF ADMIN>
+    <table id="ricavi" summary="In questa tabella sono contenuti il numero di biglietti venduti e ricavi totali per tipo di biglietto">
+      <thead>
+        <tr>
+          <th scope="col">Tipo</th>
+          <th scope="col">Descrizione</th>
+          <th scope="col">Prezzo unitario</th>
+          <th scope="col">Numero di biglietti venduti</th>
+          <th scope="col">Ricavo totale</th>
+        </tr>
+        </thead>
+        <tbody>
+          <TMPL_LOOP NAME=INFORICAVI>
+            <tr>
+              <td><TMPL_VAR ID></td>
+              <td><TMPL_VAR DESCRIZIONE></td>
+              <td><TMPL_VAR PREZZO></td>
+              <td><TMPL_VAR QUANTITA></td>
+              <td><TMPL_VAR RICAVO></td>
+            </tr>
+          </TMPL_LOOP>
+        </tbody>
+    </table>
+    <p>Sono stati venduti <TMPL_VAR NTOTALEBIGLIETTI> biglietti, mentre il ricavo totale è <TMPL_VAR RICAVOTOTALE></p>
+  <TMPL_ELSE>
+    Non hai i privilegi sufficienti per poter visualizzare la pagina.
+  </TMPL_IF>
+<TMPL_ELSE>
+  <p>Per visualizzare questa pagina devi prima effettuare il <a href="login.cgi"><span xml:lang="en">login</span></a>.
+</TMPL_IF>

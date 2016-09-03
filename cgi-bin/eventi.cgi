@@ -151,21 +151,37 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	  #preparo orari in formato iso corretto
 	  $norminizio = $ninizio . ":00";
 	  $normfine = $nfine . ":00";
-	  #inserimento in eventi
-	  my $frammento = "\t<evento>
-\t\t<id>$nid</id>
-\t\t<nome>$nnome</nome>
-\t\t<descrizione>$ndesc</descrizione>
-\t\t<padiglione>$npad</padiglione>
-\t\t<data>$ndata</data>
-\t\t<inizio>$norminizio</inizio>
-\t\t<fine>$normfine</fine>
-\t</evento>\n";
-	  my $newnodo = $parser->parse_balanced_chunk($frammento) or die("Frammento evento non formato");
-	  $root->appendChild($newnodo) or die("Non riesco a trovare il padre eventi");
-	  $doc->toFile($filedati);
-	  #il nodo evento è stato inserito
+
+	  # creo i nuovi nodi
+	  my $new_evento = $doc->createElement("evento");
+	  my $new_id = $doc->createElement("id");
+	  my $new_nome = $doc->createElement("nome");
+	  my $new_descrizione = $doc->createElement("descrizione");
+	  my $new_padiglione = $doc->createElement("padiglione");
+	  my $new_data = $doc->createElement("data");
+	  my $new_inizio = $doc->createElement("inizio");
+	  my $new_fine = $doc->createElement("fine");
+	  # inserisco i nuovi nodi
+	  $new_evento->addChild($new_id);
+	  $new_evento->addChild($new_nome);
+	  $new_evento->addChild($new_descrizione);
+	  $new_evento->addChild($new_padiglione);
+	  $new_evento->addChild($new_data);
+	  $new_evento->addChild($new_inizio);
+	  $new_evento->addChild($new_fine);
+	  $root->addChild($new_evento);
+	  # inserisco dati nei nodi
+	  $new_id->appendText($nid);
+	  $new_nome->appendText($nnome);
+	  $new_descrizione->appendText($ndesc);
+	  $new_padiglione->appendText($npad);
+	  $new_data->appendText($ndata);
+	  $new_inizio->appendText($norminizio);
+	  $new_fine->appendText($normfine);
 	  
+	  # stampo le modifiche su xml
+	  $doc->toFile($filedati);
+
 	  #passo parametri al template
 	  $template->param(OK=>1);
 	}
@@ -196,8 +212,8 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	#estraggo i dati da XML
 	my $results = $root->findnodes("//evento[id='$id']") or die("$id");
 	foreach my $context ($results->get_nodelist) {
-	  $dati{"nome"} = $context->findvalue("nome");
-	  $dati{"descrizione"} = $context->findvalue("descrizione");
+	  $dati{"nome"} = encode('UTF-8', $context->findvalue("nome"), Encode::FB_CROAK);
+	  $dati{"descrizione"} = encode('UTF-8', $context->findvalue("descrizione"), Encode::FB_CROAK);
 	  $dati{"padiglione"} = $context->findvalue("padiglione");
 	  $dati{"data"} = $context->findvalue("data");
 	  $dati{"inizio"} = rem_seconds($context->findvalue("inizio"));
@@ -343,8 +359,8 @@ else {  #visualizzazione o elimina
   foreach ($results->get_nodelist) {
     $row{ADMIN} = $admin;
     $row{ID} = $_->findvalue('id');
-    $row{NOME} = $_->findvalue('nome');
-    $row{DESCRIZIONE} = $_->findvalue('descrizione');
+    $row{NOME} = encode('UTF-8', $_->findvalue('nome'), Encode::FB_CROAK);
+    $row{DESCRIZIONE} = encode('UTF-8', $_->findvalue('descrizione'), Encode::FB_CROAK);
     $row{PADIGLIONE} = $_->findvalue('padiglione');
     $row{DATA} = italianize_date($_->findvalue('data'));
     $row{INIZIO} = rem_seconds($_->findvalue('inizio'));
@@ -434,10 +450,10 @@ else {  #visualizzazione o elimina
     $template->param(H=> \@H);
   }
   elsif ($ord == 1) { #datetime
-    @sortedevents = sort { $a->{DATETIME} <=> $b->{DATETIME} } @eventi;
+    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
   }
   else { #AZ
-    @sortedevents = sort { $a->{NOME} <=> $b->{NOME} } @eventi;
+    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
   }
     
 

@@ -1,7 +1,7 @@
-<h1> <span xlm:lang="en">Comment Book<span> </h1>
+<h1> <span xlm:lang="en">Comment Book</span> </h1>
     <div id="notifica">
       <TMPL_LOOP NAME=ERRORI>
-        <p id="<TMPL_VAR NAME=TIPO ESCAPE=HTML>"><TMPL_VAR NAME=TESTO></p>
+        <p id="<TMPL_VAR NAME=TIPO />"><TMPL_VAR NAME=TESTO /></p>
       </TMPL_LOOP>
     </div>
     <TMPL_IF NAME=AUTENTICATO>
@@ -16,11 +16,11 @@
     </TMPL_IF>
     <TMPL_LOOP NAME=COMMENTI>
       <div class="commento">
-        <p><strong><TMPL_VAR NAME=USERNAME></strong> il <TMPL_VAR NAME=NORMDT> ha scritto:</p>
+        <p><strong><TMPL_VAR NAME=USERNAME ESCAPE=HTML /></strong> il <TMPL_VAR NAME=NORMDT ESCAPE=HTML /> ha scritto:</p>
         <TMPL_IF ADMIN>
           </form>
         </TMPL_IF>
-        <p> <TMPL_VAR NAME=TESTO> </p>
+        <p> <TMPL_VAR NAME=TESTO ESCAPE=HTML /> </p>
         <TMPL_IF NAME=DEL>
           <form action="commenti.cgi" method="POST">
           <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
