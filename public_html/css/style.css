@@ -281,6 +281,10 @@ a:visited {
 	background-color: #550000;
 }
 
+#floatvalidcss {
+	position:relative;
+	float:right;
+}
 
 
 
