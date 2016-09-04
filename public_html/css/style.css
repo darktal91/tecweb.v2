@@ -61,6 +61,8 @@ table {
 
  body {
  	line-height: 1.2em;
+ 	overflow-x: hidden;
+ 	overflow-y: scroll;
 
  	color: #fff;
  	font-family: Georgia, serif;
