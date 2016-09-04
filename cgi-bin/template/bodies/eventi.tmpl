@@ -59,20 +59,20 @@
 
   <div id="sorting">
     Ordina Eventi per:
-    <TMPL_IF NAME=ORDAZ>
+    <TMPL_IF NAME=ORDPAD>
       <a href="eventi.cgi?sort=0" class="sort-selected">Padiglioni</a>
     <TMPL_ELSE>
-      <a href="eventi.cgi?sort=0">Padiglioni</a>
+      <a href="eventi.cgi?sort=0">padiglioni</a>
     </TMPL_IF>
     <TMPL_IF NAME=ORDDT>
-      <a href="eventi.cgi?sort=1" class="sort-selected">data</a>  
+      <a href="eventi.cgi?sort=1" class="sort-selected">Data</a>  
     <TMPL_ELSE>
       <a href="eventi.cgi?sort=1">data</a>
     </TMPL_IF>
-    <TMPL_IF NAME=ORDPAD>
+    <TMPL_IF NAME=ORDAZ>
       <a href="eventi.cgi?sort=2" class="sort-selected">A-Z</a>
     <TMPL_ELSE>
-      <a href="eventi.cgi?sort=2">A-Z</a>
+      <a href="eventi.cgi?sort=2">a-z</a>
     </TMPL_IF>
   </div>
   <div id="eventi">
