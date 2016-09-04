@@ -1,6 +1,7 @@
 <TMPL_IF AUTENTICATO>
   <TMPL_IF ACQUISTA>
     <form method="post" action="acquistaBiglietti.cgi">
+      <fieldset> <legend>Biglietti selezionati per l'acquisto</legend> 
       <ul>
         <TMPL_LOOP NAME="INFOBIGLIETTI">
           <li>
@@ -9,8 +10,9 @@
           </li>
         </TMPL_LOOP>
       </ul>
-      <input type="submit" value="Conferma" name="conferma" />
-      <input type="submit" value="Modifica" name="modifica" />
+      </fieldset> 
+      <input type="submit" value="Conferma l'acquisto" name="conferma" />
+      <input type="submit" value="Modifica l'acquisto" name="modifica" />
     </form>
   <TMPL_ELSE>
     <TMPL_IF CONFERMA>
@@ -37,8 +39,8 @@
             </fieldset>
           </TMPL_LOOP>
           <input type="hidden" id="acquista" name="acquista" value="1" />
-          <input type="submit" value="Acquista" name="acquista" />
-          <input type="reset" value="Cancella i dati">
+          <input type="submit" value="Acquista i biglietti" name="acquista" />
+          <input type="reset" value="Annulla le modifiche">
           </fieldset>
       </form>
       <TMPL_IF ERRQTA>
