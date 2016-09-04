@@ -293,9 +293,6 @@ h1 {
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 1.5em;
-
-	border-bottom:1px solid #000;
-	margin-bottom: 0.3em;
 }
 
 h2 {
@@ -351,9 +348,38 @@ strong {
 	font-weight: bolder;
 }
 
+ul {
+	list-style-type:square;
+	list-style-position: inside;
+	padding-left: 5px;
+}
 
+/* ------------------------------------ */
+/* ---------TABELLE-------------------- */
+/* ------------------------------------ */
 
+table {
+	display:block;
 
+	margin: 10px;
+	
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+th,td {
+	padding: 2px;
+
+	border: 1px solid black;
+
+}
+th {
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+
+	background-color: #FFFFCC;
+}
 
 
 /* ------------------------------------ */
@@ -368,7 +394,7 @@ strong {
 	text-align: center;
 }
 
-/* LOGIN e REGISTRAZIONE                */
+/* FORM E GESTIONE ERRORI               */
 /* ------------------------------------ */
 #errorbox {
 	margin-top:1em;
@@ -378,69 +404,82 @@ strong {
 	font-size: 1.5em;
 }
 
-.formfields fieldset {
-	margin-top:1em;
-
-	border: none;
+.formfields {
+	padding: 10px;
 }
 
 .formfields legend {
 	margin-top:1em;
-	margin-bottom:1em;
 
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
-
-.formfields ul
-{
-	padding-left:0;
+.formfields ul {
+	padding: 0px 0px 10px 0px;
 
     list-style: none;
 }
 
-.formfields li
-{
-    line-height:20px;
-}
+.formfields label {
+	display:block;
+	width: 100%;
+	max-width: 375px;
+	padding: 17px 0px 3px 0px;
 
-.formfields label, #infoutente label, .formfields .tipobiglietto {
-    display: inline-block;
-    height: 20px;
-    width: 115px;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right:15px;
-
-    color: #333;
-    text-align: right;
+	vertical-align:text-bottom;
 }
 
 .formfields input {
-    height: 20px;
-    width: 120px;
-    margin-top: 10px;
+	width: 100%;
+	max-width: 375px;
+	display: block;
+	height: 25px;
 
-    line-height:20px;
-
-    border: 1px solid #000;
+	background-color: #FFFEEB;
+	border: 1px solid #999;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 .formfields textarea {
-	height: 80px;
-    width: 260px;
-	padding: 5px 0px 5px 0px;
+	display: block;
+	width: 100%;
+	max-width: 370px;
+	height: 150px;
 
-	border: 1px solid #000;
+	background-color: #FFFEEB;
+	border: 1px solid #999;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
-.formfields input.button {
-    display:block; 
-    width:262px;
+.formfields select {
+	display: block;
+	width: 100%;
+	max-width: 70px;
 
+	background-color: #FFFEEB;
+	border: 1px solid #999;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.formfields input.button {
+    width:100%;
+    max-width:377px;
+    margin: 10px 0px 10px 0px;
+
+    background-color: #CCC;
     list-style: none;
     cursor:pointer;
 }
+
+
 
 /* EVENTI e COMMENTI                    */
 /* ------------------------------------ */
@@ -452,6 +491,9 @@ strong {
 
 	border: 1px solid #CCC;
 	background: #EEE;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* PADIGLIONI                           */
@@ -489,7 +531,10 @@ strong {
 	margin-bottom:5px;
 	
 	border:1px solid #999;
-	background: #CCC;
+	background: #FFFFEE;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 .row {
@@ -514,6 +559,9 @@ strong {
 	height:30%;
 
 	border:1px solid #000;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 .floatright30 {
@@ -527,7 +575,7 @@ strong {
 	position: relative;
 	float:right;
 
-	max-width:77%;
+	max-width:70%;
 
 }
 

@@ -16,13 +16,13 @@
       <div id="errorbox"><TMPL_VAR STRERR /></div>
     </TMPL_IF>
     <form action="eventi.cgi?mod=1" method="POST" class="formfields"/>
-      <ul class="form">
+      <ul>
         <TMPL_IF NAME=MODIFICA>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />" readonly/></li>
         <TMPL_ELSE>
           <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />"/></li>
         </TMPL_IF>
-        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" placeholder="Descrizione dell'evento" rows="7" cols="40"><TMPL_VAR DESCRIZIONE ESCAPE=HTML /></textarea></li>
+        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" placeholder="Descrizione dell'evento" rows="7" cols="40">  <TMPL_VAR DESCRIZIONE ESCAPE=HTML /></textarea></li>
         <li><label for="padiglione">Padiglione:</label><select name="padiglione">
         <TMPL_LOOP NAME=PADIGLIONI>
           <TMPL_IF NAME=SELECTED>

@@ -4,6 +4,8 @@
 		<acquisto username="admin" datatime="2016-08-28T22:07:39">2</acquisto>
 		<acquisto username="admin" datatime="2016-08-28T22:16:41">5</acquisto>
 		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">1</acquisto>
+		<acquisto username="admin" datatime="2016-09-04T12:02:19">12</acquisto>
+		<acquisto username="admin" datatime="2016-09-04T14:59:35">10</acquisto>
 	</tipologia>
 	<tipologia id="ridotto" descrizione="Se sei uno studente pulcioso" prezzo="25">
 		<acquisto username="admin" datatime="2016-08-28T21:35:03">1</acquisto>
@@ -19,5 +21,6 @@
 		<acquisto username="sydernee" datatime="2016-08-31T14:10:50">1</acquisto>
 		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">2</acquisto>
 		<acquisto username="sydernee" datatime="2016-08-31T14:22:21">1</acquisto>
+		<acquisto username="admin" datatime="2016-09-04T15:12:08">10</acquisto>
 	</tipologia>
 </a:acquisti>

@@ -1,5 +1,8 @@
+<h1>Controllo Ricavi</h1>
 <TMPL_IF AUTENTICATO>
+<p>In questa pagina potrai tenere sotto controllo gli acquisti effettuati dagli utenti e i ricavi ottenuti dalla vendita dei prodotti.</p>
   <TMPL_IF ADMIN>
+    <h2>Vendite Biglietti</h2>
     <table id="ricavi" summary="In questa tabella sono contenuti il numero di biglietti venduti e ricavi totali per tipo di biglietto">
       <thead>
         <tr>
@@ -22,6 +25,7 @@
           </TMPL_LOOP>
         </tbody>
     </table>
+    <h2>Ricavo totale</h2>
     <p>Sono stati venduti <TMPL_VAR NTOTALEBIGLIETTI> biglietti, mentre il ricavo totale è <TMPL_VAR RICAVOTOTALE></p>
   <TMPL_ELSE>
     Non hai i privilegi sufficienti per poter visualizzare la pagina.

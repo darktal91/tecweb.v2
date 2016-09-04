@@ -1,3 +1,4 @@
+<h1> Area acquisti </h1>
 <TMPL_IF AUTENTICATO>
   <TMPL_IF ACQUISTA>
     <form method="post" action="acquistaBiglietti.cgi">
@@ -24,37 +25,32 @@
       </TMPL_LOOP>
       <a href="bigliettiAcquistati.cgi">Tutti i biglietti acquistati</a>
     <TMPL_ELSE>
-        <h1>Acquista i tuoi biglietti ora!</h1>
-        <p>Per poter partecipare all'<span xlm:lang="en">Empire Con</span> è necessario iscriversi : approfittane subito! </p>
-      <form method="post" action="acquistaBiglietti.cgi">
+        <p>Per poter partecipare all'<span xlm:lang="en">Empire Con</span> è necessario essere in possesso di un biglietto. </p>
+      <form method="post" action="acquistaBiglietti.cgi"  class="formfields">
         <fieldset>
-          <legend>Acquista il biglietto</legend>
-          <label for="tipo">Tipo del biglietto:</label>
-            <TMPL_LOOP NAME="INFOBIGLIETTI">
-              <p><TMPL_VAR NAME="ID" ESCAPE=HTML> - 
-              <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> - 
-              <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ - 
-              <input type="text" name="<TMPL_VAR NAME="ID" ESCAPE=HTML>" id="<TMPL_VAR NAME="ID" ESCAPE=HTML>" value="<TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>" size="2"/></p>
-            </TMPL_LOOP>
+          <legend>Tipo del biglietto:</legend>
+            
+            <ul><TMPL_LOOP NAME="INFOBIGLIETTI">
+              <li><label for="<TMPL_VAR NAME="ID" ESCAPE=HTML>"><TMPL_VAR NAME="ID" ESCAPE=HTML> - Costo: <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ </label> <p><TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML></p> <input type="text" name="<TMPL_VAR NAME="ID" ESCAPE=HTML>" id="<TMPL_VAR NAME="ID" ESCAPE=HTML>" value="<TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>" size="2"/></li>
+            </TMPL_LOOP></ul>
+
           <input type="hidden" id="acquista" name="acquista" value="1" />
-          <input type="submit" value="Acquista" name="acquista" />
+          <input type="submit" value="Acquista" name="acquista" class ="button"/>
           </fieldset>
       </form>
       <TMPL_IF ERRQTA>
-        <p>Errore: controlla se quello che hai inserito è un numero e, se è un numero, che non sia negativo o con la virgola.</p>
+        <div id="errorbox"><p>Errore: controlla se quello che hai inserito è un numero e, se è un numero, che non sia negativo o con la virgola.</p></div>
       </TMPL_IF>
       <TMPL_IF ZEROBIGLIETTI>
-        <p>Errore: non è stato selezionato alcun biglietto.</p>
+        <div id="errorbox"><p>Errore: non è stato selezionato alcun biglietto.</p></div>
       </TMPL_IF>
     </TMPL_IF>
   </TMPL_IF>  
 <TMPL_ELSE>
   <p>Per poter partecipare all'<span xml:lang="en">Enpire Con</span> è necessario essere in possesso di un biglietto.</p>
   <p>Sono disponibili le seguenti tipologie di biglietti:</p>
-      <TMPL_LOOP NAME="INFOBIGLIETTI">
-        <p>
-          Il tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ 
-        </p>
-      </TMPL_LOOP>
+      <ul><TMPL_LOOP NAME="INFOBIGLIETTI">
+          <li>Il tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> (<strong><TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML></strong>) al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€</li>
+      </TMPL_LOOP></ul>
   <p>Per poter effettuare l'acquisto dovrai però prima effettuare il <span xml:lang="en"><a href="login.cgi">login</a></span>.</p>
 </TMPL_IF>
