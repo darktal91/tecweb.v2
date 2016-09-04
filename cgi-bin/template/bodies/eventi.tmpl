@@ -15,36 +15,38 @@
     <TMPL_IF NAME=ERRORI>
       <div class="errorbox"><TMPL_VAR STRERR /></div>
     </TMPL_IF>
-    <form action="eventi.cgi?mod=1" method="POST" class="formfields"/>
+    <form action="eventi.cgi?mod=1" method="post" class="formfields">
       <ul>
         <TMPL_IF NAME=MODIFICA>
-          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />" readonly/></li>
+          <li><label for="nome">Nome evento:</label><input type="text" id="nome" name="nome" title="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />" readonly="readonly" /></li>
         <TMPL_ELSE>
-          <li><label for="nome">Nome evento:</label><input type="text" name="nome" placeholder="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />"/></li>
+          <li><label for="nome">Nome evento:</label><input type="text" id="nome" name="nome" title="Nome dell'evento" value="<TMPL_VAR NOME ESCAPE=HTML />"/></li>
         </TMPL_IF>
-        <li><label for="descrizione">Descrizione:</label><textarea name="descrizione" placeholder="Descrizione dell'evento" rows="7" cols="40">  <TMPL_VAR DESCRIZIONE ESCAPE=HTML /></textarea></li>
-        <li><label for="padiglione">Padiglione:</label><select name="padiglione">
+        <li><label for="descrizione">Descrizione:</label><textarea id="descrizione" name="descrizione" title="Descrizione dell'evento" rows="7" cols="40"><TMPL_VAR DESCRIZIONE ESCAPE=HTML /></textarea></li>
+        <li><label for="padiglione">Padiglione:</label><select id="padiglione" name="padiglione">
         <TMPL_LOOP NAME=PADIGLIONI>
           <TMPL_IF NAME=SELECTED>
-            <option value="<TMPL_VAR PADIGLIONE ESCAPE=HTML />" selected><TMPL_VAR PADIGLIONE ESCAPE=HTML /></option>
+            <option value="<TMPL_VAR PADIGLIONE ESCAPE=HTML />" selected="selected"><TMPL_VAR PADIGLIONE ESCAPE=HTML /></option>
           <TMPL_ELSE>
             <option value="<TMPL_VAR PADIGLIONE ESCAPE=HTML />"><TMPL_VAR PADIGLIONE ESCAPE=HTML /></option>
           </TMPL_IF>
         </TMPL_LOOP>
         </select></li>
-        <li><label for="data">Data:</label><input type="text" name="data" placeholder="aaaa-mm-dd" value="<TMPL_VAR DATA ESCAPE=HTML />" title="Formato aaaa-mm-dd" /> (aaaa-mm-dd)</li>
-        <li><label for="inizio">Ora nizio:</label><input type="text" name="inizio" placeholder="hh:mm" value="<TMPL_VAR INIZIO ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
-        <li><label for="fine">Ora fine:</label><input type="text" name="fine" placeholder="hh:mm" value="<TMPL_VAR FINE ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
+        <li><label for="data">Data:</label><input type="text" id="data" name="data" value="<TMPL_VAR DATA ESCAPE=HTML />" title="Formato aaaa-mm-dd" /> (aaaa-mm-dd)</li>
+        <li><label for="inizio">Ora nizio:</label><input type="text" id="inizio" name="inizio" value="<TMPL_VAR INIZIO ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
+        <li><label for="fine">Ora fine:</label><input type="text" id="fine" name="fine" value="<TMPL_VAR FINE ESCAPE=HTML />" title="Formato hh:mm" /> (hh:mm)</li>
       </ul>
-      <TMPL_IF NAME=MODIFICA>
-        <input type="hidden" name="action" value="Modifica" />
-        <input type="hidden" name="id" value="<TMPL_VAR ID ESCAPE=HTML />" />
-      <TMPL_ELSE>
-        <input type="hidden" name="action" value="Nuovo" />
-      </TMPL_IF>
-      <input type="hidden" name="submitted" value="1" />
-      <input type="hidden" name="mod" value="1" />
-      <input type="submit" name="submit" value="Invia" class="button"/>
+      <fieldset>
+	<TMPL_IF NAME=MODIFICA>
+	  <input type="hidden" name="action" value="Modifica" />
+	  <input type="hidden" name="id" value="<TMPL_VAR ID ESCAPE=HTML />" />
+	<TMPL_ELSE>
+	  <input type="hidden" name="action" value="Nuovo" />
+	</TMPL_IF>
+	<input type="hidden" name="submitted" value="1" />
+	<input type="hidden" name="mod" value="1" />
+	<input type="submit" name="submit" value="Invia" class="button"/>
+      </fieldset>
     </form>
   </TMPL_IF>
 <TMPL_ELSE>
@@ -83,11 +85,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -101,11 +105,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -119,11 +125,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -137,11 +145,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -155,11 +165,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -173,11 +185,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -191,11 +205,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -209,11 +225,13 @@
 	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
-	      <form class="eventi-form" action="eventi.cgi" method="POST">
-		<input type="hidden" name="mod" value="1" />
-		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      <form class="eventi-form" action="eventi.cgi" method="post">
+		<fieldset>
+		  <input type="hidden" name="mod" value="1" />
+		  <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		  <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		  <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </div>
@@ -226,11 +244,13 @@
 	  <div class="dataora">Padiglione: <TMPL_VAR NAME=PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	  <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	  <TMPL_IF NAME=ADMIN>
-	    <form class="eventi-form" action="eventi.cgi" method="POST">
-	      <input type="hidden" name="mod" value="1" />
-	      <input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
-	      <input type="submit" name="action" value="Modifica" class ="flatbutton"/>
-	      <input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	    <form class="eventi-form" action="eventi.cgi" method="post">
+	      <fieldset>
+		<input type="hidden" name="mod" value="1" />
+		<input type="hidden" name="id" value="<TMPL_VAR NAME=ID ESCAPE=HTML />" />
+		<input type="submit" name="action" value="Modifica" class ="flatbutton"/>
+		<input type="submit" name="action" value="Elimina" class ="flatbutton"/>
+	      </fieldset>
 	    </form>
 	  </TMPL_IF>
 	</div>
