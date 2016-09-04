@@ -212,8 +212,8 @@ my $strerr = "";
 my $ok = 0;
 my $submitted = 0;
 
-my $username=$page->param('username');
-my $password=$page->param('password');
+my $username=$page->param('nusername');
+my $password=$page->param('npassword');
 my $cpassword=$page->param('c_password');
 my $nome=$page->param('nome');
 my $cognome=$page->param('cognome');

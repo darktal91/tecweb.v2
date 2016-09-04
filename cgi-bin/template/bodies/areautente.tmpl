@@ -5,11 +5,11 @@
 	    <dt><label>Nome: </label><TMPL_VAR NOME ESCAPE=HTML /></dt>
 	    <dt><label>Cognome: </label><TMPL_VAR COGNOME ESCAPE=HTML /></dt>
 	    <dt><label>Data di nascita: </label><TMPL_VAR DATANASCITA ESCAPE=HTML /></dt>
-	    <dt><label>Via: </label><TMPL_VAR VIA ESCAPE=HTML /></dd>
-	    <dt><label>Numero: </label><TMPL_VAR NUMERO ESCAPE=HTML /></dd>
-	    <dt><label>Città: </label><TMPL_VAR CITTA ESCAPE=HTML /></dd>
-	    <dt><label>Provincia: </label><TMPL_VAR PROVINCIA ESCAPE=HTML /></dd>
-	    <dt><label>CAP: </label><TMPL_VAR CAP ESCAPE=HTML /></dd>
+	    <dt><label>Via: </label><TMPL_VAR VIA ESCAPE=HTML /></dt>
+	    <dt><label>Numero: </label><TMPL_VAR NUMERO ESCAPE=HTML /></dt>
+	    <dt><label>Città: </label><TMPL_VAR CITTA ESCAPE=HTML /></dt>
+	    <dt><label>Provincia: </label><TMPL_VAR PROVINCIA ESCAPE=HTML /></dt>
+	    <dt><label>CAP: </label><TMPL_VAR CAP ESCAPE=HTML /></dt>
 	    <dt><label><span xml:lang="en">Email: </span></label><TMPL_VAR EMAIL ESCAPE=HTML /></dt>
 	  </dl>
 	  <p>
@@ -55,9 +55,11 @@
 		    <input type="text" name="email" id="email" value="<TMPL_VAR EMAIL ESCAPE=HTML>" /></li>
 		  </ul>
 		</fieldset>
-		<input type="submit" value="modifica" class ="button" />
-		<input type="hidden" name="submitted" id="submitted" value="1" />
-		<input type="hidden" name="modifica" id="modifica" value="1" />
+		<fieldset>
+		  <input type="submit" value="modifica" class ="button" />
+		  <input type="hidden" name="submitted" id="submitted" value="1" />
+		  <input type="hidden" name="modifica" id="modifica" value="1" />
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  <TMPL_ELSE>
@@ -77,11 +79,14 @@
 		    <input type="password" name="newpassword" id="newpassword" value="" size="16" /></li>
 
 		    <li><label for="coldpassword">Conferma nuova <span xml:lang="en">password:</span></label>
-		    <input type="password" name="cnewpassword" id="cnewpassword" value="" size="16" /><li>
+		    <input type="password" name="cnewpassword" id="cnewpassword" value="" size="16" /></li>
+		  </ul>
 		</fieldset>
-		<input type="submit" value="modifica" class ="button" />
-		<input type="hidden" name="submitted" id="submitted" value="1" />
-		<input type="hidden" name="modifica" id="modifica" value="2" />
+		<fieldset>
+		  <input type="submit" value="modifica" class ="button" />
+		  <input type="hidden" name="submitted" id="submitted" value="1" />
+		  <input type="hidden" name="modifica" id="modifica" value="2" />
+		</fieldset>
 	      </form>
 	    </TMPL_IF>
 	  </TMPL_IF>
