@@ -1,15 +1,19 @@
-<h1> <span xlm:lang="en">Comment Book</span> </h1>
+<h1><span xml:lang="en">Comment Book</span></h1>
     <div id="notifica">
       <div class="errorbox"><TMPL_LOOP NAME=ERRORI>
-        <p id="<TMPL_VAR NAME=TIPO />"><TMPL_VAR NAME=TESTO /></p></div>
-      </TMPL_LOOP>
+        <p id="<TMPL_VAR NAME=TIPO />"><TMPL_VAR NAME=TESTO /></p>
+      </TMPL_LOOP></div>
     </div>
     <TMPL_IF NAME=AUTENTICATO>
       <p> Lascia qui i tuoi commenti </p>
-      <form action="commenti.cgi" method="POST" class="formfields">
-        <textarea name="testo" rows="7" cols="40" placeholder="Scrivi un commento qui"></textarea><br />
-        <input type="hidden" name="operation" value="insert" />
-        <input type="submit" value="Invia!" class="button"/>
+      <form action="commenti.cgi" method="post" class="formfields">
+        <fieldset>
+	  <textarea name="testo" rows="7" cols="40" title="Scrivi un commento qui"></textarea>
+        </fieldset>
+        <fieldset>
+	  <input type="hidden" name="operation" value="insert" />
+	  <input type="submit" value="Invia!" class="button"/>
+        </fieldset>
       </form>
     <TMPL_ELSE>
       <p>Per inserire un commento devi prima effettuare il <span xml:lang="en">login</span>.</p>
@@ -22,11 +26,13 @@
         </TMPL_IF>
         <p> <TMPL_VAR NAME=TESTO ESCAPE=HTML /> </p>
         <TMPL_IF NAME=DEL>
-          <form action="commenti.cgi" method="POST">
-          <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
-          <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
-          <input type="hidden" name="operation" value="delete" />
-          <input type="submit" value="(elimina il commento)" class="flatbutton"/>
+          <form action="commenti.cgi" method="post">
+	    <fieldset>
+	      <input type="hidden" name="username" value="<TMPL_VAR USERNAME ESCAPE=HTML>" />
+	      <input type="hidden" name="datetime" value="<TMPL_VAR DATETIME ESCAPE=HTML>" />
+	      <input type="hidden" name="operation" value="delete" />
+	      <input type="submit" value="(elimina il commento)" class="flatbutton"/>
+	    </fieldset>
           </form>
         </TMPL_IF>
       </div>
