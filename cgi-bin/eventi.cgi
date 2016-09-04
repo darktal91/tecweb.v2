@@ -378,12 +378,18 @@ else {  #visualizzazione o elimina
   }
 
   #leggo il tipo di ordinamento
-  #  0/null -> AZ
+  #  0/null -> padiglioni
   #  1 -> datetime
-  #  2 -> padiglioni
+  #  2 -> AZ
   $ord = $page->param('sort');
   my @sortedevents = ();
-  if($ord == 2) { #padiglioni
+  if($ord == 2) { #AZ
+    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
+  }
+  elsif ($ord == 1) { #datetime
+    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
+  }
+  else { #padiglioni
     @sortedevents = sort sortdatapadiglione @eventi;
     $template->param(ORDPAD=>1);
     my @A = @B = @C = @D = @E = @F = @G = @H = ();
@@ -448,12 +454,6 @@ else {  #visualizzazione o elimina
     $template->param(F=> \@F);
     $template->param(G=> \@G);
     $template->param(H=> \@H);
-  }
-  elsif ($ord == 1) { #datetime
-    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
-  }
-  else { #AZ
-    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
   }
     
 
