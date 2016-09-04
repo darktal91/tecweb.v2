@@ -108,7 +108,7 @@ while (@ids){
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
 my $home="index.cgi";
-$template->param(PATH=>"<a href=\"$home\">Home</a> >> Acquista biglietti");
+$template->param(PATH=>"<a href=\"$home\">Home</a> >> Biglietti Acquistati");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);
 $template->param(RIFE=>$referrer);
