@@ -11,9 +11,9 @@
           </li>
         </TMPL_LOOP>
       </ul>
-      </fieldset> 
       <input type="submit" value="Conferma l'acquisto" name="conferma" />
       <input type="submit" value="Modifica l'acquisto" name="modifica" />
+      </fieldset> 
     </form>
   <TMPL_ELSE>
     <TMPL_IF CONFERMA>
@@ -27,7 +27,7 @@
       </ul>
       <a href="bigliettiAcquistati.cgi">Tutti i biglietti acquistati</a>
     <TMPL_ELSE>
-        <p>Per poter partecipare all'<span xlm:lang="en">Empire Con</span> è necessario avere i biglietti: approfittane subito ed acquistali!</p>
+        <p>Per poter partecipare all'<span xml:lang="en">Empire Con</span> è necessario avere i biglietti: approfittane subito ed acquistali!</p>
         <p>Sono disponibili diverse tipologie di biglietto ed è possibile acquistare più di un biglietto per utente: potrai quindi acquistare i biglietti sia per te che per i tuoi amici.</p> 
       <form method="post" action="acquistaBiglietti.cgi"  class="formfields">
         <fieldset>
@@ -38,7 +38,7 @@
             </TMPL_LOOP></ul>
           <input type="hidden" id="acquista" name="acquista" value="1" class="button"/>
           <input type="submit" value="Acquista i biglietti" name="acquista" class="button"/>
-          <input type="reset" value="Annulla le modifiche" class="button">
+          <input type="reset" value="Annulla le modifiche" class="button"/>
         </fieldset>
       </form>
       <TMPL_IF ERRQTA>
