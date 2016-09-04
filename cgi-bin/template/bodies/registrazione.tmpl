@@ -6,13 +6,13 @@
 	  <div class="errorbox"><TMPL_VAR ERRORI /></div>
 	  <form method="post" action="registrazione.cgi" class="formfields">
 	    <fieldset>
+	      <legend>Credenziali di accesso</legend>
 	      <ul class="form">
-		<legend>Credenziali di accesso</legend>
-		<li><label for="username"><span xml:lang="en">Username:</span></label>
-		<input type="text" name="username" id="username" value="<TMPL_VAR USERNAME ESCAPE=HTML />" size="16"/></li>
+		<li><label for="nusername"><span xml:lang="en">Username:</span></label>
+		<input type="text" name="nusername" id="nusername" value="<TMPL_VAR USERNAME ESCAPE=HTML />" size="16"/></li>
 
-		<li><label for="password"><span xml:lang="en">Password:</span></label>
-		<input type="password" name="password" id="password" value="" size="16" /></li>
+		<li><label for="npassword"><span xml:lang="en">Password:</span></label>
+		<input type="password" name="npassword" id="npassword" value="" size="16" /></li>
 
 		<li><label for="c_password">Conferma <span xml:lang="en">password:</span></label>
 		<input type="password" name="c_password" id="c_password" value="" size="16" /></li>
@@ -50,7 +50,9 @@
 		<input type="text" name="email" id="email" value="<TMPL_VAR EMAIL ESCAPE=HTML />" /></li>
 	      </ul>
 	    </fieldset>
-	    <input type="submit" value="Procedi" class ="button"/>
-	    <input type="hidden" name="submitted" id="submitted" value="1" />
+	    <fieldset>
+	      <input type="submit" value="Procedi" class ="button"/>
+	      <input type="hidden" name="submitted" id="submitted" value="1" />
+	    </fieldset>
 	 </form>
 </TMPL_IF>
