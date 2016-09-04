@@ -385,9 +385,11 @@ else {  #visualizzazione o elimina
   my @sortedevents = ();
   if($ord == 2) { #AZ
     @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
+    $template->param(ORDAZ=>1);
   }
   elsif ($ord == 1) { #datetime
     @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
+    $template->param(ORDDT=>1);
   }
   else { #padiglioni
     @sortedevents = sort sortdatapadiglione @eventi;
