@@ -23,9 +23,9 @@
 		  <input class="field" type="password" name="password" id="password" value="" size="16" /></p>
 		  <p><input class="button" type="submit" value="Login" />
 		  <a class="button" accesskey="r" href="registrazione.cgi">Registrati</a></p>
+		  <input type="hidden" name="referrer" value="<TMPL_VAR RIFE ESCAPE=HTML>" />
+		  <input type="hidden" name="submitted" value="1" /> 
 		</fieldset>
-		<input type="hidden" name="referrer" value="<TMPL_VAR RIFE ESCAPE=HTML>" />
-		<input type="hidden" name="submitted" value="1" /> 
 	    </form>
 	  <TMPL_ELSE>
 	    <p>Accesso effettuato: <TMPL_VAR UTENTE></p>
