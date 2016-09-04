@@ -57,9 +57,21 @@
 
   <div id="sorting">
     Ordina Eventi per:
-    <a href="eventi.cgi?sort=0">A-Z</a>  
-    <a href="eventi.cgi?sort=1">data</a>  
-    <a href="eventi.cgi?sort=2">Padiglione</a>
+    <TMPL_IF NAME=ORDAZ>
+      <a href="eventi.cgi?sort=0" class="sort-selected">Padiglioni</a>
+    <TMPL_ELSE>
+      <a href="eventi.cgi?sort=0">Padiglioni</a>
+    </TMPL_IF>
+    <TMPL_IF NAME=ORDDT>
+      <a href="eventi.cgi?sort=1" class="sort-selected">data</a>  
+    <TMPL_ELSE>
+      <a href="eventi.cgi?sort=1">data</a>
+    </TMPL_IF>
+    <TMPL_IF NAME=ORDPAD>
+      <a href="eventi.cgi?sort=2" class="sort-selected">A-Z</a>
+    <TMPL_ELSE>
+      <a href="eventi.cgi?sort=2">A-Z</a>
+    </TMPL_IF>
   </div>
   <div id="eventi">
     <TMPL_IF NAME=ORDPAD>
@@ -68,7 +80,7 @@
 	<TMPL_LOOP NAME=A>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -86,7 +98,7 @@
 	<TMPL_LOOP NAME=B>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -104,7 +116,7 @@
 	<TMPL_LOOP NAME=C>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -122,7 +134,7 @@
 	<TMPL_LOOP NAME=D>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -140,7 +152,7 @@
 	<TMPL_LOOP NAME=E>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -158,7 +170,7 @@
 	<TMPL_LOOP NAME=F>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -176,7 +188,7 @@
 	<TMPL_LOOP NAME=G>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -194,7 +206,7 @@
 	<TMPL_LOOP NAME=H>
 	  <div class="evento">
 	    <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	    <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	    <div class="dataora">Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	    <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	    <TMPL_IF NAME=ADMIN>
 	      <form class="eventi-form" action="eventi.cgi" method="POST">
@@ -211,7 +223,7 @@
       <TMPL_LOOP NAME=EVENTI>
 	<div class="evento">
 	  <strong><TMPL_VAR NAME=NOME ESCAPE=HTML /></strong>
-	  <div class="dataora">Padiglione: <TMPL_VAR PADIGLIONE ESCAPE=HTML />. Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
+	  <div class="dataora">Padiglione: <TMPL_VAR NAME=PADIGLIONE ESCAPE=HTML /> - Data: <TMPL_VAR NAME=DATA ESCAPE=HTML />, Inizio: <TMPL_VAR NAME=INIZIO ESCAPE=HTML />, Fine: <TMPL_VAR NAME=FINE ESCAPE=HTML />.</div>
 	  <p> <TMPL_VAR NAME=DESCRIZIONE ESCAPE=HTML /> </p>
 	  <TMPL_IF NAME=ADMIN>
 	    <form class="eventi-form" action="eventi.cgi" method="POST">

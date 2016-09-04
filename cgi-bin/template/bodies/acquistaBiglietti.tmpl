@@ -2,30 +2,33 @@
 <TMPL_IF AUTENTICATO>
   <TMPL_IF ACQUISTA>
     <form method="post" action="acquistaBiglietti.cgi">
+      <fieldset> <legend>Biglietti selezionati per l'acquisto</legend> 
+      <ul>
         <TMPL_LOOP NAME="INFOBIGLIETTI">
-          <p><TMPL_VAR NAME="ID" ESCAPE=HTML> - 
-          <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> - 
-          <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ - 
-          <TMPL_VAR NAME="QUANTITA" ESCAPE=HTML></p>
-          <input type="hidden" id="<TMPL_VAR NAME="ID" ESCAPE=HTML>" name="<TMPL_VAR NAME="ID" ESCAPE=HTML>" value="<TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>" />
+          <li>
+            <TMPL_VAR NAME="QUANTITA" ESCAPE=HTML> del tipo <TMPL_VAR NAME="ID" ESCAPE=HTML>, al prezzo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML> ciascuno
+            <input type="hidden" id="<TMPL_VAR NAME="ID" ESCAPE=HTML>" name="<TMPL_VAR NAME="ID" ESCAPE=HTML>" value="<TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>" />
+          </li>
         </TMPL_LOOP>
-      <input type="submit" value="Modifica" name="modifica" />
-      <input type="submit" value="Conferma" name="conferma" />
+      </ul>
+      </fieldset> 
+      <input type="submit" value="Conferma l'acquisto" name="conferma" />
+      <input type="submit" value="Modifica l'acquisto" name="modifica" />
     </form>
   <TMPL_ELSE>
     <TMPL_IF CONFERMA>
       <p>Si conferma l'acquisto dei seguenti biglietti:</p>
-      <TMPL_LOOP NAME="INFOBIGLIETTI">
-        <p>
-          <TMPL_VAR NAME="ID" ESCAPE=HTML> - 
-          <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> - 
-          <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ - 
-          <TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>
-        </p>
-      </TMPL_LOOP>
+      <ul>
+        <TMPL_LOOP NAME="INFOBIGLIETTI">
+          <li>
+            <TMPL_VAR NAME="QUANTITA" ESCAPE=HTML> del tipo <TMPL_VAR NAME="ID" ESCAPE=HTML>, al prezzo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML> ciascuno
+          </li>
+        </TMPL_LOOP>
+      </ul>
       <a href="bigliettiAcquistati.cgi">Tutti i biglietti acquistati</a>
     <TMPL_ELSE>
-        <p>Per poter partecipare all'<span xlm:lang="en">Empire Con</span> è necessario essere in possesso di un biglietto. </p>
+        <p>Per poter partecipare all'<span xlm:lang="en">Empire Con</span> è necessario avere i biglietti: approfittane subito ed acquistali!</p>
+        <p>Sono disponibili diverse tipologie di biglietto ed è possibile acquistare più di un biglietto per utente: potrai quindi acquistare i biglietti sia per te che per i tuoi amici.</p> 
       <form method="post" action="acquistaBiglietti.cgi"  class="formfields">
         <fieldset>
           <legend>Tipo del biglietto:</legend>
@@ -33,10 +36,10 @@
             <ul><TMPL_LOOP NAME="INFOBIGLIETTI">
               <li><label for="<TMPL_VAR NAME="ID" ESCAPE=HTML>"><TMPL_VAR NAME="ID" ESCAPE=HTML> - Costo: <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ </label> <p><TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML></p> <input type="text" name="<TMPL_VAR NAME="ID" ESCAPE=HTML>" id="<TMPL_VAR NAME="ID" ESCAPE=HTML>" value="<TMPL_VAR NAME="QUANTITA" ESCAPE=HTML>" size="2"/></li>
             </TMPL_LOOP></ul>
-
-          <input type="hidden" id="acquista" name="acquista" value="1" />
-          <input type="submit" value="Acquista" name="acquista" class ="button"/>
-          </fieldset>
+          <input type="hidden" id="acquista" name="acquista" value="1" class="button"/>
+          <input type="submit" value="Acquista i biglietti" name="acquista" class="button"/>
+          <input type="reset" value="Annulla le modifiche" class="button">
+        </fieldset>
       </form>
       <TMPL_IF ERRQTA>
         <div id="errorbox"><p>Errore: controlla se quello che hai inserito è un numero e, se è un numero, che non sia negativo o con la virgola.</p></div>
@@ -49,8 +52,12 @@
 <TMPL_ELSE>
   <p>Per poter partecipare all'<span xml:lang="en">Enpire Con</span> è necessario essere in possesso di un biglietto.</p>
   <p>Sono disponibili le seguenti tipologie di biglietti:</p>
-      <ul><TMPL_LOOP NAME="INFOBIGLIETTI">
-          <li>Il tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> (<strong><TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML></strong>) al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€</li>
-      </TMPL_LOOP></ul>
-  <p>Per poter effettuare l'acquisto dovrai però prima effettuare il <span xml:lang="en"><a href="login.cgi">login</a></span>.</p>
+    <ul>
+      <TMPL_LOOP NAME="INFOBIGLIETTI">
+        <li>
+          Il tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> <TMPL_VAR NAME="DESCRIZIONE" ESCAPE=HTML> al costo di <TMPL_VAR NAME="PREZZO" ESCAPE=HTML> euro
+        </li>
+      </TMPL_LOOP>
+    </ul>
+  <p>Per poter effettuare l'acquisto dovrai però prima <a href="login.cgi">effettuare il <span xml:lang="en">login</span></a>.</p>
 </TMPL_IF>
