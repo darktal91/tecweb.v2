@@ -384,7 +384,7 @@ else {  #visualizzazione o elimina
   $ord = $page->param('sort');
   my @sortedevents = ();
   if($ord == 2) { #padiglioni
-    @sortedevents = sort { $a->{PADIGLIONE} <=> $b->{PADIGLIONE} } @eventi;
+    @sortedevents = sort sortdatapadiglione @eventi;
     $template->param(ORDPAD=>1);
     my @A = @B = @C = @D = @E = @F = @G = @H = ();
     my $a = $b = $c = $d = $e = $f = $g = $h = 0;
@@ -542,4 +542,9 @@ sub chk_ora {
       $strerr .= "L'ora di $discr non è valida. Deve essere nell'intervallo 00:00 - 24:00. <br />";
     }
   }
+}
+
+sub sortdatapadiglione {
+ return ($a->{DATETIME} cmp $b->{DATETIME}) if ($a->{PADIGLIONE} eq $b->{PADIGLIONE});
+ return $a->{PADIGLIONE} cmp $b->{PADIGLIONE};
 }
