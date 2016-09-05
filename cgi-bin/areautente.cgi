@@ -42,7 +42,7 @@ else {       #l'utente è loggato
   #compilazione template
   my $template = new  HTML::Template(scalarref => \$temp->output());
   $template->param(PAGE => "Dati personali");
-  $template->param(KEYWORD => "dati personali, dati utente, EmpireCon, fiera, Impero, Star Wars, convention");
+  $template->param(KEYWORD => "dati personali, dati utente, EmpireCon, fiera, Impero, Star Wars, convention, Empire");
   
   $filedati = "../data/utenti/utenti.xml";
 

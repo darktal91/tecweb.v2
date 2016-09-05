@@ -90,7 +90,7 @@ else {
     #compilazione template
     my $template = new  HTML::Template(scalarref => \$temp->output());
     $template->param(PAGE => "Login");
-    $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention");
+    $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention, Empire");
     $template->param(ERRORE => $strerr);
     $template->param(RIFE => $referrer); # cambiato nome della variabile, che era riferimento - Gobbo 20160824
 

@@ -55,7 +55,7 @@ $temp->param(ADMIN=>$admin);
 $temp->param(RIFE=>$referrer);
 my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
 $template->param(PAGE => "Padiglioni");
-$template->param(KEYWORD => "padiglioni, mappa, EmpireCon, fiera, Impero, Star Wars, Convention");
+$template->param(KEYWORD => "padiglioni, mappa, EmpireCon, fiera, Impero, Star Wars, Convention, Empire");
 $template->param(ADMIN=>$admin);
 
 

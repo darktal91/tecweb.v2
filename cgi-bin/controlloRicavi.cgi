@@ -86,7 +86,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Controllo Ricavi");
-$tempF->param(KEYWORD => "ricavi, EmpireCon, fiera, Rovigo, Impero,Empire");
+$tempF->param(KEYWORD => "ricavi, EmpireCon, fiera, Impero, Empire, convention, Star Wars");
 $tempF->param(ADMIN => $admin);
 $tempF->param(INFORICAVI=>\@inforicavi);
 $tempF->param(NTOTALEBIGLIETTI=>$ntotalebiglietti);

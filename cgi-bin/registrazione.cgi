@@ -28,7 +28,7 @@ $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $template = new  HTML::Template(scalarref => \$temp->output());
 $template->param(PAGE => "Registrazione");
-$template->param(KEYWORD => "registrazione, EmpireCon, fiera, Impero, Star Wars, convention");
+$template->param(KEYWORD => "registrazione, EmpireCon, fiera, Impero, Empire, Star Wars, convention");
 
 #creo il parser
 my $parser = XML::LibXML -> new();

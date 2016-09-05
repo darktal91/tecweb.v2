@@ -182,7 +182,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Acquista biglietti");
-$tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Rovigo, Impero,Empire");
+$tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Impero, Empire, Star Wars");
 $tempF->param(INFOBIGLIETTI=>$infotipi);
 $tempF->param(AUTENTICATO=>$auth);
 

@@ -43,7 +43,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Dove Siamo");
-$tempF->param(KEYWORD => "Dove siamo,posizione,EmpireCon, fiera, Rovigo, Impero,Empire");
+$tempF->param(KEYWORD => "Dove siamo, posizione, EmpireCon, fiera, Impero, Empire, convention, Star Wars");
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;
