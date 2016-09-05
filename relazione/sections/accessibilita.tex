@@ -1,0 +1,53 @@
+Per garantire che il sito sia accessibile al maggior numero di utenti e dispositivi è stato realizzato tenendo in considerazione le linee guida del WCAG. \newline
+
+\subsection{Immagini}
+L'uso di immagini come contenuto è stato estremamente limitato. In ogni caso per ognina delle immagini utilizzate è stato fornito un attributo \textit{alt} non vuoto contenente una descrizione dell'immagine. Il corretto funzionamento degli attributi \textit{alt} è stato verificato usando l'estensione per chrome \textit{Image Alt Text Viewer}.
+
+\subsection{Colori e contrasto}
+La scelta dei colori per il sito è stata fatta tenendo in considerazione la presenza di diffusi problemi visivi tra la popolazione, e quindi probabilmente anche tra gli utenti. I colori sono stati scelti in modo da garantire sempre un contrasto elevato tra le varie parti \textbf{TODO}
+
+\subsection{Markup e fogli di stile}
+Per garantire la massima compatibilità possibile con i vari dispositivi il sito è stato realizzato rispettando lo standard XHTML Strict e le linee guida W3C. Tutte le pagine sono state validate utilizzando il validatore del W3C (\url{https://validator.w3.org}). \newline
+I fogli di stile sono stati realizzati utilizzando CSS puri e validati usando il sito \url{https://jigsaw.w3.org/css-validator/}.
+
+\subsection{Lingua}
+La lingua principale del sito è l'italiano. Nei casi in cui sono stati inseriti termini non appartenenti alla lingua italiana essi sono stati rinchiusi in un marcatore che ne dichiarasse la lingua di appartenenza, ad esempio <span xml:lang="en">...</span>. Questo accorgimento serve per permettere agli screen reader di leggere tali termini utilizzando la corretta pronuncia.
+
+\subsection{Tabelle}
+Nel sito è stata utilizzata una sola tabella nella pagina \textit{Controllo Ricavi}, destinata al solo amministratore. \textbf{TODO} non so cosa hai fatto
+
+\subsection{Compatibilità e portabilità}
+Il sito è stato progettato e realizzato con l'obiettivo di essere usabile dal maggior numero di utenti possibile, anche se non provvisti di browser di ultima generazione. 
+Sono stati effettuati test con i seguenti browser desktop:
+\begin{itemize}
+	\item Internet Explorer 8;
+	\item Internet Explorer 11;
+	\item Edge versione 25;
+	\item Chrome versione 52;
+	\item Mozilla Firefox versione 41.
+\end{itemize}
+E sui seguenti browser mobile:
+\begin{itemize}
+	\item Silk versione 52 (browser Kindle Fire);
+	\item Chrome per Android versione 52.
+\end{itemize}
+Inoltre, è stata testata la navigazione utilizzando il browser testuale Lynx.
+
+\subsection{Dinamicità}
+Per evitare di creare problemi o disturbo agli utenti con testi o immagini in movimento tutti i contenuti del sito sono statici.
+
+\subsection{Indipendenza dal dispositivo}
+Il sito è stato progettato e realizzato con l'obiettivo di essere agevolmente navigabile sia tramite computer che tramite dispositivi mobile (smartphone e tablet).
+I membri del gruppo hanno testato il sito utilizzando tutti i dispositivi in nostro possesso ed è risultato visitabile in tutti i casi. \newline
+In ogni caso la struttura di HTML e CSS è stata realizzata seguendo le linee guida di WCAG per l'accessibilità, quindi è ragionevole supporre che il sito sia visitabile con qualsiasi dispositivo.
+
+\subsection{Contesto e aiuto per l'orientamento}
+Anche se la struttura del sito è molto semplice, in ogni pagina è presente una \textit{breadcrumb} che permette all'utente di sapere sempre in che posizione si trova all'interno del sito. Inoltre, il titolo di ogni pagina identifica chiaramente la stessa. \newline
+All'interno del contenuto sono stati inseriti dei link, dove necessario, per permettere all'utente di spostarsi agevolmente all'interno del sito. Ad esempio nelle pagine in cui è richiesta l'autenticazione per svolgere alcune operazioni è presente, accanto alla spiegazione della necessità dell'autenticazione, un collegamento alla pagina di login.
+
+\subsection{Link}
+\textbf{TODO}
+
+\subsection{Screen reader}
+Nell'analisi delle caratteristiche degli utenti a cui il sito è indirizzato non si è ritenuta significativa la fascia di utenti non vedenti, in quanto la saga di Star Wars deve buona parte del suo successo all'impatto visivo ed agli effetti speciali. \newline
+Tuttavia, il sito è risultato perfettamente usabile tramite browser testuale, ed è stato realizzato seguendo le linee guida di accessibilità, quindi ci si aspetta che risulti navigabile anche utilizzando uno screen reader.
