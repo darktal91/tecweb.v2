@@ -55,7 +55,7 @@ else {
   }
   else {
     # tengo traccia della pagina che ma mandato l'uente alla form di login per il redirect
-    $riferimento = $ENV{HTTP_REFERER};
+    $referrer = $ENV{HTTP_REFERER};
   }
 
   if ($success) {
