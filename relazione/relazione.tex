@@ -12,6 +12,16 @@
 
 \usepackage{titlesec}
 
+\usepackage[a4paper]{geometry}
+
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\rfoot{\thepage}
+
+% Turn on the style
+ \pagestyle{fancy}
+
 \setcounter{secnumdepth}{4}
 
 \titleformat{\paragraph}
@@ -31,11 +41,11 @@
 	{\Large Andrea Nalesso, 1026100\par}
 	{\Large Ismaele Gobbo, 1028902\par}
 	\vspace{6cm}
-	{\normalsize \textbf{Indirizzo del sito:} \url{boh}\par}
+	{\normalsize \textbf{Indirizzo del sito:} \url{TODO}\par}
 	{\normalsize \textbf{Utente amministratore:} admin\par}
 	{\normalsize \textbf{Password amministratore:} password\par}
-	{\normalsize \textbf{Utente comune:} \textbf{TODO}\par}
-	{\normalsize \textbf{Password utente comune:} \textbf{TODO}\par}
+	{\normalsize \textbf{Utente comune:} user\par}
+	{\normalsize \textbf{Password utente comune:} password\par}
 	{\normalsize \textbf{Referente del gruppo:} darktal91@gmail.com (Andrea Cardin)\par}
 	\vspace*{\fill}
 \end{titlepage}
@@ -64,4 +74,8 @@
 \section{Accessibilità e test}
 \input{sections/accessibilita}
 
+
+
+\section{Suddivisione dei ruoli}
+\input{sections/ruoli}
 \end{document}
