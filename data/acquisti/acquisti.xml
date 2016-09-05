@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <a:acquisti xmlns:a="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.imperofiere.com acquisti.xsd">
-	<tipologia id="intero" descrizione="Riservato ai magnaschei di prima classe" prezzo="5">
-		<acquisto username="admin" datatime="2016-08-28T22:07:39">2</acquisto>
-		<acquisto username="admin" datatime="2016-08-28T22:16:41">5</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">1</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T12:02:19">12</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T14:59:35">10</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T19:46:39">1</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T20:55:17">1</acquisto>
-		<acquisto username="" datatime="2016-09-04T21:23:23">2</acquisto>
-		<acquisto username="" datatime="2016-09-04T21:23:40">2</acquisto>
-		<acquisto username="" datatime="2016-09-04T21:24:45">2</acquisto>
+	<tipologia id="adulti" descrizione="Per chiunque almeno 16 anni, permette l'accesso completo a tutti i padiglioni" prezzo="150">
+		<acquisto username="lbianchi" datatime="2016-09-05T21:04:44">1</acquisto>
+		<acquisto username="mrossi" datatime="2016-09-05T21:08:58">1</acquisto>
+		<acquisto username="user" datatime="2016-09-05T21:10:31">1</acquisto>
+		<acquisto username="admin" datatime="2016-09-05T21:19:06">1</acquisto>
 	</tipologia>
-	<tipologia id="ridotto" descrizione="Se sei uno studente pulcioso" prezzo="25">
-		<acquisto username="admin" datatime="2016-08-28T21:35:03">1</acquisto>
-		<acquisto username="admin" datatime="2016-08-28T22:07:39">1</acquisto>
-		<acquisto username="admin" datatime="2016-08-28T22:16:41">1</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">1</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:28:25">1</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T20:55:17">2</acquisto>
+	<tipologia id="ragazzi" descrizione="Riservato ai ragazzi al di sotto dei 16 anni, permette l'accesso completo a tutti i padiglioni" prezzo="25">
+		<acquisto username="lbianchi" datatime="2016-09-05T21:04:44">2</acquisto>
+		<acquisto username="mrossi" datatime="2016-09-05T21:08:58">2</acquisto>
 	</tipologia>
-	<tipologia id="gratis" descrizione="Ti verrà regalato un Gadget serigrafato ESC!" prezzo="0">
-		<acquisto username="sydernee" datatime="2015-08-03T11:55:23">1</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-03T11:55:23">1</acquisto>
-		<acquisto username="admin" datatime="2016-08-28T21:35:03">10</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:10:50">1</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:16:22">2</acquisto>
-		<acquisto username="sydernee" datatime="2016-08-31T14:22:21">1</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T15:12:08">10</acquisto>
-		<acquisto username="admin" datatime="2016-09-04T20:55:17">9</acquisto>
+	<tipologia id="bambini" descrizione="Riservato ai bambini al di sotto dei 3 anni, i quali devono essere accompagnati da un adulto" prezzo="5">
+		<acquisto username="lbianchi" datatime="2016-09-05T21:04:44">5</acquisto>
+		<acquisto username="mrossi" datatime="2016-09-05T21:08:58">1</acquisto>
+		<acquisto username="user" datatime="2016-09-05T21:10:31">1</acquisto>
+	</tipologia>
+	<tipologia id="anziani" descrizione="Riservato alle persone che abbiano compiuto i 65 anni, permette l'accesso completo a tutti i padiglioni" prezzo="15">
+		<acquisto username="lbianchi" datatime="2016-09-05T21:04:44">1</acquisto>
+		<acquisto username="mrossi" datatime="2016-09-05T21:08:58">4</acquisto>
 	</tipologia>
 </a:acquisti>
