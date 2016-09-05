@@ -1,0 +1,21 @@
+\subsection{Perl}
+Per la componente dinamica e di back-end del sito è stato utilizzato il linguaggio Perl come richiesto dalle specifiche del progetto. La versione utilizzata è quella installata nel server tecweb dell'Università. \newline
+Le librerie principali utilizzate, dopo una iniziale valutazione tra quelle disponibili, sono state:
+\begin{itemize}
+	\item \textbf{CGI:} Per la gestione delle connessioni, il passaggio dei parametri HTTP tra le pagine e la gestione delle sessioni;
+	\item \textbf{LibXML:} Per la gestione e manipolazione dei file XML;
+	\item \textbf{HTML::Template:} Per la costruzione e presentazione dei contenuti. 
+\end{itemize}
+Tutte le pagine del sito sono dinamiche e realizzate in Perl per poter gestire le sessioni e le operazioni degli utenti.
+Ogni pagina è realizzata in maniera modulare tramite template innestati. L'elemento principale è il template \textit{Page} che contiene il menù e il breadcrumb del sito, nonché richiama l'inclusione di altri template: \textit{Header}, che contiene il blocco \textit{head} della pagina, ed il \textit{Footer}. Oltre ai template sopraccitati, che sono presenti in ogni pagina e adattati tramite variabili dinamiche, il template Page richiede l'inclusione del contenuto vero e proprio della pagina, che è stato realizzato sotto forma di un template specifico per ogni pagina del sito. La dinamicità dei contenuti è ottenuta tramite l'interazione (sotto forma di variabili) tra il template del contenuto e la corrispondente pagina cgi.
+La libreria LibXML è stata scelta perché è risultata essere la più completa e di più semplice utilizzo.
+
+\subsection{XML}
+Il progetto include quattro file XML utilizzati per salvare in modo persistente i dati. Per ogni file XML è stato realizzato un XMLSchema che ne definisce la struttura. Gli schemi sono stati realizzati utilizzando il modello \textit{Tende alla Veneziana}. Utilizzando il tool \textit{xmllint} gli schemi sono stati validati contro lo schema che definisce gli XMLSchema fornito dal W3C, mentre i file XML sono stati validati contro i rispettivi schemi da noi scritti. \newline
+I file XML realizzati sono:
+\begin{itemize}
+	\item \textbf{utenti:} contiene tutti i dati degli utenti che si registrano al sito, compresi username e password necessari per l'autenticazione. La password viene cifrata con una funzione di hash prima di essere salvata;
+	\item \textbf{commenti:} contiene tutti i commenti inviati dagli utenti;
+	\item \textbf{eventi:} contiene tutti gli eventi che avranno luogo durante la fiera;
+	\item \textbf{biglietti:} contiene la lista di tutti i biglietti acquistati.
+\end{itemize}
