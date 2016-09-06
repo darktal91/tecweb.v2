@@ -6,7 +6,9 @@ L'uso di immagini come contenuto è stato estremamente limitato. In ogni caso pe
 Per la mappa dei padiglioni, presente nella pagina \textit{Padiglioni}, non è stata fornita una descrizione dettagliata perché l'immagine non offre particolari informazioni aggiuntive rispetto all'elenco testuale presente di fianco, è solo un supporto visivo aggiuntivo per orientarsi. Inoltre, una descrizione dettagliata della mappa avrebbe richiesto l'utilizzo dell'attributo \textit{longdesc}, il quale però è scarsamente supportato dai browser.
 
 \subsection{Colori e contrasto}
-La scelta dei colori per il sito è stata fatta tenendo in considerazione la presenza di diffusi problemi visivi tra la popolazione, e quindi probabilmente anche tra gli utenti. I colori sono stati scelti in modo da garantire sempre un contrasto elevato tra le varie parti \textbf{TODO}
+La scelta dei colori per il sito è stata fatta tenendo in considerazione la presenza di diffusi problemi visivi tra la popolazione, e quindi probabilmente anche tra gli utenti. I colori sono stati scelti in modo da garantire sempre un contrasto elevato tra le varie parti. Per verificare il contrasto tra i colori del testo e i quelli dello sfondo nella parte di contenuto delle pagine è stato usato il sito \url{https://snook.ca/technical/colour_contrast/colour.html}, che ha dato esito positivo.
+
+Inoltre, utilizzando l'estensione \textit{Spectrum} per il browser chorome è stato testato il comportamento della grafica del sito in caso di vari tipi di daltonismo. I risultati sono stati buoni in alcuni casi e accettabili in altri. Un unico elemento del sito è risultato problematico per un tipo di daltonismo: il link alla home nella breadcrumb. Purtroppo, a causa di mancanza di tempo, non è stato possibile risolvere questo problema, perché il colore di quel link è conforme al colore di tutti i link di contenuto del sito, e cambiare la colorazione della barra che contiene la bradcrumb avrebbe richiesto di cambiare anche quasi tutti gli altri colori della grafica. Tuttavia questo problema non è particolarmente grave: l'informazione che si perde non è di vitale importanza considerando la struttura molto semplice del sito e la presenza di un link alla home page nel menù sottostante.
 
 \subsection{Markup e fogli di stile}
 Per garantire la massima compatibilità possibile con i vari dispositivi il sito è stato realizzato rispettando lo standard XHTML Strict e le linee guida W3C. Tutte le pagine sono state validate utilizzando il validatore del W3C (\url{https://validator.w3.org}). \newline
@@ -50,7 +52,9 @@ Anche se la struttura del sito è molto semplice, in ogni pagina è presente una
 All'interno del contenuto sono stati inseriti dei link, dove necessario, per permettere all'utente di spostarsi agevolmente all'interno del sito. Ad esempio nelle pagine in cui è richiesta l'autenticazione per svolgere alcune operazioni è presente, accanto alla spiegazione della necessità dell'autenticazione, un collegamento alla pagina di login.
 
 \subsection{Link}
-\textbf{TODO}
+Per la colorazione dei link all'interno dei contenuti del sito è stato scelto di utilizzare dei colori diversi da quelli standard per ottenere una maggior integrazione con il resto della grafica. I link visitati cambiano colore.
+
+I link del menù, invece, non cambiano colore quando visitati. Questa scelta, benché non ottimale e non in linea con le raccomandazioni, non dovrebbe comportare disorientamento nell'utente durante la navigazione perché il numero di pagine è estremamente ridotto, la struttura del sito è molto semplice e inoltre è presente una breadcrumb.
 
 \subsection{Screen reader}
 Nell'analisi delle caratteristiche degli utenti a cui il sito è indirizzato non si è ritenuta significativa la fascia di utenti non vedenti, in quanto la saga di Star Wars deve buona parte del suo successo all'impatto visivo ed agli effetti speciali. \newline
