@@ -14,7 +14,6 @@ my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/areautente.tmpl";
 my $file_padiglioni = "../data/padiglioni/padiglioni.xml";
-# my $ns_uri  = 'http://www.empirecon.it';
 
 # controllo che l'utente abbia effettuato l'accesso
 $session = CGI::Session->load();
@@ -54,8 +53,6 @@ else {       #l'utente è loggato
 
   #leggo la radice
   $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
-
-#   $doc->documentElement->setNamespace($ns_uri);
 
   #il parametro modifica indica:
   # 0 => primo accesso
@@ -368,4 +365,3 @@ else {       #l'utente è loggato
   HTML::Template->config(utf8 => 1);
   print "Content-Type: text/html\n\n", $template->output;
 }
-

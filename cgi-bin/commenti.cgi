@@ -92,7 +92,6 @@ if ($sessionname ne "") {
       print $page->header(-location => "commenti.cgi");
     }
   }
-  
 }
 else { #l'utente non è loggato
   $referrer = "commenti.cgi";
@@ -125,8 +124,6 @@ foreach ($results->get_nodelist) {
 #ordino l'array per date discendenti
 my @sortedcomments = ();
 @sortedcomments =  sort { lc($b->{DATETIME}) cmp lc($a->{DATETIME}) } @commenti;
-
-
 
 #creo il template
 my $temp = HTML::Template->new(filename=>$templatePage, die_on_bad_params => 0);

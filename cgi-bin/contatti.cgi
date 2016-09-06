@@ -5,7 +5,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use CGI::Session();
 use HTML::Template;
 
-## Creazione ed inizializzazione delle variabili private
+# Creazione ed inizializzazione delle variabili private
 
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";

@@ -123,7 +123,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	
 	#se errore=1 -> ci sono stati errori
 	#se errore=0 -> non ci sono stati errori
-	
 	if ($errori == 1) {  #ci sono stati errori.
 	  #preparo array padiglioni
 	  my @padiglioni = ();

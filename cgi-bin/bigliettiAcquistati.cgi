@@ -7,8 +7,6 @@ use CGI::Session();
 use HTML::Template;
 use Encode;
 
-# $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
-
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
@@ -48,7 +46,6 @@ else {
 
 
 my @ids = ();
-#my @descriptions = ();
 my @prices = ();
 my @ntickets = ();
 my @datatime = ();
@@ -59,7 +56,6 @@ my $nacquistitot = 0;
 
 foreach my $tipologia ($doc->findnodes(qq(//acquisto[\@username="$sessionname"]/..))) {
   push @ids, encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK);
-#  push @descriptions, encode('UTF-8',$tipologia->getAttribute(descrizione)),  Encode::FB_CROAK);
   push @prices, $tipologia->getAttribute(prezzo);
     
   my $count = 0;
@@ -78,15 +74,11 @@ foreach my $tipologia ($doc->findnodes(qq(//acquisto[\@username="$sessionname"]/
 
 my @infoacquisti = ();
 
-
 while (@ids){
   my %row_data;
   $row_data{ID} = shift @ids;
-  #$row_data{DESCRIZIONE} = shift @descriptions;
   $row_data{PREZZO} = shift @prices;
-#   $row_data{NUMDATATIME} = shift @numdatatime;
   my $ndt = shift @numdatatime;
-  
   
   my @info_datatime = ();
   

@@ -11,7 +11,6 @@ $page = new CGI;
 
 my $session = CGI::Session->load();
 my $sessionname = $session->param('utente');
-# my $ns_uri  = 'http://www.empirecon.it';
 
 if ($sessionname ne "") {  #l'utente è già loggato
   if ($ENV{HTTP_REFERER} ne "") {
@@ -32,8 +31,6 @@ else {
 
   #leggo la radice
   $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
-
-#   $doc->documentElement->setNamespace($ns_uri);
 
   my $username = $page->param('username');
   my $password = $page->param('password');
@@ -67,9 +64,6 @@ else {
     else {
       print $session->header(-location=>"index.cgi");
     }
-
-  #   $template->param(SUCCESS => 1);
-  #   $template->param(REFER => $referrer);
   }
   else {
     my $templatePage = "template/page.tmpl";
@@ -98,5 +92,3 @@ else {
     print "Content-Type: text/html\n\n", $template->output;
   }
 }
-# HTML::Template->config(utf8 => 1);
-# print "Content-Type: text/html\n\n", $template->output;

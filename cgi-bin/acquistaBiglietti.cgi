@@ -8,16 +8,12 @@ use HTML::Template;
 use Scalar::Util 'looks_like_number';
 use Encode;
 
-
-# $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
-
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/acquistaBiglietti.tmpl";
 my $file_acquisti = '../data/acquisti/acquisti.xml';
-
 
 ## Controllo sessione
 my $session = CGI::Session->load();
