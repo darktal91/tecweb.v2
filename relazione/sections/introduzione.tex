@@ -1,23 +1,22 @@
 \subsection{Abstract}
-Lo scopo del progetto è quello di realizzare un sito per l'Empire Con, una ipotetica convention di Star Wars che si svolge presso la Morte Nera II, la quale si trova in orbita attorno a Endor.
+Lo scopo del progetto è quello di realizzare un sito per l'EmpireCon, una ipotetica convention di Star Wars che si svolge presso la Morte Nera II, la quale si trova in orbita attorno a Endor.
 
-L'obiettivo del sito è quello di permettere agli aspiranti visitatori di poter acquistare i biglietti per l'accesso alla convention, lasciare dei commenti in un guestbook, ricevere delle news, conoscere quali eventi che si svolgeranno e in quale padiglione.
+L'obiettivo del sito è quello di permettere agli aspiranti visitatori di poter acquistare i biglietti per l'accesso alla convention, lasciare dei commenti in un guestbook, ricevere delle news, conoscere quali eventi si svolgeranno e in quale padiglione.
 
-Abbiamo inoltre previsto per l'amministratore del sito la possibilità aggiungere nuovi eventi, modificare o eliminare gli eventi esistenti, di controllare i ricavi generati dalla vendita dei biglietti e di moderare la sezione commenti.
+È stato inoltre previsto per l'amministratore del sito la possibilità di aggiungere nuovi eventi, modificare o eliminare gli eventi esistenti, controllare i ricavi generati dalla vendita dei biglietti e moderare la sezione commenti.
 
 \subsection{Caratteristiche dell’utenza}
-Le persone che potrebbero essere interessate a partecipare ad una convention su Star Wars sono i fan della sega ed è a loro che ci rivolgiamo: abbiamo quindi preso come assunto che i nostri visitatori siano in possesso di una conoscenza almeno minima del mondo di Star Wars e della sua terminologia; eventuali conoscenze mancanti non pregiudicano però la fruizione del sito.
+Le persone che potrebbero essere interessate a partecipare ad una convention su Star Wars sono i fan della sega ed è a loro che il sito si rivolge: si è assunto che i visitatori siano in possesso di una conoscenza almeno minima del mondo di Star Wars e della sua terminologia; eventuali conoscenze mancanti non pregiudicano però la fruizione del sito.
 
-Star Wars è una saga in circolazione da ormai 40 anni e quindi ci aspettiamo un'utenza omogenea negli interessi, ma non per l'età: si va infatti dal ragazzo adolescente all'adulto ormai over 60.
-Abbiamo quindi deciso di non adottare una differenziazione in base ai contenuti, ma di puntare su una interfaccia che sia semplice.
+Star Wars è una saga in circolazione da ormai 40 anni e quindi ci si aspetta un'utenza omogenea negli interessi, ma non nell'età: si va infatti dal ragazzo adolescente all'adulto ormai over 60.
+È stato quindi deciso di non adottare una differenziazione in base ai contenuti, ma di puntare su una interfaccia che semplice.
 
 \subsection{Software utilizzato, alcune scelte progettuali ed installazione}
-Per poter lavorare assieme avendo una pila software comune abbiamo utilizzato docker: questo ci ha permesso di ridurre al minimo l'overhead, in quanto una soluzione basata su macchine virtuali sarebbe rivelata troppo esosa in termini di risorse per la macchina di uno dei componenti del gruppo; mentre lavorare esclusivamente utilizzando i server di tecnologie-web sarebbe stato meno pratico.
+Per poter lavorare in gruppo utilizzando una pila software comune abbiamo si è scelto di utilizzare docker: questo ha permesso di ridurre al minimo l'overhead, in quanto una soluzione basata su macchine virtuali sarebbe rivelata troppo esosa in termini di risorse per la macchina di uno dei componenti del gruppo; mentre lavorare esclusivamente utilizzando i server di tecnologie-web sarebbe stato meno pratico.
 Docker è progetto open-source che automatizza il deployment di applicazioni all'interno di container software.
-La pila software del server di tecnologie è stata quindi replicata fedelmente e la relativa immagine di docker condivisa tra i membri del gruppo è stata condivisa grazie ad un repository di immagini: è stato possibile quindi apportare modifiche all'immagine e condividerle in maniera semplice, in quanto era richiesto agli altri membri semplicemente di lanciare un comando da terminale.
-Non possiamo che dirci soddisfatti della scelta di adottare docker e ci sentiamo di poter suggerire la stessa scelta anche agli altri gruppi, anche nel caso in cui fosse possibile utilizzare una macchina virtuale in comune o effettuare una "installazione nativa" dell'intera pila software.
-Per lavorare in maniera concorrente abbiamo utilizzato come sistema di versionamento git ed adottato un workflow per quanto riguarda il branching: sebbene all'inizio non risultasse molto naturale e richiedesse qualche sforzo e conoscenza in più, alla lunga è stato apprezzato.
-Abbiamo inoltre utilizzato una serie di script per automatizzare alcune operazioni ripetitive: principalmente per gestire i permessi, per testare la validità rispetto agli schema dei nostri file XML e per gestire docker.
-Come prova del 9 abbiamo testato utilizzando il server di tecnologie web a progetto ormai concluso, prima di stilare la relazione.
+La pila software del server di tecnologie è stata quindi replicata fedelmente e la relativa immagine di docker condivisa tra i membri del gruppo grazie ad un repository di immagini: è stato possibile quindi apportare modifiche all'immagine e condividerle in maniera semplice, in quanto era richiesto agli altri membri semplicemente di lanciare un comando da terminale.
+Il gruppo si ritiene estremamente soddisfatto dalla scelta di adottare docker e si sente di poter suggerire la stessa scelta anche agli altri gruppi, anche nel caso in cui fosse possibile utilizzare una macchina virtuale in comune o effettuare una "installazione nativa" dell'intera pila software.
+Per lavorare in maniera concorrente è stato utilizzato come sistema di versionamento git ed è stato adottato un workflow per quanto riguarda il branching: sebbene all'inizio non risultasse molto naturale e richiedesse qualche sforzo e conoscenza in più, alla lunga è stato apprezzato.
+È stata inoltre utilizzata una serie di script per automatizzare alcune operazioni ripetitive: principalmente per gestire i permessi, per testare la validità rispetto agli schema dei nostri file XML, per gestire docker e per automatizzare il caricamento del sito sul server di tecnologie web.
 
 L'installazione non richiede operazioni particolari, è sufficiente collocare i file contenuti nelle cartelle \textit{public\_html}, \textit{cgi-bin} e \textit{data} nelle rispettive cartelle del server ed assicurarsi di assegnare i corretti permessi ai file cgi.
