@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{float}
+
+\usepackage{titlesec}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\rfoot{\thepage}
+
+% Turn on the style
+ \pagestyle{fancy}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	\vspace*{1cm}
+	{\scshape\LARGE \textbf{EmpireCon} \par}
+	\vspace{0.5cm}
+	{\Large \textbf{\textit{Relazione sul progetto per il corso di Tecnologie Web}}\par}
+	\vspace{3cm}
+	{\Large Andrea Cardin, 1030310\par}
+	{\Large Andrea Nalesso, 1026100\par}
+	{\Large Ismaele Gobbo, 1028902\par}
+	\vspace{6cm}
+	{\normalsize \textbf{Indirizzo del sito:} \url{http://tecnologie-web.studenti.math.unipd.it/tecweb/~acardin/}\par}
+	{\normalsize \textbf{Utente amministratore:} admin\par}
+	{\normalsize \textbf{Password amministratore:} password\par}
+	{\normalsize \textbf{Utente comune:} user\par}
+	{\normalsize \textbf{Password utente comune:} password\par}
+	{\normalsize \textbf{Referente del gruppo:} darktal91@gmail.com (Andrea Cardin)\par}
+	\vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% Come inserire una sezione
+% \section{Nome sezione}
+% \input{sections/nome file latex della sezione senza .tex}
+% \newpage
+% Esempio:
+% \section{Introduzione}
+% \input{sections/introduzione}
+% \newpage
+
+\section{Introduzione}
+\input{sections/introduzione}
+
+\section{Progettazione}
+\input{sections/progettazione}
+
+\section{Realizzazione}
+\input{sections/realizzazione}
+
+\section{Accessibilità e test}
+\input{sections/accessibilita}
+
+
+
+\section{Suddivisione dei ruoli}
+\input{sections/ruoli}
+\end{document}

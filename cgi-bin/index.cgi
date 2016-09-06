@@ -42,8 +42,8 @@ $template->param(CONTENUTO=>qq/<TMPL_INCLUDE name = "$templateContent">/);
 $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilo template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
-$tempF->param(PAGE => "Index");
-$tempF->param(KEYWORD => "Index, home, EmpireCon, fiera, Rovigo, Impero, Empire");
+$tempF->param(PAGE => "Home");
+$tempF->param(KEYWORD => "index, home, homepage, home page, EmpireCon, fiera, Impero, Empire");
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;

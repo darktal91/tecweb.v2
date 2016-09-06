@@ -2,3 +2,12 @@
 !build/
 build/*
 !build/files
+#ignora tutto in relazione tranne i file tex e la cartella img
+!relazione/
+relazione/*
+!relazione/*.tex
+!relazione/sections
+relazione/sections/*
+!relazione/sections/*.tex
+!relazione/img
+!relazione/img/*

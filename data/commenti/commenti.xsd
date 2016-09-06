@@ -7,7 +7,7 @@
   
   <xs:complexType name="Tbook">
     <xs:sequence>
-      <xs:element name="commento" type="Tcommento" maxOccurs="unbounded" />
+      <xs:element name="commento" type="Tcommento" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   

@@ -7,15 +7,11 @@ use Digest::SHA qw(sha256_hex);
 use HTML::Template;
 
 my $page = new CGI;
-# my $ns_uri  = 'http://www.empirecon.it';
 my $filedati = "../data/utenti/utenti.xml";
-
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
 my $templateFooter = "template/footer.tmpl";
 my $templateContent= "template/bodies/registrazione.tmpl";
-
-# visualizzare messaggio di errore se si prova a registrarsi ma si è loggati
 
 my $temp = HTML::Template->new(filename=>$templatePage);
 #compongo il template finale con i sottotemplate
@@ -28,7 +24,7 @@ $temp->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $template = new  HTML::Template(scalarref => \$temp->output());
 $template->param(PAGE => "Registrazione");
-$template->param(KEYWORD => "registrazione, EmpireCon, fiera, Impero, Star Wars, convention");
+$template->param(KEYWORD => "registrazione, EmpireCon, fiera, Impero, Empire, Star Wars, convention");
 
 #creo il parser
 my $parser = XML::LibXML -> new();
@@ -212,8 +208,8 @@ my $strerr = "";
 my $ok = 0;
 my $submitted = 0;
 
-my $username=$page->param('username');
-my $password=$page->param('password');
+my $username=$page->param('nusername');
+my $password=$page->param('npassword');
 my $cpassword=$page->param('c_password');
 my $nome=$page->param('nome');
 my $cognome=$page->param('cognome');

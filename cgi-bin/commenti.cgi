@@ -92,7 +92,6 @@ if ($sessionname ne "") {
       print $page->header(-location => "commenti.cgi");
     }
   }
-  
 }
 else { #l'utente non è loggato
   $referrer = "commenti.cgi";
@@ -126,8 +125,6 @@ foreach ($results->get_nodelist) {
 my @sortedcomments = ();
 @sortedcomments =  sort { lc($b->{DATETIME}) cmp lc($a->{DATETIME}) } @commenti;
 
-
-
 #creo il template
 my $temp = HTML::Template->new(filename=>$templatePage, die_on_bad_params => 0);
 $temp->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
@@ -141,7 +138,7 @@ $temp->param(RIFE=>$referrer);
 #compilazione template
 my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
 $template->param(PAGE => "Commenti");
-$template->param(KEYWORD => "commenti, EmpireCon, fiera, Impero, Star Wars, Convention");
+$template->param(KEYWORD => "commenti, EmpireCon, fiera, Impero, Star Wars, Convention, Empire");
 $template->param(COMMENTI=> \@sortedcomments);
 $template->param(AUTENTICATO=>$auth);
 

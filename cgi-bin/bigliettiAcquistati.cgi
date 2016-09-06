@@ -7,8 +7,6 @@ use CGI::Session();
 use HTML::Template;
 use Encode;
 
-# $login{"level"} indica il livello di accessibilita' dell'utente ( 0 = non loggato, 1 = utente, 2 = admin)
-
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";
 my $templateHeader = "template/header.tmpl";
@@ -48,7 +46,6 @@ else {
 
 
 my @ids = ();
-#my @descriptions = ();
 my @prices = ();
 my @ntickets = ();
 my @datatime = ();
@@ -59,7 +56,6 @@ my $nacquistitot = 0;
 
 foreach my $tipologia ($doc->findnodes(qq(//acquisto[\@username="$sessionname"]/..))) {
   push @ids, encode('UTF-8',$tipologia->getAttribute(id),  Encode::FB_CROAK);
-#  push @descriptions, encode('UTF-8',$tipologia->getAttribute(descrizione)),  Encode::FB_CROAK);
   push @prices, $tipologia->getAttribute(prezzo);
     
   my $count = 0;
@@ -78,15 +74,11 @@ foreach my $tipologia ($doc->findnodes(qq(//acquisto[\@username="$sessionname"]/
 
 my @infoacquisti = ();
 
-
 while (@ids){
   my %row_data;
   $row_data{ID} = shift @ids;
-  #$row_data{DESCRIZIONE} = shift @descriptions;
   $row_data{PREZZO} = shift @prices;
-#   $row_data{NUMDATATIME} = shift @numdatatime;
   my $ndt = shift @numdatatime;
-  
   
   my @info_datatime = ();
   
@@ -108,7 +100,7 @@ while (@ids){
 my $template = HTML::Template->new(filename=>$templatePage);
 $template->param(HEADER=>qq/<TMPL_INCLUDE name = "$templateHeader">/);
 my $home="index.cgi";
-$template->param(PATH=>"<a href=\"$home\">Home</a> >> Acquista biglietti");
+$template->param(PATH=>"<a href=\"$home\">Home</a> >> Biglietti Acquistati");
 $template->param(UTENTE=>$user);
 $template->param(ADMIN=>$admin);
 $template->param(RIFE=>$referrer);
@@ -117,7 +109,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Biglietti Acquistati");
-$tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Rovigo, Impero,Empire");
+$tempF->param(KEYWORD => "Biglietti, Acquista, EmpireCon, fiera, Impero, Empire, Star Wars");
 $tempF->param(INFOACQUISTI=>\@infoacquisti);
 $tempF->param(AUTENTICATO=>$auth);
 $tempF->param(NACQUISTITOT=>$nacquistitot);

@@ -1,17 +1,18 @@
+<h1> Riepilogo acquisti </h1>
 <TMPL_IF AUTENTICATO>
   <TMPL_IF NACQUISTITOT>
-    <p>Finora hai acquistato:</p>
+    <p>In questa pagina potrai avere un riepilogo dei tuoi acquisti.</p><p> Finora hai acquistato i seguenti biglietti:</p>
     <TMPL_LOOP NAME="INFOACQUISTI">
       <p>
-        Tipo <TMPL_VAR NAME="ID" ESCAPE=HTML> per il costo di 
+        Tipo <strong><TMPL_VAR NAME="ID" ESCAPE=HTML></strong> per il costo di 
         <TMPL_VAR NAME="PREZZO" ESCAPE=HTML>€ caduno:</p>
-        <TMPL_LOOP NAME="INFO_DATATIME">
-          <p><TMPL_VAR NAME="NACQUISTI" ESCAPE=HTML> il giorno <TMPL_VAR NAME="DATE" ESCAPE=HTML> alle ore <TMPL_VAR NAME="TIME" ESCAPE=HTML></p>
-        </TMPL_LOOP>
+        <ul><TMPL_LOOP NAME="INFO_DATATIME">
+          <li>><TMPL_VAR NAME="NACQUISTI" ESCAPE=HTML> il giorno <TMPL_VAR NAME="DATE" ESCAPE=HTML> alle ore <TMPL_VAR NAME="TIME" ESCAPE=HTML></li>
+        </TMPL_LOOP></ul>
     </TMPL_LOOP>
   <TMPL_ELSE>
-    <p>Non hai ancora acquistato nessun biglietto</p>
+    <p class="errorbox">Non hai ancora acquistato nessun biglietto: <a href="acquistaBiglietti.cgi">acquistane subito uno!</a></p>
   </TMPL_IF>
 <TMPL_ELSE>
-  <p>Attenzione : per visualizzare i biglietti acquistati devi prima effetturare il <span xml:lang="en">login</span> </p>
+  <p class="errorbox">Attenzione : per visualizzare i biglietti acquistati devi prima <a href="login.cgi">effetturare il <span xml:lang="en">login</span></a>.</p>
 </TMPL_IF AUTENTICATO>

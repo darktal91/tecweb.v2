@@ -5,7 +5,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use CGI::Session();
 use HTML::Template;
 
-## Creazione ed inizializzazione delle variabili private
+# Creazione ed inizializzazione delle variabili private
 
 my $page = new CGI;
 my $templatePage = "template/page.tmpl";
@@ -43,7 +43,7 @@ $template->param(FOOTER=>qq/<TMPL_INCLUDE name = "$templateFooter">/);
 #compilazione template
 my $tempF = new  HTML::Template(scalarref => \$template->output());
 $tempF->param(PAGE => "Contatti");
-$tempF->param(KEYWORD => "Contatti, EmpireCon, fiera, Rovigo, Impero, Empire");
+$tempF->param(KEYWORD => "Contatti, EmpireCon, fiera, Impero, Empire, convention, Star Wars");
 
 HTML::Template->config(utf8 => 1);
 print "Content-Type: text/html\n\n", $tempF->output;

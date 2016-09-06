@@ -11,7 +11,6 @@ $page = new CGI;
 
 my $session = CGI::Session->load();
 my $sessionname = $session->param('utente');
-# my $ns_uri  = 'http://www.empirecon.it';
 
 if ($sessionname ne "") {  #l'utente è già loggato
   if ($ENV{HTTP_REFERER} ne "") {
@@ -33,8 +32,6 @@ else {
   #leggo la radice
   $root = $doc->getDocumentElement || die("Accesso alla radice fallito.");
 
-#   $doc->documentElement->setNamespace($ns_uri);
-
   my $username = $page->param('username');
   my $password = $page->param('password');
   my $submitted = $page->param('submitted');
@@ -55,7 +52,7 @@ else {
   }
   else {
     # tengo traccia della pagina che ma mandato l'uente alla form di login per il redirect
-    $riferimento = $ENV{HTTP_REFERER};
+    $referrer = $ENV{HTTP_REFERER};
   }
 
   if ($success) {
@@ -67,9 +64,6 @@ else {
     else {
       print $session->header(-location=>"index.cgi");
     }
-
-  #   $template->param(SUCCESS => 1);
-  #   $template->param(REFER => $referrer);
   }
   else {
     my $templatePage = "template/page.tmpl";
@@ -90,7 +84,7 @@ else {
     #compilazione template
     my $template = new  HTML::Template(scalarref => \$temp->output());
     $template->param(PAGE => "Login");
-    $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention");
+    $template->param(KEYWORD => "login, EmpireCon, fiera, Impero, Star Wars, convention, Empire");
     $template->param(ERRORE => $strerr);
     $template->param(RIFE => $referrer); # cambiato nome della variabile, che era riferimento - Gobbo 20160824
 
@@ -98,5 +92,3 @@ else {
     print "Content-Type: text/html\n\n", $template->output;
   }
 }
-# HTML::Template->config(utf8 => 1);
-# print "Content-Type: text/html\n\n", $template->output;

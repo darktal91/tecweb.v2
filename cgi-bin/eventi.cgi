@@ -64,7 +64,7 @@ $temp->param(ADMIN=>$admin);
 $temp->param(RIFE=>$referrer);
 my $template = new HTML::Template(scalarref => \$temp->output(), die_on_bad_params => 0);
 $template->param(PAGE => "Eventi");
-$template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Star Wars, Convention");
+$template->param(KEYWORD => "eventi, EmpireCon, fiera, Impero, Empire, Star Wars, Convention");
 $template->param(ADMIN=>$admin);
 
 #eventuale modifica
@@ -123,7 +123,6 @@ if($mod == 1 and $action ne "Elimina") {  #parte di modifica/nuovo
 	
 	#se errore=1 -> ci sono stati errori
 	#se errore=0 -> non ci sono stati errori
-	
 	if ($errori == 1) {  #ci sono stati errori.
 	  #preparo array padiglioni
 	  my @padiglioni = ();
@@ -378,62 +377,70 @@ else {  #visualizzazione o elimina
   }
 
   #leggo il tipo di ordinamento
-  #  0/null -> AZ
+  #  0/null -> padiglioni
   #  1 -> datetime
-  #  2 -> padiglioni
+  #  2 -> AZ
   $ord = $page->param('sort');
   my @sortedevents = ();
-  if($ord == 2) { #padiglioni
-    @sortedevents = sort { $a->{PADIGLIONE} <=> $b->{PADIGLIONE} } @eventi;
+  if($ord == 2) { #AZ
+    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
+    $template->param(ORDAZ=>1);
+  }
+  elsif ($ord == 1) { #datetime
+    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
+    $template->param(ORDDT=>1);
+  }
+  else { #padiglioni
+    @sortedevents = sort sortdatapadiglione @eventi;
     $template->param(ORDPAD=>1);
     my @A = @B = @C = @D = @E = @F = @G = @H = ();
     my $a = $b = $c = $d = $e = $f = $g = $h = 0;
     
     for (my $j=0; $j<$i; $j++) {
       if ($sortedevents[$j]{PADIGLIONE} eq "A") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $A[$a]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$a +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "B") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $B[$b]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$b +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "C") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $C[$c]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$c +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "D") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $D[$d]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$d +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "E") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $E[$e]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$e +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "F") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $F[$f]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$f +=1;
       }
      elsif ($sortedevents[$j]{PADIGLIONE} eq "G") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $G[$g]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$g +=1;
       }
       elsif ($sortedevents[$j]{PADIGLIONE} eq "H") { 
-	foreach my $keys (keys $sortedevents[$j]) {
+	foreach my $keys (keys %{$sortedevents[$j]}) {
 	  $H[$h]{$keys} = $sortedevents[$j]{$keys};
 	}
 	$h +=1;
@@ -448,12 +455,6 @@ else {  #visualizzazione o elimina
     $template->param(F=> \@F);
     $template->param(G=> \@G);
     $template->param(H=> \@H);
-  }
-  elsif ($ord == 1) { #datetime
-    @sortedevents = sort { lc($a->{DATETIME}) cmp lc($b->{DATETIME}) } @eventi;
-  }
-  else { #AZ
-    @sortedevents = sort { lc($a->{NOME}) cmp lc($b->{NOME}) } @eventi;
   }
     
 
@@ -542,4 +543,9 @@ sub chk_ora {
       $strerr .= "L'ora di $discr non è valida. Deve essere nell'intervallo 00:00 - 24:00. <br />";
     }
   }
+}
+
+sub sortdatapadiglione {
+ return ($a->{DATETIME} cmp $b->{DATETIME}) if ($a->{PADIGLIONE} eq $b->{PADIGLIONE});
+ return $a->{PADIGLIONE} cmp $b->{PADIGLIONE};
 }

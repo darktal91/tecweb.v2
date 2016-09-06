@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <e:eventi xmlns:e="http://www.imperofiere.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="eventi.xsd">
-	
-	
-	
-	<evento>
-		<id>RWx2aXMgUHJlc2xleQ==</id>
-		<nome>Elvis Presley</nome>
-		<descrizione>Elvis e un grande e a me mi piace atanto. Divertit con Elvis e ad ascolta musica bella che fa ballare ed e' yeah.</descrizione>
-		<padiglione>A</padiglione>
-		<data>2016-10-12</data>
-		<inizio>12:12:00</inizio>
-		<fine>13:12:00</fine>
-	</evento>
-	<evento>
-		<id>RGFydGggVmFkZXI=</id>
-		<nome>Darth Vader</nome>
-		<descrizione>Il discorso tanto atteso di Dark Vader. Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.Il discorso tanto atteso di Dark Vader.</descrizione>
-		<padiglione>G</padiglione>
-		<data>2016-05-12</data>
-		<inizio>12:12:00</inizio>
-		<fine>13:13:00</fine>
-	</evento>
-	<evento>
-		<id>UXVhbGNvc2E=</id>
-		<nome>Qualcosa</nome>
-		<descrizione>Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test </descrizione>
-		<padiglione>A</padiglione>
-		<data>2016-05-05</data>
-		<inizio>10:20:00</inizio>
-		<fine>10:45:00</fine>
-	</evento>
-	<evento>
-		<id>T3JkaW5hbWVudG9BWg==</id>
-		<nome>OrdinamentoAZ</nome>
-		<descrizione>Test OrdinamentoAZ Test OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZTest OrdinamentoAZ</descrizione>
-		<padiglione>G</padiglione>
-		<data>2017-05-12</data>
-		<inizio>12:15:00</inizio>
-		<fine>19:15:00</fine>
-	</evento>
-<evento><id>w7LDqMO5</id><nome>òèù</nome><descrizione>asfasdfàòùlàk&lt;ojb&gt;mosion</descrizione><padiglione>A</padiglione><data>2016-08-13</data><inizio>09:00:00</inizio><fine>12:00:00</fine></evento></e:eventi>
+<evento><id>RGlzY29yc28gZGVsbCdJbXBlcmF0b3JlIFBhbHBhdGluZQ==</id><nome>Discorso dell'Imperatore &lt;span xml:lang="en"&gt;Palpatine&lt;/span&gt;</nome><descrizione>Il padiglione sarà dedicato per l'intera giornata al tanto atteso e immancabile discorso del Signore dei &lt;span xml:lang="en"&gt;Sith&lt;/span&gt;, il nostro Imperatore &lt;span xml:lang="en"&gt;Palpatine&lt;/span&gt;. &#13;
+Nota: la presenza è obbligatoria. I trasgressori verranno considerati ribelli e prontamente terminati.</descrizione><padiglione>A</padiglione><data>2016-10-12</data><inizio>08:00:00</inizio><fine>22:00:00</fine></evento><evento><id>USZBIGNvbiBHZW9yZ2UgTHVjYXM=</id><nome>Evento &lt;span xml:lang="en"&gt;Q&amp;A&lt;/span&gt; con &lt;span xml:lang="en"&gt;George Lucas&lt;/span&gt;</nome><descrizione>Il signor &lt;span xml:lang="en"&gt;Lucas&lt;/span&gt; risponderà alle domande del pubblico. Segue buffet.</descrizione><padiglione>C</padiglione><data>2016-10-13</data><inizio>10:00:00</inizio><fine>14:00:00</fine></evento><evento><id>U2VtaW5hcmlvIHN1aSBXb29raWU=</id><nome>Seminario sui &lt;span xml:lang="en"&gt;Wookie&lt;/span&gt;</nome><descrizione>Seminario che vi spiegherà perché è giusto considerare i &lt;span xml:lang="en"&gt;wookie&lt;/span&gt; una minaccia e di conseguenza vanno sterminati.</descrizione><padiglione>G</padiglione><data>2016-10-13</data><inizio>08:00:00</inizio><fine>10:00:00</fine></evento><evento><id>QW5udWFsZSBkaXNjb3JzbyBkaSBNZW5waGlzIFByZXNsYQ==</id><nome>Annuale discorso di Menphis Presla</nome><descrizione>Menphis Presla, il Re dei Cloni, terrà il suo annuale discorso ad EmpireCon. Parlerà del più e del meno, di cosa ha mangiato a colazione e di quanto faccia schifo il suo pianeta su cui piove 365 giorni l'anno.</descrizione><padiglione>E</padiglione><data>2016-10-13</data><inizio>14:00:00</inizio><fine>18:00:00</fine></evento><evento><id>RXNwb3NpemlvbmUgY2FjY2lhIGltcGVyaWFsaQ==</id><nome>Esposizione caccia imperiali</nome><descrizione>Esposizione dei caccia imperiali, dai vecchi modelli che non sono riusciti ad impedire la distruzione della prima Morte Nera a quelli più recenti, che probabilmente falliranno nuovamente.</descrizione><padiglione>D</padiglione><data>2016-10-14</data><inizio>08:00:00</inizio><fine>22:00:00</fine></evento><evento><id>R2lvY2hpIGRlaSBnbGFkaWF0b3Jp</id><nome>Giochi dei gladiatori</nome><descrizione>Venite ad ammirare i nostri schiavi gladiatori  darsi battaglia fino alla morte. I nostri gladiatori appartengono ad ogni tipo di razza e provengono da tutti i sistemi dell'Impero, e moriranno al solo scopo di intrattenere il pubblico.&#13;
+Divertimento garantito nel padiglione H che, per l'occorrenza, verrà trasformato in una arena.</descrizione><padiglione>H</padiglione><data>2016-10-14</data><inizio>10:00:00</inizio><fine>22:00:00</fine></evento><evento><id>UHVsaXppYSBkZWwgcGFkaWdsaW9uZSBI</id><nome>Pulizia del padiglione H</nome><descrizione>Dopo essere stato trasformato in una arena con la sabbia, il padiglione H va anche pulito: a &lt;span xml:lang="en"&gt;Darth&lt;/span&gt; Fener non piace che la sua Morte Nera sia sporca.&#13;
+Venite ad assistere all'incredibile lavoro delle nostre squadre di pulizia!</descrizione><padiglione>H</padiglione><data>2016-10-15</data><inizio>06:00:00</inizio><fine>23:00:00</fine></evento><evento><id>RXNpYml6aW9uZSBkZWkgcGlhbmkgc2VncmV0aSBkZWxsYSBNb3J0ZSBOZXJhIElJ</id><nome>Esibizione dei piani segreti della Morte Nera II</nome><descrizione>Venite ad assistere mentre i nostri tecnici e ingegneri vi mostreranno e spiegheranno gli schemi di costruzione di questa nuova Morte Nera II.&#13;
+In particolare verranno illustrati tutti i difetti di progettazione e i punti deboli di questa splendida fortezza orbitante, e vi verrà spiegato il miglior modo per distruggerla usando un solo missile sparato con precisione.&#13;
+&#13;
+NB: i ribelli non sono ammessi.</descrizione><padiglione>B</padiglione><data>2016-10-14</data><inizio>15:00:00</inizio><fine>18:30:00</fine></evento><evento><id>TW9zdHJhIGRlbGxhIGdyYWZpdGU=</id><nome>Mostra della grafite</nome><descrizione>Mostra di opere d'arte di inestimabile valore: i grandi eroi della galassia ibernati in lastre di grafite.&#13;
+Pezzi in mostra: il Comandante &lt;span xml:lang="en"&gt;Han Solo&lt;/span&gt;.</descrizione><padiglione>F</padiglione><data>2016-10-14</data><inizio>10:00:00</inizio><fine>22:00:00</fine></evento><evento><id>RGlzY29yc28gZGkgY2hpdXN1cmEgZGVsbCdpbXBlcmF0b3JlIFBhbHBhdGluZQ==</id><nome>Discorso di chiusura dell'imperatore Palpatine</nome><descrizione>Come un maestoso banchetto o la vita dei ribelli, ogni cosa deve finire, prima o poi. Purtroppo questo vale anche per l'&lt;span xml:lang="en"&gt;EmpireCon&lt;/span&gt;.&#13;
+Ma soprattutto per la vita dei ribelli.&#13;
+Quale modo migliore di chiudere questa magnifica fiera se non con un altro immancabile discorso del nostro amato Signore dei &lt;span xml:lang="en"&gt;Sith&lt;/span&gt;, l'Imperatore &lt;span xml:lang="en"&gt;Palpatine&lt;/span&gt;?&#13;
+Nota: la presenza è obbligatoria. I trasgressori verranno considerati ribelli e prontamente terminati.</descrizione><padiglione>A</padiglione><data>2016-10-16</data><inizio>08:00:00</inizio><fine>22:00:00</fine></evento></e:eventi>
